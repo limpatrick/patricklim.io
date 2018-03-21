@@ -1,17 +1,29 @@
-import { StyleRulesCallback, Theme } from 'material-ui/styles';
+import { StyleRules, StyleRulesCallback, Theme } from 'material-ui/styles';
 
 import background from 'src/assets/img/background.jpg';
 
-const styles: StyleRulesCallback<AppStyles> = (theme: Theme) => ({
+export type AppStyles = 'wrapper';
+export const appStyles: StyleRules<AppStyles> = {
   wrapper: {
     position: 'relative',
     top: 0,
     height: '100vh',
   },
+};
+
+export type AppContentStyles = 'content' | 'scrollbars';
+export const appContentStyles: StyleRules<AppContentStyles> = {
   content: {
     maxHeight: 'calc(100% - 64px)',
+  },
+  scrollbars: {
+    minHeight: 'fill-available',
     zIndex: 4,
   },
+};
+
+export type AppContainerStyles = 'container';
+export const appContainerStyles: StyleRulesCallback<AppContainerStyles> = (theme: Theme) => ({
   container: {
     height: '100%',
     paddingRight: 24,
@@ -21,6 +33,10 @@ const styles: StyleRulesCallback<AppStyles> = (theme: Theme) => ({
       paddingLeft: 16,
     },
   },
+});
+
+export type AppBackgroundStyles = 'background';
+export const appBackgroundStyles: StyleRules<AppBackgroundStyles> = {
   background: {
     top: 0,
     left: 0,
@@ -41,8 +57,4 @@ const styles: StyleRulesCallback<AppStyles> = (theme: Theme) => ({
       width: '100%',
     },
   },
-});
-
-export type AppStyles = 'wrapper' | 'content' | 'container' | 'background';
-
-export default styles;
+};
