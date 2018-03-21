@@ -1,0 +1,15 @@
+# VisualStudioCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dependencies
+/node_modules
+
+# production
+/dist
+
+# misc
+*.log
