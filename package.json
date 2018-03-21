@@ -1,0 +1,52 @@
+{
+  "name": "patricklim.io",
+  "version": "1.0.0",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start":
+      "webpack-dev-server --mode development --config webpack.config.development.ts --progress --hot --inline --watch --colors --open chrome"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "material-ui": "^1.0.0-beta.38",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "normalizr": "^3.2.4",
+    "react": "^16.2.0",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "typeface-roboto": "^0.0.54",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.104",
+    "@types/react": "^16.0.40",
+    "@types/react-custom-scrollbars": "^4.0.3",
+    "@types/react-dom": "16.0.4",
+    "@types/react-redux": "^5.0.15",
+    "@types/react-router-dom": "^4.2.4",
+    "@types/redux-logger": "^3.0.5",
+    "@types/uuid": "^3.4.3",
+    "css-loader": "^0.28.10",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.0.6",
+    "source-map-loader": "^0.2.3",
+    "style-loader": "^0.20.3",
+    "stylelint-config-standard": "^18.2.0",
+    "svg-react-loader": "^0.4.5",
+    "ts-loader": "^4.0.1",
+    "tslint": "^5.9.1",
+    "tslint-loader": "^3.6.0",
+    "tslint-react": "^3.5.1",
+    "typescript": "^2.7.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11",
+    "webpack-dev-server": "^3.1.1"
+  }
+}
