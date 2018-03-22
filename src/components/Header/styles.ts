@@ -19,5 +19,6 @@ export const headerLinkStyles: StyleRules<HeaderLinkStyles> = {
   },
   button: {
     textTransform: 'none',
+    fontWeight: 100,
   },
 };
