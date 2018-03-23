@@ -1,17 +1,25 @@
-import { StyleRulesCallback, Theme } from 'material-ui/styles';
+import { StyleRules } from 'material-ui/styles';
 
-const styles: StyleRulesCallback<HomeStyles> = (theme: Theme) => ({
+const styles: StyleRules<HomeStyles> = {
   container: {
     height: '100%',
     minHeight: 'fit-content',
   },
-  paper: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3,
-  }),
-});
+  typography: {
+    color: 'rgba(255, 255, 255, 1)',
+    fontWeight: 100,
+  },
+  logo: {
+    position: 'relative',
+    top: -10,
+  },
+  divider: {
+    padding: '0 !important',
+    height: 50,
+    border: '1px solid white',
+  },
+};
 
-export type HomeStyles = 'container' | 'paper';
+export type HomeStyles = 'container' | 'typography' | 'logo' | 'divider';
 
 export default styles;
