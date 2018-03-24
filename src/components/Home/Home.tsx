@@ -3,9 +3,9 @@ import * as React from 'react';
 import { WithStyles, withStyles } from 'material-ui/styles';
 import styles, { HomeStyles } from './styles';
 
+import CollapsibleText from 'components/CollapsibleText/CollapsibleText';
 import Grid from 'material-ui/Grid';
-import Logo from 'components/Logo/Logo';
-import Typography from 'material-ui/Typography';
+import SlideInText from 'components/SlideInText/SlideInText';
 
 interface HomeProps {}
 
@@ -16,24 +16,16 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>> {
     return (
       <Grid className={classes.container} container direction="row" justify="center" alignItems="center">
         <Grid item xs={12}>
-          <Grid container direction="column" justify="center" alignItems="stretch">
+          <Grid container direction="column" justify="center" alignItems="center">
             <Grid item xs={12}>
-              <Grid container direction="row" justify="center" alignItems="center">
-                <Grid item>
-                  <Logo className={classes.logo} />
-                </Grid>
-                <Grid className={classes.divider} item />
-                <Grid item>
-                  <Typography className={classes.typography} variant="display3" component="h1" align="center">
-                    Patrick Lim
-                  </Typography>
-                </Grid>
-              </Grid>
+              <CollapsibleText className={classes.text} component="h1" variant="display3">
+                Patrick Lim
+              </CollapsibleText>
             </Grid>
             <Grid item xs={12}>
-              <Typography className={classes.typography} variant="headline" component="h2" align="center">
+              <SlideInText className={classes.text} variant="headline" component="h2">
                 Front end developer.
-              </Typography>
+              </SlideInText>
             </Grid>
           </Grid>
         </Grid>
