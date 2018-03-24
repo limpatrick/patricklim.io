@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
-import Contact from 'components/Contact/Contact';
-import Home from 'components/Home/Home';
-import Timeline from 'components/Timeline/Timeline';
+import Contact from 'components/Contact';
+import Home from 'components/Home';
+import Timeline from 'components/Timeline';
 
 const routes: AppRoute[] = [
   {

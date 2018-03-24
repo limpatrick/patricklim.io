@@ -7,7 +7,7 @@ import * as React from 'react';
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import App from 'components/App/App';
+import App from 'components/App';
 import CssBaseline from 'material-ui/CssBaseline';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { render } from 'react-dom';

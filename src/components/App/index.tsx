@@ -5,7 +5,7 @@ import { WithStyles, withStyles } from 'material-ui/styles';
 
 import AppBackground from './AppBackground';
 import AppContent from './AppContent';
-import Header from 'components/Header/Header';
+import Header from 'components/Header';
 
 interface AppProps {}
 
