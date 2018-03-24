@@ -5,21 +5,13 @@ const styles: StyleRules<HomeStyles> = {
     height: '100%',
     minHeight: 'fit-content',
   },
-  typography: {
-    color: 'rgba(255, 255, 255, 1)',
+  text: {
+    color: 'rgba(255, 255, 255, 0.7)',
     fontWeight: 100,
-  },
-  logo: {
-    position: 'relative',
-    top: -10,
-  },
-  divider: {
-    padding: '0 !important',
-    height: 50,
-    border: '1px solid white',
+    margin: 0,
   },
 };
 
-export type HomeStyles = 'container' | 'typography' | 'logo' | 'divider';
+export type HomeStyles = 'container' | 'text';
 
 export default styles;
