@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
 import styles, { CollapsibleTextStyles } from './styles';
+import withMuiTypography, { WithMuiTypographyInjectedProps } from '../containers/withMuiTypography';
 
 import { ClassNameMap } from 'material-ui/styles/withStyles';
-import { TypographyProps } from 'material-ui/Typography';
 
 const splitText = (text: string, classes: ClassNameMap<CollapsibleTextStyles>) => {
   const letters = text.split('');
@@ -32,25 +32,15 @@ const getClassName = (letters: string[], key: number): CollapsibleTextStyles => 
 
 interface CollapsibleTextProps {
   children: string;
-  className?: string;
-  component?: React.ReactType;
-  variant?: TypographyProps['variant'];
 }
 
-const CollapsibleText: React.SFC<CollapsibleTextProps & WithStyles<CollapsibleTextStyles>> = ({
-  children,
-  classes,
-  className,
-  component,
-  variant,
-}) => {
-  const Component = component ? component : 'div';
-  const variantClassName = variant ? classes[variant] : classes.body1;
-  const componentClassName = className
-    ? `${variantClassName} ${classes.letter} ${className}`
-    : `${variantClassName} ${classes.letter}`;
+const CollapsibleText: React.SFC<
+  CollapsibleTextProps & WithStyles<CollapsibleTextStyles> & WithMuiTypographyInjectedProps
+> = ({ children, classes, className, component }) => {
+  const Component = component;
+  const componentClassName = `${className} ${classes.letter}`;
 
   return <Component className={componentClassName}>{splitText(children, classes)}</Component>;
 };
 
-export default withStyles(styles)(CollapsibleText);
+export default withMuiTypography(withStyles(styles)(CollapsibleText));
