@@ -26,7 +26,7 @@ const withMuiTypography = <WrappedComponentProps extends {}>(
     const variantClassName = variant ? classes[variant] : classes.body1;
     const componentClassName = className ? `${variantClassName} ${className}` : `${variantClassName}`;
 
-    const injectedProps = {
+    const injectedProps: WithMuiTypographyInjectedProps = {
       className: componentClassName,
       component: componentToUse,
     };
