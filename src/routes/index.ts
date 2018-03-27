@@ -3,24 +3,28 @@ import Contact from 'components/Contact';
 import Home from 'components/Home';
 import Timeline from 'components/Timeline';
 
-const routes: AppRoute[] = [
+const routes: Route[] = [
   {
     path: '/',
     component: Home,
+    label: 'Home',
   },
   {
     path: '/timeline',
     component: Timeline,
+    label: 'Timeline',
   },
   {
     path: '/contact',
     component: Contact,
+    label: 'Contact',
   },
 ];
 
-export interface AppRoute {
+export interface Route {
   path: string;
   component: ComponentType;
+  label: string;
 }
 
 export default routes;
