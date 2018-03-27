@@ -4,8 +4,8 @@ import { AppStyles, appStyles } from './styles';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { WithStyles, withStyles } from 'material-ui/styles';
 
-import AppBackground from './AppBackground';
-import AppContent from './AppContent';
+import Background from 'components/Background';
+import Content from 'components/Content';
 import Header from 'components/Header';
 
 interface AppProps {}
@@ -18,8 +18,8 @@ const App: React.SFC<AppProps & WithStyles<AppStyles> & RouteComponentProps<{}>>
 }) => (
   <div className={classes.wrapper}>
     <Header />
-    <AppContent />
-    <AppBackground />
+    <Content />
+    <Background />
   </div>
 );
 
