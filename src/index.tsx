@@ -1,7 +1,10 @@
 /// <reference path="utils/modules.d.ts" />
+/// <reference path="utils/velocity-react.d.ts" />
 
 import 'typeface-roboto';
 import 'typeface-open-sans';
+import 'velocity-animate';
+import 'velocity-animate/velocity.ui';
 
 import * as React from 'react';
 
