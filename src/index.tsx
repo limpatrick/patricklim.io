@@ -10,24 +10,28 @@ import * as React from 'react';
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import App from 'components/containers/App';
+import App from 'components/App';
 import CssBaseline from 'material-ui/CssBaseline';
 import { MuiThemeProvider } from 'material-ui/styles';
+import { Provider } from 'react-redux';
 import { render } from 'react-dom';
+import store from './store';
 import theme from './theme';
 
 render(
   <div>
     <CssBaseline />
-    <BrowserRouter>
-      <Route
-        render={() => (
-          <MuiThemeProvider theme={theme}>
-            <App />
-          </MuiThemeProvider>
-        )}
-      />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Route
+          render={() => (
+            <MuiThemeProvider theme={theme}>
+              <App />
+            </MuiThemeProvider>
+          )}
+        />
+      </BrowserRouter>
+    </Provider>
   </div>,
   document.getElementById('root')
 );

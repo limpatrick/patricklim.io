@@ -1,16 +1,14 @@
 import { StyleRules } from 'material-ui/styles';
 import background from 'src/assets/img/background-2.jpg';
 
-export type BackgroundStyles = 'container' | 'background';
-export const backgroundStyles: StyleRules<BackgroundStyles> = {
-  container: {
+export type AppStyles = 'wrapper' | 'background';
+export const appStyles: StyleRules<AppStyles> = {
+  wrapper: {
+    position: 'relative',
     top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
+    height: '100vh',
     overflow: 'hidden',
-    position: 'absolute',
-    zIndex: 1,
+    background: '#000',
   },
   background: {
     height: '100%',

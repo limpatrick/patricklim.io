@@ -11,8 +11,12 @@ export const contentStyles: StyleRules<ContentStyles> = {
   },
 };
 
-export type ContainerStyles = 'container';
+export type ContainerStyles = 'hidden' | 'container';
 export const containerStyles: StyleRulesCallback<ContainerStyles> = (theme: Theme) => ({
+  hidden: {
+    height: '100%',
+    width: '100%',
+  },
   container: {
     height: '100%',
     paddingRight: 24,
