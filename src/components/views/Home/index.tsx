@@ -3,9 +3,8 @@ import * as React from 'react';
 import { WithStyles, withStyles } from 'material-ui/styles';
 import styles, { HomeStyles } from './styles';
 
-import CollapsibleText from 'components/transitions/CollapsibleText';
 import Grid from 'material-ui/Grid';
-import SlideInText from 'components/transitions/SlideInText';
+import Typography from 'material-ui/Typography';
 
 interface HomeProps {}
 
@@ -18,14 +17,14 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>> {
         <Grid item xs={12}>
           <Grid container direction="column" justify="center" alignItems="center">
             <Grid item xs={12}>
-              <CollapsibleText className={classes.text} component="h1" variant="display3">
+              <Typography className={classes.text} component="h1" variant="display3">
                 Patrick Lim
-              </CollapsibleText>
+              </Typography>
             </Grid>
             <Grid item xs={12}>
-              <SlideInText className={classes.text} variant="headline" component="h2" direction="right">
+              <Typography className={classes.text} variant="headline" component="h2">
                 Front end developer.
-              </SlideInText>
+              </Typography>
             </Grid>
           </Grid>
         </Grid>

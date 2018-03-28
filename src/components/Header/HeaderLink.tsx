@@ -7,12 +7,13 @@ import Button from 'material-ui/Button';
 import { NavLink } from 'react-router-dom';
 
 interface HeaderLinkProps {
-  to: string;
   label: string;
+  onClick: () => void;
+  to: string;
 }
 
-const HeaderLink: React.SFC<HeaderLinkProps & WithStyles<HeaderLinkStyles>> = ({ to, label, classes }) => (
-  <NavLink className={classes.navLink} to={to}>
+const HeaderLink: React.SFC<HeaderLinkProps & WithStyles<HeaderLinkStyles>> = ({ onClick, classes, label, to }) => (
+  <NavLink className={classes.navLink} to={to} onClick={onClick}>
     <Button className={classes.button}>{label}</Button>
   </NavLink>
 );
