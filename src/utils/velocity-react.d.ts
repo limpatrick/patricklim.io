@@ -23,16 +23,16 @@ declare module 'velocity-react' {
     enter?: Animation;
     leave?: Animation;
     children?: React.ReactNode;
-    enterHideStyle?: Object;
-    enterShowStyle?: Object;
+    enterHideStyle?: object;
+    enterShowStyle?: object;
   }
 
   interface RegisterEffect {
-    (suffix: string, animation: Object): string;
-    (animation: Object): string;
+    (suffix: string, animation: object): string;
+    (animation: object): string;
   }
 
-  type Animation = Object | PreRegisteredAnimation;
+  type Animation = object | PreRegisteredAnimation;
 
   type TargetQuerySelector = 'children' | string | null;
 
