@@ -8,7 +8,7 @@ const animationReducer = (state: AnimationState = 'transition.fadeIn', action: A
     case INITIALIZE_ROUTE:
       return 'transition.fadeIn';
     case UPDATE_ROUTE:
-      return 'transition.slideDownIn';
+      return action.previousPath !== action.nextPath ? 'transition.slideDownIn' : state;
     default:
       return state;
   }
