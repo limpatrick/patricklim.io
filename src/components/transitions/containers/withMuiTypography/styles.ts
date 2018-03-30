@@ -2,7 +2,8 @@ import { StyleRulesCallback, Theme } from 'material-ui/styles';
 
 import { Style } from 'material-ui/styles/createTypography';
 
-const styles: StyleRulesCallback<WithMuiTypographyStyles> = (theme: Theme) => {
+export type WithMuiTypographyStyles = Style | 'caption' | 'button';
+export const WithMuiTypographyStyles: StyleRulesCallback<WithMuiTypographyStyles> = (theme: Theme) => {
   const {
     body1,
     body2,
@@ -31,7 +32,3 @@ const styles: StyleRulesCallback<WithMuiTypographyStyles> = (theme: Theme) => {
     title,
   };
 };
-
-export type WithMuiTypographyStyles = Style | 'caption' | 'button';
-
-export default styles;

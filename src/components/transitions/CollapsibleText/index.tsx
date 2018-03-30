@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
-import styles, { CollapsibleTextStyles } from './styles';
 import withMuiTypography, { WithMuiTypographyInjectedProps } from '../containers/withMuiTypography';
 
 import { ClassNameMap } from 'material-ui/styles/withStyles';
+import { CollapsibleTextStyles } from './styles';
 
 const splitText = (text: string, classes: ClassNameMap<CollapsibleTextStyles>) => {
   const letters = text.split('');
@@ -43,4 +43,4 @@ const CollapsibleText: React.SFC<
   return <Component className={componentClassName}>{splitText(children, classes)}</Component>;
 };
 
-export default withMuiTypography(withStyles(styles)(CollapsibleText));
+export default withMuiTypography(withStyles(CollapsibleTextStyles)(CollapsibleText));

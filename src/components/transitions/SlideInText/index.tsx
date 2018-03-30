@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
-import styles, { SlideInTextStyles } from './styles';
 import withMuiTypography, { WithMuiTypographyInjectedProps } from '../containers/withMuiTypography';
+
+import { SlideInTextStyles } from './styles';
 
 interface SlideInTextProps {
   children: string;
@@ -27,4 +28,4 @@ const SlideInText: React.SFC<SlideInTextProps & WithStyles<SlideInTextStyles> & 
   );
 };
 
-export default withMuiTypography(withStyles(styles)(SlideInText));
+export default withMuiTypography(withStyles(SlideInTextStyles)(SlideInText));

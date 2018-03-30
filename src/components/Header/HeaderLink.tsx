@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { HeaderLinkStyles, headerLinkStyles } from './styles';
 import { WithStyles, withStyles } from 'material-ui/styles';
 
 import Button from 'material-ui/Button';
+import { HeaderLinkStyles } from './styles';
 import { NavLink } from 'react-router-dom';
 
 interface HeaderLinkProps {
@@ -18,4 +18,4 @@ const HeaderLink: React.SFC<HeaderLinkProps & WithStyles<HeaderLinkStyles>> = ({
   </NavLink>
 );
 
-export default withStyles(headerLinkStyles)(HeaderLink);
+export default withStyles(HeaderLinkStyles)(HeaderLink);

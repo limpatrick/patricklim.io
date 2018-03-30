@@ -1,7 +1,7 @@
 import { StyleRules } from 'material-ui/styles';
 
 export type HeaderStyles = 'appBar' | 'toolbar';
-export const headerStyles: StyleRules<HeaderStyles> = {
+export const HeaderStyles: StyleRules<HeaderStyles> = {
   appBar: {
     position: 'relative',
     boxShadow: 'none',
@@ -13,7 +13,7 @@ export const headerStyles: StyleRules<HeaderStyles> = {
 };
 
 export type HeaderLinkStyles = 'navLink' | 'button';
-export const headerLinkStyles: StyleRules<HeaderLinkStyles> = {
+export const HeaderLinkStyles: StyleRules<HeaderLinkStyles> = {
   navLink: {
     textDecoration: 'none',
   },

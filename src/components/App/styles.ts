@@ -2,7 +2,7 @@ import { StyleRules } from 'material-ui/styles';
 import background from 'src/assets/img/background-2.jpg';
 
 export type AppStyles = 'wrapper' | 'background';
-export const appStyles: StyleRules<AppStyles> = {
+export const AppStyles: StyleRules<AppStyles> = {
   wrapper: {
     position: 'relative',
     top: 0,
