@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { ContentStyles, contentStyles } from './styles';
 import { WithStyles, withStyles } from 'material-ui/styles';
 
 import Container from './Container';
+import { ContentStyles } from './styles';
 import Scrollbars from 'react-custom-scrollbars';
 import SwitchRoutes from 'components/SwitchRoutes';
 
@@ -17,4 +17,4 @@ const Content: React.SFC<ContentProps & WithStyles<ContentStyles>> = ({ classes 
   </div>
 );
 
-export default withStyles(contentStyles)(Content);
+export default withStyles(ContentStyles)(Content);

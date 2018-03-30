@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { ContainerStyles, containerStyles } from './styles';
 import { WithStyles, withStyles } from 'material-ui/styles';
 
 import { AnimationState } from 'src/redux/reducers/animation';
+import { ContainerStyles } from './styles';
 import Hidden from 'material-ui/Hidden';
 import { StoreState } from 'src/redux/reducers';
 import { VelocityComponent } from 'velocity-react';
@@ -31,4 +31,4 @@ const Container: React.SFC<ContainerProps & WithStyles<ContainerStyles> & Contai
   </VelocityComponent>
 );
 
-export default connect<ContainerStateToProps>(mapStateToProps)(withStyles(containerStyles)(Container));
+export default connect<ContainerStateToProps>(mapStateToProps)(withStyles(ContainerStyles)(Container));

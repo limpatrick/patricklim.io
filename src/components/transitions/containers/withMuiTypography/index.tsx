@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
-import styles, { WithMuiTypographyStyles } from './styles';
 
 import { TypographyProps } from 'material-ui/Typography';
+import { WithMuiTypographyStyles } from './styles';
 import { omit } from 'lodash';
 
 interface ExternalProps {
@@ -38,7 +38,7 @@ const withMuiTypography = <WrappedComponentProps extends {}>(
     );
   };
 
-  return withStyles(styles)(WithMuiTypography);
+  return withStyles(WithMuiTypographyStyles)(WithMuiTypography);
 };
 
 export interface WithMuiTypographyInjectedProps {

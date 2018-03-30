@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
-import styles, { LogoStyles } from './styles';
 
 import Grow from 'material-ui/transitions/Grow';
+import { LogoStyles } from './styles';
 
 interface LogoProps {
   className?: string;
@@ -22,4 +22,4 @@ const Logo: React.SFC<LogoProps & WithStyles<LogoStyles>> = ({ classes, classNam
   );
 };
 
-export default withStyles(styles)(Logo);
+export default withStyles(LogoStyles)(Logo);

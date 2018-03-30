@@ -1,6 +1,7 @@
 import { StyleRules } from 'material-ui/styles';
 
-const styles: StyleRules<LogoStyles> = {
+export type LogoStyles = 'logo' | 'letter';
+export const LogoStyles: StyleRules<LogoStyles> = {
   logo: {
     color: 'white',
     fontSize: '40px',
@@ -15,7 +16,3 @@ const styles: StyleRules<LogoStyles> = {
     },
   },
 };
-
-export type LogoStyles = 'logo' | 'letter';
-
-export default styles;

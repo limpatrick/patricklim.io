@@ -1,11 +1,11 @@
 import * as H from 'history';
 import * as React from 'react';
 
-import { AppStyles, appStyles } from './styles';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { WithStyles, withStyles } from 'material-ui/styles';
 import { initializeRoute, updateRoute } from 'src/redux/actions';
 
+import { AppStyles } from './styles';
 import Content from 'components/Content';
 import Header from 'components/Header';
 import { connect } from 'react-redux';
@@ -46,5 +46,5 @@ export default withRouter(
   connect<{}, AppDispatchToProps>(null, {
     initializeCurrentRoute: initializeRoute,
     updateCurrentRoute: updateRoute,
-  })(withStyles(appStyles)(App))
+  })(withStyles(AppStyles)(App))
 );

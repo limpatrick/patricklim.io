@@ -1,7 +1,7 @@
 import { StyleRules, StyleRulesCallback, Theme } from 'material-ui/styles';
 
 export type ContentStyles = 'content' | 'scrollbars';
-export const contentStyles: StyleRules<ContentStyles> = {
+export const ContentStyles: StyleRules<ContentStyles> = {
   content: {
     maxHeight: 'calc(100% - 64px)',
   },
@@ -12,7 +12,7 @@ export const contentStyles: StyleRules<ContentStyles> = {
 };
 
 export type ContainerStyles = 'hidden' | 'container';
-export const containerStyles: StyleRulesCallback<ContainerStyles> = (theme: Theme) => ({
+export const ContainerStyles: StyleRulesCallback<ContainerStyles> = (theme: Theme) => ({
   hidden: {
     height: '100%',
     width: '100%',

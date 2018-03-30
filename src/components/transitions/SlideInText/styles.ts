@@ -4,7 +4,8 @@ import { random } from 'lodash';
 const keyframeSlideInLeft = `slideIn-left-${random(1, 100)}`;
 const keyframeSlideInRight = `slideIn-right-${random(1, 100)}`;
 
-const styles: StyleRules<SlideInTextStyles> = {
+export type SlideInTextStyles = 'container' | 'slideInFromLeft' | 'slideInFromRight';
+export const SlideInTextStyles: StyleRules<SlideInTextStyles> = {
   container: {
     overflow: 'hidden',
     textAlign: 'center',
@@ -32,7 +33,3 @@ const styles: StyleRules<SlideInTextStyles> = {
     },
   },
 };
-
-export type SlideInTextStyles = 'container' | 'slideInFromLeft' | 'slideInFromRight';
-
-export default styles;

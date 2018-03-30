@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
-import styles, { HomeStyles } from './styles';
 
 import Grid from 'material-ui/Grid';
+import { HomeStyles } from './styles';
 import Typography from 'material-ui/Typography';
 
 interface HomeProps {}
@@ -33,4 +33,4 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>> {
   }
 }
 
-export default withStyles(styles)(Home);
+export default withStyles(HomeStyles)(Home);

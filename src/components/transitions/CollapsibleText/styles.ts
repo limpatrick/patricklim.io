@@ -4,7 +4,8 @@ import { random } from 'lodash';
 const keyframeGhost = `ghost-${random(1, 100)}`;
 const keyframeSpace = `space-${random(1, 100)}`;
 
-const styles: StyleRules<CollapsibleTextStyles> = {
+export type CollapsibleTextStyles = 'letter' | 'visible' | 'space' | 'ghost';
+export const CollapsibleTextStyles: StyleRules<CollapsibleTextStyles> = {
   letter: {
     display: 'inline-block',
     '& > *': {
@@ -40,7 +41,3 @@ const styles: StyleRules<CollapsibleTextStyles> = {
     },
   },
 };
-
-export type CollapsibleTextStyles = 'letter' | 'visible' | 'space' | 'ghost';
-
-export default styles;

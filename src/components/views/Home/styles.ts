@@ -1,6 +1,7 @@
 import { StyleRules } from 'material-ui/styles';
 
-const styles: StyleRules<HomeStyles> = {
+export type HomeStyles = 'container' | 'text';
+export const HomeStyles: StyleRules<HomeStyles> = {
   container: {
     height: '100%',
     minHeight: 'fit-content',
@@ -11,7 +12,3 @@ const styles: StyleRules<HomeStyles> = {
     margin: 0,
   },
 };
-
-export type HomeStyles = 'container' | 'text';
-
-export default styles;
