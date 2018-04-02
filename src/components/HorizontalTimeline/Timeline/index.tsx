@@ -1,37 +1,12 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
+import { min, reduce } from 'lodash';
 
 import Event from '../Event';
 import { EventData } from 'src/models/events';
 import FillingBar from '../FillingBar';
-import { Moment } from 'moment';
 import { TimelineStyles } from './styles';
-import { reduce } from 'lodash';
-
-const getXPosition = (firstEvent: Moment, event: Moment) => {
-  const minimumSpace = 10;
-  const diffDays = event.diff(firstEvent, 'days');
-
-  if (diffDays < 0) {
-    throw new Error('Events must be arranged in ascending order');
-  }
-
-  return minimumSpace + minimumSpace * diffDays;
-};
-
-const getEventsWithPosition = (events: EventData[]) =>
-  reduce<EventData, EventPosition[]>(
-    events,
-    (acc, elem, key) => {
-      const position = getXPosition(events[0].date, elem.date);
-
-      acc.push({ ...elem, position });
-
-      return acc;
-    },
-    []
-  );
 
 interface EventPosition extends EventData {
   position: number;
@@ -40,17 +15,26 @@ interface EventPosition extends EventData {
 interface TimelineProps {
   events: EventData[];
   translateXType: TimelineTranslateXType;
+  minEventDistance: number;
 }
 
 interface TimelineState {
   translateXLength: number;
+  wrapperWidth: number;
+  events: EventPosition[];
 }
 
 class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles>, TimelineState> {
   constructor(props: TimelineProps & WithStyles<TimelineStyles>) {
     super(props);
 
-    this.state = { translateXLength: 0 };
+    const { events, minEventDistance } = props;
+    const minEventDiffDays = this.calculateMinEventDiffDays(events);
+    const boundaryDistance = 60;
+    const data = this.getEventsWithPosition(events, minEventDiffDays, minEventDistance, boundaryDistance);
+    const wrapperWidth = this.calculateWrapperWidth(data, boundaryDistance);
+
+    this.state = { translateXLength: 0, wrapperWidth, events: data };
     this.resize = this.resize.bind(this);
   }
 
@@ -58,7 +42,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
 
   private calculateInferiorBoundary() {
     const containerWidth = this.container.offsetWidth;
-    const wrapperWidth = 3600;
+    const { wrapperWidth } = this.state;
     const inferiorBoundary = -(wrapperWidth - containerWidth);
 
     return inferiorBoundary;
@@ -75,6 +59,58 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
 
       return translateXLength < inferiorBoundary ? inferiorBoundary : translateXLength;
     }
+  }
+
+  private calculateXPosition(diffDays: number, minDiffDays: number, minDistance: number, previousDistance: number) {
+    return minDistance * diffDays / minDiffDays + previousDistance;
+  }
+
+  private calculateWrapperWidth(events: EventPosition[], boundaryDistance: number) {
+    return events[events.length - 1].position + boundaryDistance;
+  }
+
+  private calculateMinEventDiffDays(events: EventData[]) {
+    const minEventDiffDays = min(
+      reduce<EventData, number[]>(
+        events,
+        (acc, elem, key) => {
+          if (key < events.length - 1) {
+            const diffDays = events[key + 1].date.diff(elem.date, 'days');
+
+            acc.push(diffDays);
+          }
+
+          return acc;
+        },
+        []
+      )
+    );
+
+    return minEventDiffDays ? minEventDiffDays : 0;
+  }
+
+  private getEventsWithPosition(
+    events: EventData[],
+    minEventDiffDays: number,
+    minEventDistance: number,
+    boundaryDistance: number
+  ) {
+    return reduce<EventData, EventPosition[]>(
+      events,
+      (acc, event, key) => {
+        if (key === 0) {
+          acc.push({ ...event, position: boundaryDistance });
+        } else {
+          const diffDays = event.date.diff(events[key - 1].date, 'days');
+          const position = this.calculateXPosition(diffDays, minEventDiffDays, minEventDistance, acc[key - 1].position);
+
+          acc.push({ ...event, position });
+        }
+
+        return acc;
+      },
+      []
+    );
   }
 
   private resize() {
@@ -102,10 +138,8 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
   }
 
   render() {
-    const { classes, events } = this.props;
-    const data = getEventsWithPosition(events);
-
-    console.log(this.state.translateXLength);
+    const { classes } = this.props;
+    const { events, wrapperWidth } = this.state;
 
     return (
       <div
@@ -117,8 +151,8 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
         }}>
         <div
           className={classes.wrapper}
-          style={{ width: 3600, transform: `translateX(${this.state.translateXLength}px)` }}>
-          {data.map((event, key) => <Event date={event.date} position={event.position} key={key} />)}
+          style={{ width: wrapperWidth, transform: `translateX(${this.state.translateXLength}px)` }}>
+          {events.map((event, key) => <Event date={event.date} position={event.position} key={key} />)}
           <FillingBar value={20} />
         </div>
       </div>
