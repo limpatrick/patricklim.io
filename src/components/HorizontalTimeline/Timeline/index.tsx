@@ -51,6 +51,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
     super(props);
 
     this.state = { translateXLength: 0 };
+    this.resize = this.resize.bind(this);
   }
 
   private container: HTMLDivElement;
@@ -69,6 +70,25 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
 
       return translateXLength < inferiorBoundary ? inferiorBoundary : translateXLength;
     }
+  }
+
+  private resize() {
+    const containerWidth = this.container.offsetWidth;
+    const wrapperWidth = 3600;
+    const inferiorBoundary = -(wrapperWidth - containerWidth);
+    const { translateXLength } = this.state;
+
+    if (inferiorBoundary > translateXLength) {
+      this.setState({ translateXLength: inferiorBoundary });
+    }
+  }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
   }
 
   componentWillReceiveProps(nextProps: TimelineProps & WithStyles<TimelineStyles>) {
