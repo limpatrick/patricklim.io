@@ -56,26 +56,29 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
 
   private container: HTMLDivElement;
 
-  private calculateTranslateXLength(type: TimelineTranslateXType) {
+  private calculateInferiorBoundary() {
     const containerWidth = this.container.offsetWidth;
     const wrapperWidth = 3600;
     const inferiorBoundary = -(wrapperWidth - containerWidth);
 
+    return inferiorBoundary;
+  }
+
+  private calculateTranslateXLength(type: TimelineTranslateXType) {
     if (type === 'left') {
-      const translateXLength = this.state.translateXLength + containerWidth;
+      const translateXLength = this.state.translateXLength + this.container.offsetWidth;
 
       return translateXLength > 0 ? 0 : translateXLength;
     } else {
-      const translateXLength = this.state.translateXLength - containerWidth;
+      const translateXLength = this.state.translateXLength - this.container.offsetWidth;
+      const inferiorBoundary = this.calculateInferiorBoundary();
 
       return translateXLength < inferiorBoundary ? inferiorBoundary : translateXLength;
     }
   }
 
   private resize() {
-    const containerWidth = this.container.offsetWidth;
-    const wrapperWidth = 3600;
-    const inferiorBoundary = -(wrapperWidth - containerWidth);
+    const inferiorBoundary = this.calculateInferiorBoundary();
     const { translateXLength } = this.state;
 
     if (inferiorBoundary > translateXLength) {
