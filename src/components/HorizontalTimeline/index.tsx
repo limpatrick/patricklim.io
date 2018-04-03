@@ -29,11 +29,12 @@ class HorizontalTimeline extends React.Component<
 
   render() {
     const { classes } = this.props;
+    const { translateXTo } = this.state;
 
     return (
       <div className={classes.container}>
         <Navigation type="previous" onClick={(type) => this.handleNavigation(type)} />
-        <Timeline events={events} translateXType={this.state.translateXTo} minEventDistance={200} />
+        <Timeline events={events} translateXType={translateXTo} minEventDistance={200} />
         <Navigation type="next" onClick={(type) => this.handleNavigation(type)} />
       </div>
     );
