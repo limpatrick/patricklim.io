@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
+import withVelocity, { WithVelocityInjectedProps } from 'components/containers/withVelocity';
 
 import Grid from 'material-ui/Grid';
 import { HomeStyles } from './styles';
@@ -8,7 +9,7 @@ import Typography from 'material-ui/Typography';
 
 interface HomeProps {}
 
-class Home extends React.Component<HomeProps & WithStyles<HomeStyles>> {
+class Home extends React.Component<HomeProps & WithStyles<HomeStyles> & WithVelocityInjectedProps> {
   render() {
     const { classes } = this.props;
 
@@ -33,4 +34,4 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>> {
   }
 }
 
-export default withStyles(HomeStyles)(Home);
+export default withVelocity(withStyles(HomeStyles)(Home));
