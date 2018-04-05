@@ -24,17 +24,19 @@ class App extends React.Component<AppProps & WithStyles<AppStyles> & AppDispatch
     initializeCurrentRoute(location);
   }
 
+  handleLinkClick = (nextPath: string) => {
+    const { updateCurrentRoute, location } = this.props;
+
+    updateCurrentRoute(location, nextPath);
+  }
+
   render() {
-    const { classes, updateCurrentRoute, location } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.wrapper}>
         <div className={classes.background}>
-          <Header
-            onLinkClick={(nextPath) => {
-              updateCurrentRoute(location, nextPath);
-            }}
-          />
+          <Header onLinkClick={this.handleLinkClick} />
           <Content />
         </div>
       </div>

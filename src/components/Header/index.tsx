@@ -12,18 +12,26 @@ interface HeaderProps {
   onLinkClick: (path: string) => void;
 }
 
-const Header: React.SFC<HeaderProps & WithStyles<HeaderStyles> & WithRoutesInjectedProps> = ({
-  classes,
-  onLinkClick,
-  routes,
-}) => (
-  <AppBar className={classes.appBar} color="primary">
-    <Toolbar className={classes.toolbar}>
-      {routes.map(({ path, label }, key) => (
-        <HeaderLink to={path} label={label} key={key} onClick={() => onLinkClick(path)} />
-      ))}
-    </Toolbar>
-  </AppBar>
-);
+class Header extends React.Component<HeaderProps & WithStyles<HeaderStyles> & WithRoutesInjectedProps> {
+  handleLinkClick = (path: string) => () => {
+    const { onLinkClick } = this.props;
+
+    onLinkClick(path);
+  }
+
+  render() {
+    const { classes, routes } = this.props;
+
+    return (
+      <AppBar className={classes.appBar} color="primary">
+        <Toolbar className={classes.toolbar}>
+          {routes.map(({ path, label }, key) => (
+            <HeaderLink to={path} label={label} key={key} onClick={this.handleLinkClick(path)} />
+          ))}
+        </Toolbar>
+      </AppBar>
+    );
+  }
+}
 
 export default withRoutes(withStyles(HeaderStyles)(Header));

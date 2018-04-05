@@ -33,16 +33,14 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
     this.state = { fillingBarProgress, indexSelected };
   }
 
-  private calculateFillingBarProgress(eventXPosition: number, wrapperWidth: number) {
-    return eventXPosition / wrapperWidth * 100;
-  }
+  private calculateFillingBarProgress = (eventXPosition: number, wrapperWidth: number) =>
+    eventXPosition / wrapperWidth * 100
 
-  private handleEventClick(key: number) {
+  handleEventClick = (key: number) => () =>
     this.setState((state, { events, wrapperWidth }) => ({
       fillingBarProgress: this.calculateFillingBarProgress(events[key].position, wrapperWidth),
       indexSelected: key,
-    }));
-  }
+    }))
 
   render() {
     const { classes, events, translateX, wrapperWidth } = this.props;
@@ -56,7 +54,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
               date={event.date}
               position={event.position}
               key={key}
-              onClick={() => this.handleEventClick(key)}
+              onClick={this.handleEventClick(key)}
               active={events[indexSelected] === event}
               older={key < indexSelected}
             />

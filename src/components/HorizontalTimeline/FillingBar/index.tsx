@@ -9,12 +9,10 @@ interface FillingBarProps {
   value: number;
 }
 
-const FillingBar: React.SFC<FillingBarProps & WithStyles<FillingBarStyles>> = ({ classes, value }) => {
-  return (
-    <div className={classes.container}>
-      <LinearProgress className={classes.bar} variant="determinate" value={value} />
-    </div>
-  );
-};
+const FillingBar: React.SFC<FillingBarProps & WithStyles<FillingBarStyles>> = ({ classes, value }) => (
+  <div className={classes.container}>
+    <LinearProgress className={classes.bar} variant="determinate" value={value} />
+  </div>
+);
 
 export default withStyles(FillingBarStyles)(FillingBar);
