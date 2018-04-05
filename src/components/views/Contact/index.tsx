@@ -1,13 +1,14 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
+import withVelocity, { WithVelocityInjectedProps } from 'components/containers/withVelocity';
 
 import Button from 'material-ui/Button';
 import styles from './styles';
 
 interface ContactProps {}
 
-class Contact extends React.Component<ContactProps & WithStyles<keyof typeof styles>> {
+class Contact extends React.Component<ContactProps & WithStyles<keyof typeof styles> & WithVelocityInjectedProps> {
   render() {
     return (
       <div>
@@ -17,4 +18,4 @@ class Contact extends React.Component<ContactProps & WithStyles<keyof typeof sty
   }
 }
 
-export default withStyles(styles)(Contact);
+export default withVelocity(withStyles(styles)(Contact));

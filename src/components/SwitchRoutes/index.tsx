@@ -3,35 +3,14 @@ import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import withRoutes, { WithRoutesInjectedProps } from 'components/containers/withRoutes';
 
-interface SwitchRoutesProps {
-  componentContainer?: React.ComponentType;
-}
+interface SwitchRoutesProps {}
 
-const SwitchRoutes: React.SFC<SwitchRoutesProps & WithRoutesInjectedProps> = ({ routes, componentContainer }) => (
+const SwitchRoutes: React.SFC<SwitchRoutesProps & WithRoutesInjectedProps> = ({ routes }) => (
   <Switch>
     {routes.map(({ path, component }, key) => {
       const Component = component;
 
-      return (
-        <Route
-          exact
-          path={path}
-          render={() => {
-            if (componentContainer) {
-              const Container = componentContainer;
-
-              return (
-                <Container>
-                  <Component />
-                </Container>
-              );
-            }
-
-            return <Component />;
-          }}
-          key={key}
-        />
-      );
+      return <Route exact path={path} component={Component} key={key} />;
     })}
     <Redirect to="/" />
   </Switch>

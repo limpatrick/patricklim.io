@@ -1,4 +1,4 @@
-import { StyleRules, StyleRulesCallback, Theme } from 'material-ui/styles';
+import { StyleRules } from 'material-ui/styles';
 
 export type ContentStyles = 'content' | 'scrollbars';
 export const ContentStyles: StyleRules<ContentStyles> = {
@@ -10,20 +10,3 @@ export const ContentStyles: StyleRules<ContentStyles> = {
     zIndex: 4,
   },
 };
-
-export type ContainerStyles = 'hidden' | 'container';
-export const ContainerStyles: StyleRulesCallback<ContainerStyles> = (theme: Theme) => ({
-  hidden: {
-    height: '100%',
-    width: '100%',
-  },
-  container: {
-    height: '100%',
-    paddingRight: 24,
-    paddingLeft: 24,
-    [theme.breakpoints.down('xs')]: {
-      paddingRight: 16,
-      paddingLeft: 16,
-    },
-  },
-});

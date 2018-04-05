@@ -15,7 +15,9 @@ import {
 import { HorizontalTimelineStyles } from './styles';
 import { events as data } from 'src/models/events';
 
-interface HorizontalTimelineProps {}
+interface HorizontalTimelineProps {
+  velocityComplete: (callback: () => void) => Promise<void>;
+}
 
 interface HorizontalTimelineState {
   events: EventPosition[];
@@ -34,6 +36,7 @@ class HorizontalTimeline extends React.Component<
   constructor(props: HorizontalTimelineProps & WithStyles<HorizontalTimelineStyles>) {
     super(props);
 
+    const { velocityComplete } = this.props;
     const minEventDiffDays = calculateMinEventDiffDays(data);
     const events = getEventsWithPosition(
       data,
@@ -46,6 +49,10 @@ class HorizontalTimeline extends React.Component<
 
     this.state = { translateX: 0, events, wrapperWidth, inferiorBoundary };
     this.resize = this.resize.bind(this);
+
+    velocityComplete(() => {
+      this.resize();
+    });
   }
 
   private timeline: HTMLDivElement;
@@ -69,13 +76,6 @@ class HorizontalTimeline extends React.Component<
 
   componentWillMount() {
     window.addEventListener('resize', this.resize);
-  }
-
-  componentDidMount() {
-    // TODO: replace by velocity component complete callback
-    setTimeout(() => {
-      this.resize();
-    }, 600);
   }
 
   componentWillUnmount() {
