@@ -33,16 +33,25 @@ const withVelocity = <WrappedComponentProps extends {}>(
     private complete: Promise<void>;
     private resolve: () => void;
 
+    handleVelocityComplete = () => this.resolve();
+
+    handleVelocityCompleteCallback = (callback: () => void) => this.complete.then(callback);
+
     render() {
       const { animation, classes } = this.props;
       // typescript spread operator on generic object not allowed
       const rest = omit(this.props, ['animation', 'classes', 'theme']);
 
       return (
-        <VelocityComponent animation={animation} duration={1000} delay={500} runOnMount complete={() => this.resolve()}>
+        <VelocityComponent
+          animation={animation}
+          duration={1000}
+          delay={500}
+          runOnMount
+          complete={this.handleVelocityComplete}>
           <Hidden className={classes.hidden} xsUp implementation="css">
             <div className={classes.container}>
-              <WrappedComponent velocityComplete={(callback) => this.complete.then(callback)} {...rest} />
+              <WrappedComponent onVelocityComplete={this.handleVelocityCompleteCallback} {...rest} />
             </div>
           </Hidden>
         </VelocityComponent>
@@ -54,7 +63,7 @@ const withVelocity = <WrappedComponentProps extends {}>(
 };
 
 export interface WithVelocityInjectedProps {
-  velocityComplete: (callback: () => void) => Promise<void>;
+  onVelocityComplete: (callback: () => void) => Promise<void>;
 }
 
 export default withVelocity;

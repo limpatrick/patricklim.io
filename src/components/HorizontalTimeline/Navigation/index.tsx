@@ -12,22 +12,26 @@ interface NavigationProps {
   type: NavigationType;
 }
 
-const Navigation: React.SFC<NavigationProps & WithStyles<NavigationStyles>> = ({
-  classes,
-  disabled,
-  onClick,
-  type,
-}) => {
-  const Chevron = type === 'previous' ? FaChevronLeft : FaChevronRight;
+class Navigation extends React.Component<NavigationProps & WithStyles<NavigationStyles>> {
+  handleClick = () => {
+    const { onClick, type } = this.props;
 
-  return (
-    <div className={classes.container}>
-      <IconButton aria-label={type} onClick={() => onClick(type)} disabled={disabled}>
-        <Chevron />
-      </IconButton>
-    </div>
-  );
-};
+    onClick(type);
+  }
+
+  render() {
+    const { classes, disabled, type } = this.props;
+    const Chevron = type === 'previous' ? FaChevronLeft : FaChevronRight;
+
+    return (
+      <div className={classes.container}>
+        <IconButton aria-label={type} onClick={this.handleClick} disabled={disabled}>
+          <Chevron />
+        </IconButton>
+      </div>
+    );
+  }
+}
 
 export type NavigationType = 'previous' | 'next';
 
