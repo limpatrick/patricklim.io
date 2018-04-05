@@ -20,7 +20,7 @@ const withMuiTypography = <WrappedComponentProps extends {}>(
   ) => {
     const { children, classes, className, component, variant } = props;
     // typescript spread operator on generic object not allowed
-    const rest = omit(props, ['children', 'classes', 'className', 'component', 'variant']);
+    const rest = omit(props, ['children', 'classes', 'theme', 'className', 'component', 'variant']);
 
     const componentToUse = component ? component : 'div';
     const variantClassName = variant ? classes[variant] : classes.body1;
