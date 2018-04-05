@@ -18,8 +18,9 @@ import { events as data } from 'src/models/events';
 interface HorizontalTimelineProps {}
 
 interface HorizontalTimelineState {
-  translateX: number;
   events: EventPosition[];
+  inferiorBoundary: number;
+  translateX: number;
   wrapperWidth: number;
 }
 
@@ -41,35 +42,40 @@ class HorizontalTimeline extends React.Component<
       HorizontalTimeline.MIN_EVENT_DISTANCE
     );
     const wrapperWidth = calculateWrapperWidth(events, HorizontalTimeline.EDGE_DISTANCE);
+    const inferiorBoundary = wrapperWidth;
 
-    this.state = { translateX: 0, events, wrapperWidth };
+    this.state = { translateX: 0, events, wrapperWidth, inferiorBoundary };
     this.resize = this.resize.bind(this);
   }
 
   private timeline: HTMLDivElement;
-  private timelineWrapper: HTMLDivElement;
 
   private handleNavigation(type: NavigationType) {
-    const previousTranslateX = this.state.translateX;
-    const translateX =
-      type === 'previous'
-        ? calculateLeftTranslateX(this.timeline.offsetWidth, previousTranslateX)
-        : calculateRightTranslateX(this.timeline.offsetWidth, previousTranslateX, this.timelineWrapper.offsetWidth);
-
-    this.setState({ translateX });
+    this.setState(({ translateX, wrapperWidth }) => ({
+      translateX:
+        type === 'previous'
+          ? calculateLeftTranslateX(this.timeline.clientWidth, translateX)
+          : calculateRightTranslateX(this.timeline.clientWidth, translateX, wrapperWidth),
+    }));
   }
 
   private resize() {
-    const { translateX, wrapperWidth } = this.state;
-    const inferiorBoundary = calculateInferiorBoundary(wrapperWidth, this.timeline.offsetWidth);
+    this.setState(({ translateX, wrapperWidth }) => {
+      const inferiorBoundary = calculateInferiorBoundary(this.timeline.clientWidth, wrapperWidth);
 
-    if (inferiorBoundary > translateX) {
-      this.setState({ translateX: inferiorBoundary });
-    }
+      return { translateX: inferiorBoundary > translateX ? inferiorBoundary : translateX, inferiorBoundary };
+    });
   }
 
   componentWillMount() {
     window.addEventListener('resize', this.resize);
+  }
+
+  componentDidMount() {
+    // TODO: replace by velocity component complete callback
+    setTimeout(() => {
+      this.resize();
+    }, 600);
   }
 
   componentWillUnmount() {
@@ -78,7 +84,7 @@ class HorizontalTimeline extends React.Component<
 
   render() {
     const { classes } = this.props;
-    const { translateX, events, wrapperWidth } = this.state;
+    const { translateX, events, wrapperWidth, inferiorBoundary } = this.state;
 
     return (
       <div
@@ -86,12 +92,15 @@ class HorizontalTimeline extends React.Component<
         ref={(node) => {
           if (node) {
             this.timeline = node.children.item(1) as HTMLDivElement;
-            this.timelineWrapper = this.timeline.firstElementChild as HTMLDivElement;
           }
         }}>
-        <Navigation type="previous" onClick={(type) => this.handleNavigation(type)} />
+        <Navigation type="previous" onClick={(type) => this.handleNavigation(type)} disabled={translateX === 0} />
         <Timeline events={events} translateX={translateX} wrapperWidth={wrapperWidth} />
-        <Navigation type="next" onClick={(type) => this.handleNavigation(type)} />
+        <Navigation
+          type="next"
+          onClick={(type) => this.handleNavigation(type)}
+          disabled={translateX === inferiorBoundary}
+        />
       </div>
     );
   }

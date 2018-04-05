@@ -10,11 +10,11 @@ export const calculateEventXPosition = (
   previousDistance: number
 ) => minDistance * diffDays / minDiffDays + previousDistance;
 
-export const calculateInferiorBoundary = (wrapperWidth: number, containerOffsetWidth: number) =>
-  containerOffsetWidth - wrapperWidth;
+export const calculateInferiorBoundary = (containerWidth: number, wrapperWidth: number) =>
+  containerWidth - wrapperWidth;
 
-export const calculateLeftTranslateX = (containerOffsetWidth: number, previousTranslateX: number) => {
-  const translateX = previousTranslateX + containerOffsetWidth;
+export const calculateLeftTranslateX = (containerWidth: number, previousTranslateX: number) => {
+  const translateX = previousTranslateX + containerWidth;
 
   return translateX > 0 ? 0 : translateX;
 };
@@ -40,12 +40,12 @@ export const calculateMinEventDiffDays = (events: EventData[]) => {
 };
 
 export const calculateRightTranslateX = (
-  containerOffsetWidth: number,
+  containerWidth: number,
   previousTranslateX: number,
   wrapperWidth: number
 ) => {
-  const translateX = previousTranslateX - containerOffsetWidth;
-  const inferiorBoundary = calculateInferiorBoundary(wrapperWidth, containerOffsetWidth);
+  const translateX = previousTranslateX - containerWidth;
+  const inferiorBoundary = calculateInferiorBoundary(containerWidth, wrapperWidth);
 
   return translateX < inferiorBoundary ? inferiorBoundary : translateX;
 };
