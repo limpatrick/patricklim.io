@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-import { WithStyles, withStyles } from 'material-ui/styles';
+import { StyleRules, WithStyles, withStyles } from 'material-ui/styles';
 
 import { FillingBarStyles } from './styles';
 import { LinearProgress } from 'material-ui/Progress';
+import { omit } from 'lodash';
 
 interface FillingBarProps {
   value: number;
@@ -11,8 +12,8 @@ interface FillingBarProps {
 
 const FillingBar: React.SFC<FillingBarProps & WithStyles<FillingBarStyles>> = ({ classes, value }) => (
   <div className={classes.container}>
-    <LinearProgress className={classes.bar} variant="determinate" value={value} />
+    <LinearProgress classes={omit(classes, 'container')} variant="determinate" value={value} />
   </div>
 );
 
-export default withStyles(FillingBarStyles)(FillingBar);
+export default withStyles(FillingBarStyles as StyleRules<FillingBarStyles>)(FillingBar);

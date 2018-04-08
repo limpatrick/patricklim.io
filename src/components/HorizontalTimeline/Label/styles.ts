@@ -13,5 +13,6 @@ export const LabelStyles: StyleRules<LabelStyles> = {
   typography: {
     fontSize: '0.6rem',
     position: 'absolute',
+    userSelect: 'none',
   },
 };

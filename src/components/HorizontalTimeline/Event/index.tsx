@@ -1,12 +1,14 @@
 import * as React from 'react';
 
-import { WithStyles, withStyles } from 'material-ui/styles';
+import { StyleRulesCallback, WithStyles, withStyles } from 'material-ui/styles';
 
 import { EventStyles } from './styles';
 import { FaCircle } from 'react-icons/lib/fa';
+import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 import { Moment } from 'moment';
 import Typography from 'material-ui/Typography';
+import { omit } from 'lodash';
 
 interface EventProps {
   active: boolean;
@@ -26,18 +28,23 @@ const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
 }) => {
   const activeClassName = active ? classes.active : '';
   const olderClassName = older ? classes.older : '';
-  const className = `${classes.button} ${activeClassName} ${olderClassName}`;
+  const className = `${activeClassName} ${olderClassName}`;
 
   return (
-    <div className={classes.container} style={{ left: position }}>
-      <Typography className={classes.typography} component="p" variant="caption">
+    <IconButton
+      classes={omit(classes, ['active', 'older', 'icon', 'typography'])}
+      className={className}
+      style={{ left: position }}
+      onClick={onClick}
+      disableRipple>
+      <Typography className={classes.typography} component="span" variant="caption">
         {date.format('D MMM')}
       </Typography>
-      <IconButton className={className} aria-label={date.format('D MMM')} onClick={onClick}>
+      <Icon className={classes.icon} aria-label={date.format('D MMM')}>
         <FaCircle />
-      </IconButton>
-    </div>
+      </Icon>
+    </IconButton>
   );
 };
 
-export default withStyles(EventStyles)(Event);
+export default withStyles(EventStyles as StyleRulesCallback<EventStyles>)(Event);
