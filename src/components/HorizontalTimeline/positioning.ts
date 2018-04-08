@@ -1,25 +1,21 @@
-import { min, reduce } from 'lodash';
+import * as moment from 'moment';
+
+import { EventPosition, YearLabel } from './Timeline';
+import { map, min, reduce } from 'lodash';
 
 import { EventData } from 'src/models/events';
-import { EventPosition } from './Timeline';
 
-export const calculateEventXPosition = (
+const calculateEventXPosition = (
   diffDays: number,
   minDiffDays: number,
   minDistance: number,
-  previousDistance: number
-) => minDistance * diffDays / minDiffDays + previousDistance;
+  edgeDistance: number
+) => calculateXPosition(diffDays, minDiffDays, minDistance) + edgeDistance;
 
-export const calculateInferiorBoundary = (containerWidth: number, wrapperWidth: number) =>
-  containerWidth - wrapperWidth;
+const calculateXPosition = (diffDays: number, minDiffDays: number, minDistance: number) =>
+  minDistance * diffDays / minDiffDays;
 
-export const calculateLeftTranslateX = (containerWidth: number, previousTranslateX: number) => {
-  const translateX = previousTranslateX + containerWidth;
-
-  return translateX > 0 ? 0 : translateX;
-};
-
-export const calculateMinEventDiffDays = (events: EventData[]) => {
+const calculateMinEventDiffDays = (events: EventData[]) => {
   const minEventDiffDays = min(
     reduce<EventData, number[]>(
       events,
@@ -39,11 +35,44 @@ export const calculateMinEventDiffDays = (events: EventData[]) => {
   return minEventDiffDays ? minEventDiffDays : 0;
 };
 
-export const calculateRightTranslateX = (
-  containerWidth: number,
-  previousTranslateX: number,
-  wrapperWidth: number
-) => {
+const getDiffDays = (startDate: moment.Moment, endDate: moment.Moment) => endDate.diff(startDate, 'days');
+
+const getYearLabel = (
+  eventDate: moment.Moment,
+  yearDate: moment.Moment,
+  minEventDistance: number,
+  minEventDiffDays: number,
+  previousDistance: number
+): YearLabel => {
+  const diffDays = getDiffDays(eventDate, yearDate);
+  const position = calculateEventXPosition(diffDays, minEventDiffDays, minEventDistance, previousDistance);
+
+  return {
+    position,
+    text: yearDate.format('YYYY'),
+  };
+};
+
+const getYearsBetween = (start: number, end: number) => {
+  let years: number[] = [];
+
+  for (let y = start; y <= end; y++) {
+    years.push(y);
+  }
+
+  return years;
+};
+
+export const calculateInferiorBoundary = (containerWidth: number, wrapperWidth: number) =>
+  containerWidth - wrapperWidth;
+
+export const calculateLeftTranslateX = (containerWidth: number, previousTranslateX: number) => {
+  const translateX = previousTranslateX + containerWidth;
+
+  return translateX > 0 ? 0 : translateX;
+};
+
+export const calculateRightTranslateX = (containerWidth: number, previousTranslateX: number, wrapperWidth: number) => {
   const translateX = previousTranslateX - containerWidth;
   const inferiorBoundary = calculateInferiorBoundary(containerWidth, wrapperWidth);
 
@@ -53,25 +82,25 @@ export const calculateRightTranslateX = (
 export const calculateWrapperWidth = (events: EventPosition[], edgeDistance: number) =>
   events[events.length - 1].position + edgeDistance;
 
-export const getEventsWithPosition = (
-  events: EventData[],
-  edgeDistance: number,
-  minEventDiffDays: number,
-  minEventDistance: number
-) =>
-  reduce<EventData, EventPosition[]>(
-    events,
-    (acc, event, key) => {
-      if (key === 0) {
-        acc.push({ ...event, position: edgeDistance });
-      } else {
-        const diffDays = event.date.diff(events[key - 1].date, 'days');
-        const position = calculateEventXPosition(diffDays, minEventDiffDays, minEventDistance, acc[key - 1].position);
+export const getEventsYearLabel = (events: EventPosition[], minEventDistance: number) => {
+  const minEventDiffDays = calculateMinEventDiffDays(events);
+  const years = getYearsBetween(events[0].date.get('year'), events[events.length - 1].date.get('year') + 1);
 
-        acc.push({ ...event, position });
-      }
+  return map(years, (year) => {
+    const yearDate = moment([year]);
+    const previousDistance = events[0].position;
 
-      return acc;
-    },
-    []
-  );
+    return getYearLabel(events[0].date, yearDate, minEventDistance, minEventDiffDays, previousDistance);
+  });
+};
+
+export const getEventsWithPosition = (events: EventData[], edgeDistance: number, minEventDistance: number) => {
+  const minEventDiffDays = calculateMinEventDiffDays(events);
+
+  return map(events, (event) => {
+    const diffDays = getDiffDays(events[0].date, event.date);
+    const position = calculateEventXPosition(diffDays, minEventDiffDays, minEventDistance, edgeDistance);
+
+    return { ...event, position };
+  });
+};

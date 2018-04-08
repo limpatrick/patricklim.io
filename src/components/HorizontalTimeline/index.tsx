@@ -1,15 +1,15 @@
 import * as React from 'react';
 
 import Navigation, { NavigationType } from './Navigation';
-import Timeline, { EventPosition } from './Timeline';
+import Timeline, { EventPosition, YearLabel } from './Timeline';
 import { WithStyles, withStyles } from 'material-ui/styles';
 import {
   calculateInferiorBoundary,
   calculateLeftTranslateX,
-  calculateMinEventDiffDays,
   calculateRightTranslateX,
   calculateWrapperWidth,
   getEventsWithPosition,
+  getEventsYearLabel,
 } from './positioning';
 
 import { HorizontalTimelineStyles } from './styles';
@@ -24,6 +24,7 @@ interface HorizontalTimelineState {
   inferiorBoundary: number;
   translateX: number;
   wrapperWidth: number;
+  yearLabels: YearLabel[];
 }
 
 class HorizontalTimeline extends React.Component<
@@ -37,17 +38,12 @@ class HorizontalTimeline extends React.Component<
     super(props);
 
     const { onVelocityComplete } = this.props;
-    const minEventDiffDays = calculateMinEventDiffDays(data);
-    const events = getEventsWithPosition(
-      data,
-      HorizontalTimeline.EDGE_DISTANCE,
-      minEventDiffDays,
-      HorizontalTimeline.MIN_EVENT_DISTANCE
-    );
+    const events = getEventsWithPosition(data, HorizontalTimeline.EDGE_DISTANCE, HorizontalTimeline.MIN_EVENT_DISTANCE);
+    const yearLabels = getEventsYearLabel(events, HorizontalTimeline.MIN_EVENT_DISTANCE);
     const wrapperWidth = calculateWrapperWidth(events, HorizontalTimeline.EDGE_DISTANCE);
     const inferiorBoundary = wrapperWidth;
 
-    this.state = { translateX: 0, events, wrapperWidth, inferiorBoundary };
+    this.state = { translateX: 0, events, wrapperWidth, inferiorBoundary, yearLabels };
     this.resize = this.resize.bind(this);
 
     onVelocityComplete(() => {
@@ -90,12 +86,12 @@ class HorizontalTimeline extends React.Component<
 
   render() {
     const { classes } = this.props;
-    const { translateX, events, wrapperWidth, inferiorBoundary } = this.state;
+    const { translateX, events, wrapperWidth, inferiorBoundary, yearLabels } = this.state;
 
     return (
       <div className={classes.container} ref={this.ref}>
         <Navigation type="previous" onClick={this.handleNavigation} disabled={translateX === 0} />
-        <Timeline events={events} translateX={translateX} wrapperWidth={wrapperWidth} />
+        <Timeline events={events} translateX={translateX} wrapperWidth={wrapperWidth} yearLabels={yearLabels} />
         <Navigation type="next" onClick={this.handleNavigation} disabled={translateX === inferiorBoundary} />
       </div>
     );

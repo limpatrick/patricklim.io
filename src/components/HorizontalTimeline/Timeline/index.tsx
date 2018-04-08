@@ -5,9 +5,16 @@ import { WithStyles, withStyles } from 'material-ui/styles';
 import Event from '../Event';
 import { EventData } from 'src/models/events';
 import FillingBar from '../FillingBar';
+import Label from '../Label';
 import { TimelineStyles } from './styles';
 
-export interface EventPosition extends EventData {
+export interface EventPosition extends EventData, Positionable {}
+
+export interface YearLabel extends Positionable {
+  text: string;
+}
+
+interface Positionable {
   position: number;
 }
 
@@ -15,6 +22,7 @@ interface TimelineProps {
   events: EventPosition[];
   translateX: number;
   wrapperWidth: number;
+  yearLabels: YearLabel[];
 }
 
 interface TimelineState {
@@ -43,7 +51,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
     }))
 
   render() {
-    const { classes, events, translateX, wrapperWidth } = this.props;
+    const { classes, events, translateX, wrapperWidth, yearLabels } = this.props;
     const { fillingBarProgress, indexSelected } = this.state;
 
     return (
@@ -59,6 +67,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
               older={key < indexSelected}
             />
           ))}
+          {yearLabels.map((label, key) => <Label {...label} key={key} />)}
           <FillingBar value={fillingBarProgress} />
         </div>
       </div>
