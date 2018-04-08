@@ -1,10 +1,8 @@
 import * as React from 'react';
 
 import { FaChevronLeft, FaChevronRight } from 'react-icons/lib/fa';
-import { WithStyles, withStyles } from 'material-ui/styles';
 
 import IconButton from 'material-ui/IconButton';
-import { NavigationStyles } from './styles';
 
 interface NavigationProps {
   disabled: boolean;
@@ -12,7 +10,7 @@ interface NavigationProps {
   type: NavigationType;
 }
 
-class Navigation extends React.Component<NavigationProps & WithStyles<NavigationStyles>> {
+class Navigation extends React.Component<NavigationProps> {
   handleClick = () => {
     const { onClick, type } = this.props;
 
@@ -20,11 +18,11 @@ class Navigation extends React.Component<NavigationProps & WithStyles<Navigation
   }
 
   render() {
-    const { classes, disabled, type } = this.props;
+    const { disabled, type } = this.props;
     const Chevron = type === 'previous' ? FaChevronLeft : FaChevronRight;
 
     return (
-      <div className={classes.container}>
+      <div>
         <IconButton aria-label={type} onClick={this.handleClick} disabled={disabled}>
           <Chevron />
         </IconButton>
@@ -35,4 +33,4 @@ class Navigation extends React.Component<NavigationProps & WithStyles<Navigation
 
 export type NavigationType = 'previous' | 'next';
 
-export default withStyles(NavigationStyles)(Navigation);
+export default Navigation;

@@ -1,39 +1,59 @@
-import { StyleRules } from 'material-ui/styles';
+import { StyleRulesCallback, Theme } from 'material-ui/styles';
 
-export type EventStyles = 'container' | 'typography' | 'button' | 'active' | 'older';
-export const EventStyles: StyleRules<EventStyles> = {
-  container: {
-    border: '1px solid brown',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 'fit-content',
-    position: 'absolute',
-    left: 0,
-  },
-  typography: {
-    position: 'absolute',
-    top: 0,
-    width: 'max-content',
-  },
-  button: {
-    '&:hover': {
-      color: 'red',
-      background: 'red',
+import { IconButtonClassKey } from 'material-ui/IconButton';
+
+const activeColor = 'rgb(255, 255, 255)';
+const hoverColor = activeColor;
+const olderColor = 'rgb(200, 200, 200)';
+
+export type EventStyles = 'typography' | 'icon' | 'active' | 'older' | IconButtonClassKey;
+export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: Theme) => {
+  const colorTransition = theme.transitions.create('color', {
+    duration: theme.transitions.duration.standard,
+  });
+
+  return {
+    root: {
+      position: 'absolute',
+      left: 0,
+      width: 'auto',
+      zIndex: 2,
+      '&:hover': {
+        '& $typography': {
+          color: hoverColor,
+        },
+        '& $icon': {
+          color: hoverColor,
+        },
+      },
     },
-    fontSize: '0.75rem',
-    width: 'auto',
-    height: 'auto',
-    zIndex: 2,
-    position: 'absolute',
-    top: 16,
-    transition: 'color 0.3s, background 0.3s',
-  },
-  active: {
-    color: 'red',
-  },
-  older: {
-    color: 'brown',
-  },
+    active: {
+      '& $typography': {
+        color: activeColor,
+      },
+      '& $icon': {
+        color: activeColor,
+      },
+    },
+    older: {
+      '& $icon': {
+        color: olderColor,
+      },
+    },
+    typography: {
+      position: 'absolute',
+      top: 0,
+      width: 'max-content',
+      transition: colorTransition,
+    },
+    icon: {
+      position: 'absolute',
+      top: 15,
+      fontSize: '0.75rem',
+      width: 'auto',
+      height: 'auto',
+      color: 'rgb(200, 200, 200)',
+      transition: colorTransition,
+    },
+  };
 };
