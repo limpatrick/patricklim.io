@@ -1,10 +1,12 @@
 /// <reference path="utils/modules.d.ts" />
+/// <reference path="utils/jquery-tagcanvas/tagcanvas.d.ts" />
 /// <reference path="utils/velocity-react.d.ts" />
 
 import 'typeface-roboto';
 import 'typeface-open-sans';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
+import 'jquery-tagcanvas/tagcanvas.min';
 
 import * as React from 'react';
 
