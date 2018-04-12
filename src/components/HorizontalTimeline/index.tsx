@@ -11,13 +11,15 @@ import {
   getEventsWithPosition,
   getEventsYearLabel,
 } from './positioning';
+import withVelocityOnComplete, {
+  WithVelocityOnCompleteInjectedProps,
+  handler,
+} from 'src/components/containers/velocity/withVelocityOnComplete';
 
 import { HorizontalTimelineStyles } from './styles';
 import { events as data } from 'src/models/events';
 
-interface HorizontalTimelineProps {
-  onVelocityComplete: (callback: () => void) => Promise<void>;
-}
+interface HorizontalTimelineProps {}
 
 interface HorizontalTimelineState {
   events: EventPosition[];
@@ -28,13 +30,15 @@ interface HorizontalTimelineState {
 }
 
 class HorizontalTimeline extends React.Component<
-  HorizontalTimelineProps & WithStyles<HorizontalTimelineStyles>,
+  HorizontalTimelineProps & WithStyles<HorizontalTimelineStyles> & WithVelocityOnCompleteInjectedProps,
   HorizontalTimelineState
 > {
   private static readonly EDGE_DISTANCE = 200;
   private static readonly MIN_EVENT_DISTANCE = 200;
 
-  constructor(props: HorizontalTimelineProps & WithStyles<HorizontalTimelineStyles>) {
+  constructor(
+    props: HorizontalTimelineProps & WithStyles<HorizontalTimelineStyles> & WithVelocityOnCompleteInjectedProps
+  ) {
     super(props);
 
     const { onVelocityComplete } = this.props;
@@ -46,9 +50,7 @@ class HorizontalTimeline extends React.Component<
     this.state = { translateX: 0, events, wrapperWidth, inferiorBoundary, yearLabels };
     this.resize = this.resize.bind(this);
 
-    onVelocityComplete(() => {
-      this.resize();
-    });
+    onVelocityComplete(this.onVelocityComplete);
   }
 
   private timeline: HTMLDivElement;
@@ -59,6 +61,10 @@ class HorizontalTimeline extends React.Component<
 
       return { translateX: inferiorBoundary > translateX ? inferiorBoundary : translateX, inferiorBoundary };
     });
+  }
+
+  private onVelocityComplete = () => {
+    this.resize();
   }
 
   ref = (node: HTMLDivElement | null) => {
@@ -82,6 +88,7 @@ class HorizontalTimeline extends React.Component<
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.resize);
+    handler.removeCallback(this.onVelocityComplete);
   }
 
   render() {
@@ -98,4 +105,4 @@ class HorizontalTimeline extends React.Component<
   }
 }
 
-export default withStyles(HorizontalTimelineStyles)(HorizontalTimeline);
+export default withVelocityOnComplete(withStyles(HorizontalTimelineStyles)(HorizontalTimeline));

@@ -14,7 +14,9 @@ interface ExternalProps {
   animation: AnimationState;
 }
 
-const withVelocity = <WrappedComponentProps extends {}>(
+interface WithVelocityInjectedProps {}
+
+const withVelocity = (handleVelocityComplete: () => void) => <WrappedComponentProps extends {}>(
   WrappedComponent: React.ComponentType<WrappedComponentProps & WithVelocityInjectedProps>
 ) => {
   const mapStateToProps = (state: StoreState) => ({
@@ -22,20 +24,8 @@ const withVelocity = <WrappedComponentProps extends {}>(
   });
 
   class WithVelocity extends React.Component<WrappedComponentProps & WithStyles<WithVelocityStyles> & ExternalProps> {
-    constructor(props: WrappedComponentProps & WithStyles<WithVelocityStyles> & ExternalProps) {
-      super(props);
-
-      this.complete = new Promise((resolve) => {
-        this.resolve = resolve;
-      });
-    }
-
-    private complete: Promise<void>;
-    private resolve: () => void;
-
-    handleVelocityComplete = () => this.resolve();
-
-    handleVelocityCompleteCallback = (callback: () => void) => this.complete.then(callback);
+    static DELAY = 500;
+    static DURATION = 1000;
 
     render() {
       const { animation, classes } = this.props;
@@ -45,14 +35,12 @@ const withVelocity = <WrappedComponentProps extends {}>(
       return (
         <VelocityComponent
           animation={animation}
-          duration={1000}
-          delay={500}
+          duration={WithVelocity.DURATION}
+          delay={WithVelocity.DELAY}
           runOnMount
-          complete={this.handleVelocityComplete}>
+          complete={handleVelocityComplete}>
           <Hidden className={classes.hidden} xsUp implementation="css">
-            <div className={classes.container}>
-              <WrappedComponent onVelocityComplete={this.handleVelocityCompleteCallback} {...rest} />
-            </div>
+            <WrappedComponent {...rest} />
           </Hidden>
         </VelocityComponent>
       );
@@ -61,9 +49,5 @@ const withVelocity = <WrappedComponentProps extends {}>(
 
   return connect<ExternalProps>(mapStateToProps)(withStyles(WithVelocityStyles)(WithVelocity));
 };
-
-export interface WithVelocityInjectedProps {
-  onVelocityComplete: (callback: () => void) => Promise<void>;
-}
 
 export default withVelocity;

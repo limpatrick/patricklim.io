@@ -1,15 +1,15 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
-import withVelocity, { WithVelocityInjectedProps } from 'components/containers/withVelocity';
 
 import Grid from 'material-ui/Grid';
 import { HomeStyles } from './styles';
 import Typography from 'material-ui/Typography';
+import withVelocityAnimation from 'components/containers/velocity/withVelocityAnimation';
 
 interface HomeProps {}
 
-const Home: React.SFC<HomeProps & WithStyles<HomeStyles> & WithVelocityInjectedProps> = ({ classes }) => (
+const Home: React.SFC<HomeProps & WithStyles<HomeStyles>> = ({ classes }) => (
   <Grid className={classes.container} container direction="row" justify="center" alignItems="center">
     <Grid item xs={12}>
       <Grid container direction="column" justify="center" alignItems="center">
@@ -28,4 +28,4 @@ const Home: React.SFC<HomeProps & WithStyles<HomeStyles> & WithVelocityInjectedP
   </Grid>
 );
 
-export default withVelocity(withStyles(HomeStyles)(Home));
+export default withVelocityAnimation(withStyles(HomeStyles)(Home));
