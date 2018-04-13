@@ -8,6 +8,7 @@
     "start": "webpack-dev-server --mode development --config webpack.config.development.ts --progress --hot --inline --watch --colors --open chrome"
   },
   "dependencies": {
+    "jquery-tagcanvas": "^2.9.0",
     "lodash": "^4.17.5",
     "material-ui": "^1.0.0-beta.38",
     "material-ui-icons": "^1.0.0-beta.36",
