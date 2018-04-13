@@ -3464,6 +3464,10 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
+jquery-tagcanvas@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/jquery-tagcanvas/-/jquery-tagcanvas-2.9.0.tgz#8e4a0fef161516191f196e7cf194c70c4c531e90"
+
 js-base64@^2.1.9:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
