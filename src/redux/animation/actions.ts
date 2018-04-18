@@ -12,7 +12,7 @@ export interface UpdateRoute {
   nextPath: string;
 }
 
-export type Actions = InitializeRoute | UpdateRoute;
+export type Action = InitializeRoute | UpdateRoute;
 
 export const initializeRoute = (location: H.Location): InitializeRoute => ({
   type: types.INITIALIZE_ROUTE,

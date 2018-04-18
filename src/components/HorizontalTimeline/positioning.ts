@@ -1,23 +1,17 @@
 import * as moment from 'moment';
 
-import { EventPosition, YearLabel } from './Timeline';
+import { Event, EventPosition, YearLabel } from './typings';
 import { map, min, reduce } from 'lodash';
 
-import { EventData } from 'src/models/events';
-
-const calculateEventXPosition = (
-  diffDays: number,
-  minDiffDays: number,
-  minDistance: number,
-  edgeDistance: number
-) => calculateXPosition(diffDays, minDiffDays, minDistance) + edgeDistance;
+const calculateEventXPosition = (diffDays: number, minDiffDays: number, minDistance: number, edgeDistance: number) =>
+  calculateXPosition(diffDays, minDiffDays, minDistance) + edgeDistance;
 
 const calculateXPosition = (diffDays: number, minDiffDays: number, minDistance: number) =>
   minDistance * diffDays / minDiffDays;
 
-const calculateMinEventDiffDays = (events: EventData[]) => {
+const calculateMinEventDiffDays = (events: Event[]) => {
   const minEventDiffDays = min(
-    reduce<EventData, number[]>(
+    reduce<Event, number[]>(
       events,
       (acc, elem, key) => {
         if (key < events.length - 1) {
@@ -80,9 +74,13 @@ export const calculateRightTranslateX = (containerWidth: number, previousTransla
 };
 
 export const calculateWrapperWidth = (events: EventPosition[], edgeDistance: number) =>
-  events[events.length - 1].position + edgeDistance;
+  events.length ? events[events.length - 1].position + edgeDistance : edgeDistance;
 
 export const getEventsYearLabel = (events: EventPosition[], minEventDistance: number) => {
+  if (events.length === 0) {
+    return [];
+  }
+
   const minEventDiffDays = calculateMinEventDiffDays(events);
   const years = getYearsBetween(events[0].date.get('year'), events[events.length - 1].date.get('year') + 1);
 
@@ -94,7 +92,7 @@ export const getEventsYearLabel = (events: EventPosition[], minEventDistance: nu
   });
 };
 
-export const getEventsWithPosition = (events: EventData[], edgeDistance: number, minEventDistance: number) => {
+export const getEventsWithPosition = (events: Event[], edgeDistance: number, minEventDistance: number) => {
   const minEventDiffDays = calculateMinEventDiffDays(events);
 
   return map(events, (event) => {

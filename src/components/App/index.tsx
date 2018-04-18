@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { WithStyles, withStyles } from 'material-ui/styles';
-import { initializeRoute, updateRoute } from 'src/redux/actions';
+import { initializeRoute, updateRoute } from 'src/redux/animation/actions';
 
 import { AppStyles } from './styles';
 import Content from 'components/Content';

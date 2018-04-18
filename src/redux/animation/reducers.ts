@@ -1,9 +1,9 @@
-import { INITIALIZE_ROUTE, UPDATE_ROUTE } from '../types';
+import { INITIALIZE_ROUTE, UPDATE_ROUTE } from './types';
 
-import { Actions } from '../actions';
+import { Action } from '..';
 import { Animation } from 'velocity-react';
 
-const animationReducer = (state: AnimationState = 'transition.fadeIn', action: Actions) => {
+const animationReducer = (state: AnimationState = 'transition.fadeIn', action: Action) => {
   switch (action.type) {
     case INITIALIZE_ROUTE:
       return 'transition.fadeIn';
