@@ -1,7 +1,7 @@
 import * as React from 'react';
 
+import { Event, EventPosition, YearLabel } from './typings';
 import Navigation, { NavigationType } from './Navigation';
-import Timeline, { EventPosition, YearLabel } from './Timeline';
 import { WithStyles, withStyles } from 'material-ui/styles';
 import {
   calculateInferiorBoundary,
@@ -11,15 +11,23 @@ import {
   getEventsWithPosition,
   getEventsYearLabel,
 } from './positioning';
-import withVelocityOnComplete, {
-  WithVelocityOnCompleteInjectedProps,
-  handler,
-} from 'src/components/containers/velocity/withVelocityOnComplete';
 
 import { HorizontalTimelineStyles } from './styles';
-import { events as data } from 'src/models/events';
+import { StoreState } from 'src/redux';
+import Timeline from './Timeline';
+import { connect } from 'react-redux';
+import { fetchEvents } from 'src/redux/events/actions';
+import { selectEvent } from 'src/redux/tags/actions';
 
-interface HorizontalTimelineProps {}
+interface HorizontalTimelineStateToProps {
+  data: Event[];
+  index: number;
+}
+
+interface HorizontalTimelineDispatchToProps {
+  onEventClick: (id: string) => void;
+  fetchData: () => void;
+}
 
 interface HorizontalTimelineState {
   events: EventPosition[];
@@ -30,30 +38,41 @@ interface HorizontalTimelineState {
 }
 
 class HorizontalTimeline extends React.Component<
-  HorizontalTimelineProps & WithStyles<HorizontalTimelineStyles> & WithVelocityOnCompleteInjectedProps,
+  HorizontalTimelineStateToProps & HorizontalTimelineDispatchToProps & WithStyles<HorizontalTimelineStyles>,
   HorizontalTimelineState
 > {
   private static readonly EDGE_DISTANCE = 200;
   private static readonly MIN_EVENT_DISTANCE = 200;
 
   constructor(
-    props: HorizontalTimelineProps & WithStyles<HorizontalTimelineStyles> & WithVelocityOnCompleteInjectedProps
+    props: HorizontalTimelineStateToProps & HorizontalTimelineDispatchToProps & WithStyles<HorizontalTimelineStyles>
   ) {
     super(props);
 
-    const { onVelocityComplete } = this.props;
+    const { fetchData } = this.props;
+
+    fetchData();
+
+    this.resize = this.resize.bind(this);
+    this.state = {
+      events: [],
+      inferiorBoundary: HorizontalTimeline.EDGE_DISTANCE,
+      translateX: 0,
+      wrapperWidth: HorizontalTimeline.EDGE_DISTANCE,
+      yearLabels: [],
+    };
+  }
+
+  private timeline: HTMLDivElement;
+
+  private initTimeline = (data: Event[]) => {
     const events = getEventsWithPosition(data, HorizontalTimeline.EDGE_DISTANCE, HorizontalTimeline.MIN_EVENT_DISTANCE);
     const yearLabels = getEventsYearLabel(events, HorizontalTimeline.MIN_EVENT_DISTANCE);
     const wrapperWidth = calculateWrapperWidth(events, HorizontalTimeline.EDGE_DISTANCE);
     const inferiorBoundary = wrapperWidth;
 
-    this.state = { translateX: 0, events, wrapperWidth, inferiorBoundary, yearLabels };
-    this.resize = this.resize.bind(this);
-
-    onVelocityComplete(this.onVelocityComplete);
+    this.setState({ events, inferiorBoundary, translateX: 0, wrapperWidth, yearLabels });
   }
-
-  private timeline: HTMLDivElement;
 
   private resize = () => {
     this.setState(({ translateX, wrapperWidth }) => {
@@ -61,10 +80,6 @@ class HorizontalTimeline extends React.Component<
 
       return { translateX: inferiorBoundary > translateX ? inferiorBoundary : translateX, inferiorBoundary };
     });
-  }
-
-  private onVelocityComplete = () => {
-    this.resize();
   }
 
   ref = (node: HTMLDivElement | null) => {
@@ -88,21 +103,49 @@ class HorizontalTimeline extends React.Component<
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.resize);
-    handler.removeCallback(this.onVelocityComplete);
+  }
+
+  componentWillReceiveProps({
+    data,
+  }: HorizontalTimelineStateToProps & HorizontalTimelineDispatchToProps & WithStyles<HorizontalTimelineStyles>) {
+    const { onEventClick } = this.props;
+
+    this.initTimeline(data);
+    onEventClick(data[0].id);
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, onEventClick, index } = this.props;
     const { translateX, events, wrapperWidth, inferiorBoundary, yearLabels } = this.state;
 
     return (
       <div className={classes.container} ref={this.ref}>
         <Navigation type="previous" onClick={this.handleNavigation} disabled={translateX === 0} />
-        <Timeline events={events} translateX={translateX} wrapperWidth={wrapperWidth} yearLabels={yearLabels} />
+        <Timeline
+          events={events}
+          index={index}
+          onEventClick={onEventClick}
+          translateX={translateX}
+          wrapperWidth={wrapperWidth}
+          yearLabels={yearLabels}
+        />
         <Navigation type="next" onClick={this.handleNavigation} disabled={translateX === inferiorBoundary} />
       </div>
     );
   }
 }
 
-export default withVelocityOnComplete(withStyles(HorizontalTimelineStyles)(HorizontalTimeline));
+const mapStateToProps = (state: StoreState): HorizontalTimelineStateToProps => ({
+  data: state.events,
+  index: 0,
+});
+
+const mapDispatchToProps: HorizontalTimelineDispatchToProps = {
+  onEventClick: selectEvent,
+  fetchData: fetchEvents,
+};
+
+export default connect<HorizontalTimelineStateToProps, HorizontalTimelineDispatchToProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(HorizontalTimelineStyles)(HorizontalTimeline));

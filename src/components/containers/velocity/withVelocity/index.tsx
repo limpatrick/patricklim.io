@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
 
-import { AnimationState } from 'src/redux/reducers/animation';
+import { AnimationState } from 'src/redux/animation/reducers';
 import Hidden from 'material-ui/Hidden';
-import { StoreState } from 'src/redux/reducers';
+import { StoreState } from 'src/redux';
 import { VelocityComponent } from 'velocity-react';
 import { WithVelocityStyles } from './styles';
 import { connect } from 'react-redux';

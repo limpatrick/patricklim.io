@@ -10,19 +10,25 @@ import withVelocityAnimation from 'components/containers/velocity/withVelocityAn
 
 interface TimelineProps {}
 
-const Timeline: React.SFC<TimelineProps & WithStyles<TimelineStyles>> = ({ classes }) => (
-  <Grid container direction="column" justify="center" alignItems="center">
-    <Grid item xs={12} className={classes.canvasContainer}>
-      <Grid container direction="column" justify="center" alignItems="center" className={classes.canvasWrapper}>
+class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles>> {
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <Grid container direction="column" justify="center" alignItems="center">
+        <Grid item xs={12} className={classes.canvasContainer}>
+          <Grid container direction="column" justify="center" alignItems="center" className={classes.canvasWrapper}>
+            <Grid item xs={12}>
+              <TagCloud />
+            </Grid>
+          </Grid>
+        </Grid>
         <Grid item xs={12}>
-          <TagCloud />
+          <HorizontalTimeline />
         </Grid>
       </Grid>
-    </Grid>
-    <Grid item xs={12}>
-      <HorizontalTimeline />
-    </Grid>
-  </Grid>
-);
+    );
+  }
+}
 
 export default withVelocityAnimation(withStyles(TimelineStyles)(Timeline));
