@@ -1,7 +1,9 @@
 import * as moment from 'moment';
 
-import { Event, EventPosition, YearLabel } from './typings';
+import { EventPosition, YearLabel } from './typings';
 import { map, min, reduce } from 'lodash';
+
+import { Event } from 'src/api/typings';
 
 const calculateEventXPosition = (diffDays: number, minDiffDays: number, minDistance: number, edgeDistance: number) =>
   calculateXPosition(diffDays, minDiffDays, minDistance) + edgeDistance;

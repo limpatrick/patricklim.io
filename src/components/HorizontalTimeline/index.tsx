@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Event, EventPosition, YearLabel } from './typings';
+import { EventPosition, YearLabel } from './typings';
 import Navigation, { NavigationType } from './Navigation';
 import { WithStyles, withStyles } from 'material-ui/styles';
 import {
@@ -11,19 +11,19 @@ import {
   getEventsWithPosition,
   getEventsYearLabel,
 } from './positioning';
+import { fetchEvents, selectEvent } from 'src/redux/events/actions';
 import withVelocityOnComplete, {
   WithVelocityOnCompleteInjectedProps,
   handler,
 } from 'components/containers/velocity/withVelocityOnComplete';
 
+import { Event } from 'src/api/typings';
 import { HorizontalTimelineStyles } from './styles';
 import { StoreState } from 'src/redux';
 import Timeline from './Timeline';
 import { connect } from 'react-redux';
 import eventsSelectors from 'src/redux/events/selectors';
-import { fetchEvents } from 'src/redux/events/actions';
 import { isEqual } from 'lodash';
-import { selectEvent } from 'src/redux/events/actions';
 
 interface HorizontalTimelineStateToProps {
   data: Event[];

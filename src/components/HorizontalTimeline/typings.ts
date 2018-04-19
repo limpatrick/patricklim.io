@@ -1,7 +1,4 @@
-import { Event as IEvent } from 'src/api/typings';
-import { Omit } from 'material-ui';
-
-export interface Event extends Omit<IEvent, 'tags'> {}
+import { Event } from 'src/api/typings';
 
 export interface EventPosition extends Event, Positionable {}
 

@@ -1,11 +1,10 @@
+import { Event, Tag } from 'src/api/typings';
 import { concat, findIndex, reduce } from 'lodash';
 
-import { Action } from '..';
-import { Event } from 'src/api/typings';
+import { Action } from '../..';
 import { SELECT_EVENT } from 'src/redux/events/types';
-import { Tag } from 'src/api/typings';
 
-const tagsByIdReducer = (state: TagsByIdState = {}, action: Action) => {
+const aggregatedTagsByIdReducer = (state: AggregatedTagsByIdState = {}, action: Action) => {
   switch (action.type) {
     case SELECT_EVENT:
       const { events, id } = action;
@@ -20,6 +19,6 @@ const tagsByIdReducer = (state: TagsByIdState = {}, action: Action) => {
   }
 };
 
-export type TagsByIdState = Record<string, Tag[]>;
+export type AggregatedTagsByIdState = Record<string, Tag[]>;
 
-export default tagsByIdReducer;
+export default aggregatedTagsByIdReducer;
