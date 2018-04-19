@@ -11,12 +11,18 @@ import {
   getEventsWithPosition,
   getEventsYearLabel,
 } from './positioning';
+import withVelocityOnComplete, {
+  WithVelocityOnCompleteInjectedProps,
+  handler,
+} from 'components/containers/velocity/withVelocityOnComplete';
 
 import { HorizontalTimelineStyles } from './styles';
 import { StoreState } from 'src/redux';
 import Timeline from './Timeline';
 import { connect } from 'react-redux';
 import { fetchEvents } from 'src/redux/events/actions';
+import { findEventIndex } from 'src/redux/events/reducers';
+import { isEqual } from 'lodash';
 import { selectEvent } from 'src/redux/tags/actions';
 
 interface HorizontalTimelineStateToProps {
@@ -38,40 +44,45 @@ interface HorizontalTimelineState {
 }
 
 class HorizontalTimeline extends React.Component<
-  HorizontalTimelineStateToProps & HorizontalTimelineDispatchToProps & WithStyles<HorizontalTimelineStyles>,
+  HorizontalTimelineStateToProps &
+    HorizontalTimelineDispatchToProps &
+    WithStyles<HorizontalTimelineStyles> &
+    WithVelocityOnCompleteInjectedProps,
   HorizontalTimelineState
 > {
   private static readonly EDGE_DISTANCE = 200;
   private static readonly MIN_EVENT_DISTANCE = 200;
 
   constructor(
-    props: HorizontalTimelineStateToProps & HorizontalTimelineDispatchToProps & WithStyles<HorizontalTimelineStyles>
+    props: HorizontalTimelineStateToProps &
+      HorizontalTimelineDispatchToProps &
+      WithStyles<HorizontalTimelineStyles> &
+      WithVelocityOnCompleteInjectedProps
   ) {
     super(props);
 
-    const { fetchData } = this.props;
+    const { data } = this.props;
+    const { fetchData, onVelocityComplete } = this.props;
 
-    fetchData();
+    if (data.length === 0) {
+      fetchData();
+    }
 
     this.resize = this.resize.bind(this);
-    this.state = {
-      events: [],
-      inferiorBoundary: HorizontalTimeline.EDGE_DISTANCE,
-      translateX: 0,
-      wrapperWidth: HorizontalTimeline.EDGE_DISTANCE,
-      yearLabels: [],
-    };
+    this.state = this.getState(data);
+
+    onVelocityComplete(this.resize);
   }
 
   private timeline: HTMLDivElement;
 
-  private initTimeline = (data: Event[]) => {
+  private getState = (data: Event[]): HorizontalTimelineState => {
     const events = getEventsWithPosition(data, HorizontalTimeline.EDGE_DISTANCE, HorizontalTimeline.MIN_EVENT_DISTANCE);
     const yearLabels = getEventsYearLabel(events, HorizontalTimeline.MIN_EVENT_DISTANCE);
     const wrapperWidth = calculateWrapperWidth(events, HorizontalTimeline.EDGE_DISTANCE);
     const inferiorBoundary = wrapperWidth;
 
-    this.setState({ events, inferiorBoundary, translateX: 0, wrapperWidth, yearLabels });
+    return { events, inferiorBoundary, translateX: 0, wrapperWidth, yearLabels };
   }
 
   private resize = () => {
@@ -103,15 +114,22 @@ class HorizontalTimeline extends React.Component<
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.resize);
+    handler.removeCallback(this.resize);
   }
 
   componentWillReceiveProps({
     data,
-  }: HorizontalTimelineStateToProps & HorizontalTimelineDispatchToProps & WithStyles<HorizontalTimelineStyles>) {
-    const { onEventClick } = this.props;
+    index,
+  }: HorizontalTimelineStateToProps &
+    HorizontalTimelineDispatchToProps &
+    WithStyles<HorizontalTimelineStyles> &
+    WithVelocityOnCompleteInjectedProps) {
+    if (!isEqual(data, this.props.data)) {
+      const { onEventClick } = this.props;
 
-    this.initTimeline(data);
-    onEventClick(data[0].id);
+      this.setState(this.getState(data));
+      onEventClick(data[index].id);
+    }
   }
 
   render() {
@@ -135,10 +153,14 @@ class HorizontalTimeline extends React.Component<
   }
 }
 
-const mapStateToProps = (state: StoreState): HorizontalTimelineStateToProps => ({
-  data: state.events,
-  index: 0,
-});
+const mapStateToProps = (state: StoreState): HorizontalTimelineStateToProps => {
+  const index = findEventIndex(state.events, state.tags.id);
+
+  return {
+    data: state.events,
+    index: index > 0 ? index : 0,
+  };
+};
 
 const mapDispatchToProps: HorizontalTimelineDispatchToProps = {
   onEventClick: selectEvent,
@@ -148,4 +170,4 @@ const mapDispatchToProps: HorizontalTimelineDispatchToProps = {
 export default connect<HorizontalTimelineStateToProps, HorizontalTimelineDispatchToProps>(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(HorizontalTimelineStyles)(HorizontalTimeline));
+)(withVelocityOnComplete(withStyles(HorizontalTimelineStyles)(HorizontalTimeline)));
