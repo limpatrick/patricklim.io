@@ -48,10 +48,14 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
   }
 
   componentWillReceiveProps({ index, events, wrapperWidth }: TimelineProps & WithStyles<TimelineStyles>) {
-    this.setState({
-      fillingBarProgress: this.calculateFillingBarProgress(events[index].position, wrapperWidth),
-      index,
-    });
+    const fillingBarProgress = this.calculateFillingBarProgress(events[index].position, wrapperWidth);
+
+    if (this.state.fillingBarProgress !== fillingBarProgress) {
+      this.setState({
+        fillingBarProgress,
+        index,
+      });
+    }
   }
 
   render() {
