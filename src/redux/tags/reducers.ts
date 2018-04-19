@@ -1,4 +1,4 @@
-import { concat, findIndex, isEmpty, reduce } from 'lodash';
+import { concat, findIndex, reduce } from 'lodash';
 
 import { Action } from '..';
 import { Event } from 'src/api/typings';
@@ -40,5 +40,3 @@ export interface TagsState {
 }
 
 export default tagsReducer;
-
-export const getTags = (state: TagsState) => (!isEmpty(state.id) ? state.byId[state.id] : []);
