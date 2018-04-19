@@ -154,7 +154,7 @@ class HorizontalTimeline extends React.Component<
 }
 
 const mapStateToProps = (state: StoreState): HorizontalTimelineStateToProps => {
-  const index = eventsSelectors.findEventIndex(state.events);
+  const index = eventsSelectors.getSelectedEventIndex(state.events);
 
   return {
     data: state.events.list,
