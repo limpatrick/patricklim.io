@@ -23,7 +23,7 @@ import { connect } from 'react-redux';
 import eventsSelectors from 'src/redux/events/selectors';
 import { fetchEvents } from 'src/redux/events/actions';
 import { isEqual } from 'lodash';
-import { selectEvent } from 'src/redux/tags/actions';
+import { selectEvent } from 'src/redux/events/actions';
 
 interface HorizontalTimelineStateToProps {
   data: Event[];
@@ -154,10 +154,10 @@ class HorizontalTimeline extends React.Component<
 }
 
 const mapStateToProps = (state: StoreState): HorizontalTimelineStateToProps => {
-  const index = eventsSelectors.findEventIndex(state.events, state.tags.id);
+  const index = eventsSelectors.findEventIndex(state.events);
 
   return {
-    data: state.events,
+    data: state.events.list,
     index: index > 0 ? index : 0,
   };
 };
