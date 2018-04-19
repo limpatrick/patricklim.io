@@ -4,7 +4,7 @@ import { Options } from './options';
 import { StoreState } from 'src/redux';
 import { Tag } from 'src/api/typings';
 import { connect } from 'react-redux';
-import tagsSelectors from 'src/redux/tags/selectors';
+import selectors from 'src/redux/selectors';
 
 interface TagCloudStateToProps {
   tags: Tag[];
@@ -45,7 +45,7 @@ class TagCloud extends React.Component<TagCloudStateToProps> {
 }
 
 const mapStateToProps = (state: StoreState): TagCloudStateToProps => ({
-  tags: tagsSelectors.getTags(state.tags),
+  tags: selectors.getTags(state),
 });
 
 export default connect<TagCloudStateToProps>(mapStateToProps)(TagCloud);

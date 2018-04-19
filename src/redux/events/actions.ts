@@ -3,6 +3,7 @@ import * as types from './types';
 
 import { Dispatch } from 'react-redux';
 import { Event } from 'src/api/typings';
+import { StoreState } from 'src/redux';
 
 export interface FetchEventsRequest {
   type: types.FETCH_EVENTS_REQUEST;
@@ -18,7 +19,13 @@ export interface FetchEventsFailure {
   message: string;
 }
 
-export type Action = FetchEventsRequest | FetchEventsSuccess | FetchEventsFailure;
+export interface SelectEvent {
+  events: Event[];
+  id: string;
+  type: types.SELECT_EVENT;
+}
+
+export type Action = FetchEventsRequest | FetchEventsSuccess | FetchEventsFailure | SelectEvent;
 
 export const fetchEvents = () => (dispatch: Dispatch<Action>) => {
   dispatch({ type: types.FETCH_EVENTS_REQUEST } as FetchEventsRequest);
@@ -37,4 +44,8 @@ export const fetchEvents = () => (dispatch: Dispatch<Action>) => {
       } as FetchEventsFailure);
     }
   );
+};
+
+export const selectEvent = (id: string) => (dispatch: Dispatch<Action>, getState: () => StoreState) => {
+  dispatch({ events: getState().events.list, type: types.SELECT_EVENT, id } as SelectEvent);
 };

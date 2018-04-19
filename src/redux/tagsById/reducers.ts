@@ -2,9 +2,8 @@ import { concat, findIndex, reduce } from 'lodash';
 
 import { Action } from '..';
 import { Event } from 'src/api/typings';
-import { SELECT_EVENT } from './types';
+import { SELECT_EVENT } from 'src/redux/events/types';
 import { Tag } from 'src/api/typings';
-import { combineReducers } from 'redux';
 
 const tagsByIdReducer = (state: TagsByIdState = {}, action: Action) => {
   switch (action.type) {
@@ -21,22 +20,6 @@ const tagsByIdReducer = (state: TagsByIdState = {}, action: Action) => {
   }
 };
 
-const IdReducer = (state: IdState = '', action: Action) => {
-  switch (action.type) {
-    case SELECT_EVENT:
-      return action.id;
-    default:
-      return state;
-  }
-};
-
-const tagsReducer = combineReducers<TagsState>({ byId: tagsByIdReducer, id: IdReducer });
-
-export type IdState = string;
 export type TagsByIdState = Record<string, Tag[]>;
-export interface TagsState {
-  byId: TagsByIdState;
-  id: IdState;
-}
 
-export default tagsReducer;
+export default tagsByIdReducer;
