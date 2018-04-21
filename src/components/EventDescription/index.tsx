@@ -3,7 +3,6 @@ import * as React from 'react';
 import { WithStyles, withStyles } from 'material-ui/styles';
 
 import Chip from 'material-ui/Chip';
-import Divider from 'material-ui/Divider';
 import { Event } from 'src/api/typings';
 import { EventDescriptionStyles } from './styles';
 import Grid from 'material-ui/Grid';
@@ -41,21 +40,30 @@ class EventDescription extends React.Component<EventDescriptionStateToProps & Wi
 
     return (
       <Grid container direction="column" alignItems="center" justify="center">
-        <Grid item xs={12}>
-          <Typography variant="display3" align="center">
-            {title}
-          </Typography>
-          <Divider light />
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="headline" align="center">
-            {organization}
-          </Typography>
-        </Grid>
+        {title && (
+          <Grid item xs={12}>
+            <Typography variant="display3" align="center">
+              {title}
+            </Typography>
+          </Grid>
+        )}
+        {organization && (
+          <Grid item xs={12}>
+            <Typography variant="headline" align="center">
+              at {organization}
+            </Typography>
+          </Grid>
+        )}
         <Grid item xs={12}>
           <Typography variant="caption" align="center">
-            From {from} to {to}
-            {durationAsMonths < 12 && ` (${durationAsMonths} months)`}
+            {durationAsMonths > 1 ? (
+              <span>
+                From {from} to {to}
+                {durationAsMonths < 12 && ` (${durationAsMonths} months)`}
+              </span>
+            ) : (
+              from
+            )}
           </Typography>
         </Grid>
         <Grid item xs={12}>
