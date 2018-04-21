@@ -1,17 +1,14 @@
 import { StyleRules } from 'material-ui/styles';
 
-export type TimelineStyles = 'canvasWrapper' | 'leftSide' | 'rightSide' | 'timeline';
+export type TimelineStyles = 'topContainer' | 'topContainerWrapper' | 'eventDescriptionContainer';
 export const TimelineStyles: StyleRules<TimelineStyles> = {
-  canvasWrapper: {
+  topContainer: {
+    width: '100%',
+  },
+  topContainerWrapper: {
     minHeight: 'calc(100vh - 130px)',
   },
-  leftSide: {
+  eventDescriptionContainer: {
     maxWidth: 'fill-available',
-  },
-  rightSide: {
-    flex: 'auto',
-  },
-  timeline: {
-    marginTop: 16,
   },
 };

@@ -1,11 +1,11 @@
 import { StyleRules } from 'material-ui/styles';
 
-export type TagCloudStyles = 'paper' | 'container';
+export type TagCloudStyles = 'canvasWrapper' | 'canvas';
 export const TagCloudStyles: StyleRules<TagCloudStyles> = {
-  paper: {
-    background: 'transparent',
+  canvasWrapper: {
+    maxWidth: '100vw',
   },
-  container: {
+  canvas: {
     width: '100%',
   },
 };

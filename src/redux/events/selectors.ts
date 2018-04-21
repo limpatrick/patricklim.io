@@ -6,12 +6,16 @@ const getSelectedEvent = (state: EventsState) => state.list[getSelectedEventInde
 
 const getSelectedEventIndex = (state: EventsState) => findIndex(state.list, (e) => e.id === state.selectedId);
 
-const getTags = (state: EventsState) => (!isEmpty(state.selectedId) ? state.aggregatedTagsById[state.selectedId] : []);
+const getSkills = (state: EventsState) => {
+  const selectedEvent = getSelectedEvent(state);
+
+  return !isEmpty(selectedEvent) ? selectedEvent.skills : [];
+};
 
 const eventsSelectors = {
   getSelectedEvent,
   getSelectedEventIndex,
-  getTags,
+  getSkills,
 };
 
 export default eventsSelectors;

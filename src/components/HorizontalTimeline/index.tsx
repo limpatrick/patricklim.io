@@ -51,7 +51,7 @@ class HorizontalTimeline extends React.Component<
   HorizontalTimelineState
 > {
   private static readonly EDGE_DISTANCE = 200;
-  private static readonly MIN_EVENT_DISTANCE = 200;
+  private static readonly MIN_EVENT_DISTANCE = 50;
 
   constructor(
     props: HorizontalTimelineStateToProps &
