@@ -6,7 +6,7 @@ export interface Event {
   duration: Duration;
   title: string;
   labels: Label[];
-  organization: string;
+  organization?: string;
   description: string;
   skills: Tag[];
 }
@@ -16,4 +16,4 @@ export interface Tag {
   weight: number;
 }
 
-export type Label = 'Internship' | 'Diploma' | 'Engineering degree' | 'Full time';
+export type Label = 'Internship' | 'Diploma' | 'Engineering degree' | 'Full time' | 'Project';

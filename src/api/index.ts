@@ -7,7 +7,6 @@ import { v4 } from 'uuid';
 
 interface Database {
   events: Event[];
-  tags: Tag[];
 }
 
 const tags: Tag[] = [
@@ -19,16 +18,22 @@ const tags: Tag[] = [
   { label: 'IBM Watson', weight: 25 },
   { label: 'Java', weight: 25 },
   { label: 'JavaScript', weight: 60 },
+  { label: 'JSS', weight: 20 },
   { label: 'Lodash', weight: 30 },
   { label: 'Material Design', weight: 25 },
+  { label: 'Material UI', weight: 20 },
   { label: 'Node.js', weight: 25 },
   { label: 'PHP', weight: 25 },
+  { label: 'React', weight: 20 },
+  { label: 'Redux', weight: 20 },
   { label: 'REST API', weight: 25 },
   { label: 'RxJS', weight: 30 },
   { label: 'SOAP', weight: 20 },
   { label: 'SQL', weight: 25 },
   { label: 'TypeScript', weight: 50 },
   { label: 'UI/UX', weight: 25 },
+  { label: 'Velocity.js', weight: 20 },
+  { label: 'webpack', weight: 20 },
   { label: 'Wordpress', weight: 20 },
   { label: 'Zend Framework 2', weight: 25 },
 ];
@@ -47,13 +52,13 @@ const competences: Tag[] = [
 
 const getSkill = (label: string) => find(tags, (tag) => tag.label === label) as Tag;
 
-export const database: Database = {
+const database: Database = {
   events: [
     {
       id: v4(),
       date: moment('06/2014', 'MM/YYYY'),
       duration: moment.duration(2, 'years'),
-      title: 'IT Diploma',
+      title: 'Diploma in IT',
       labels: ['Diploma'],
       organization: 'University Institute of Technology of Paris Descartes',
       description: `Two year university programme leading to an Higher National Diploma in IT`,
@@ -112,7 +117,7 @@ export const database: Database = {
       id: v4(),
       date: moment('09/2017', 'MM/YYYY'),
       duration: moment.duration(3, 'years'),
-      title: 'Engineering school',
+      title: `Master's Degree in Engineering`,
       labels: ['Engineering degree'],
       organization: 'University of Technology of Troyes',
       description: `Master's Degree in Engineering in the field of informatics and information systems with a 
@@ -136,8 +141,25 @@ export const database: Database = {
         getSkill('Lodash'),
       ],
     },
+    {
+      id: v4(),
+      date: moment('04/2018', 'MM/YYYY'),
+      duration: moment.duration(1, 'months'),
+      title: 'patricklim.fr',
+      labels: ['Project'],
+      description: `Realization of my personal website using React.`,
+      skills: [
+        getSkill('React'),
+        getSkill('TypeScript'),
+        getSkill('Material UI'),
+        getSkill('Redux'),
+        getSkill('Lodash'),
+        getSkill('Velocity.js'),
+        getSkill('webpack'),
+        getSkill('JSS'),
+      ],
+    },
   ],
-  tags,
 };
 
 export const fetchEvents = () => new Promise<Event[]>((resolve) => resolve(database.events));
