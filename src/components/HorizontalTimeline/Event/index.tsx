@@ -38,9 +38,9 @@ const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
       onClick={onClick}
       disableRipple>
       <Typography className={classes.typography} component="span" variant="caption">
-        {date.format('D MMM')}
+        {date.format('MMM')}
       </Typography>
-      <Icon className={classes.icon} aria-label={date.format('D MMM')}>
+      <Icon className={classes.icon} aria-label={date.format('MMM')}>
         <FaCircle />
       </Icon>
     </IconButton>
