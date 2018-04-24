@@ -15,7 +15,10 @@ interface EventProps {
   date: Moment;
   older: boolean;
   onClick: () => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
   position: number;
+  title: string;
 }
 
 const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
@@ -24,7 +27,10 @@ const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
   date,
   older,
   onClick,
+  onMouseEnter,
+  onMouseLeave,
   position,
+  title,
 }) => {
   const activeClassName = active ? classes.active : '';
   const olderClassName = older ? classes.older : '';
@@ -36,6 +42,8 @@ const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
       className={className}
       style={{ left: position }}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       disableRipple>
       <Typography className={classes.typography} component="span" variant="caption">
         {date.format('MMM')}
