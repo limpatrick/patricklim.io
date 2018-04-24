@@ -9,6 +9,11 @@ const theme = createMuiTheme({
         userSelect: 'none',
       },
     },
+    MuiTooltip: {
+      root: {
+        userSelect: 'none',
+      },
+    },
   },
   palette: {
     type: 'dark',

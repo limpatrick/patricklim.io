@@ -4,6 +4,7 @@ import { EventPosition, YearLabel } from '../typings';
 import { WithStyles, withStyles } from 'material-ui/styles';
 
 import Event from '../Event';
+import EventTooltip from '../EventTooltip';
 import FillingBar from '../FillingBar';
 import Label from '../Label';
 import { TimelineStyles } from './styles';
@@ -20,6 +21,7 @@ interface TimelineProps {
 interface TimelineState {
   fillingBarProgress: number;
   index: number;
+  indexHover: number;
 }
 
 class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles>, TimelineState> {
@@ -30,7 +32,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
     const eventXPosition = events.length ? events[index].position : 0;
     const fillingBarProgress = this.calculateFillingBarProgress(eventXPosition, wrapperWidth);
 
-    this.state = { fillingBarProgress, index };
+    this.state = { fillingBarProgress, index, indexHover: -1 };
   }
 
   private calculateFillingBarProgress = (eventXPosition: number, wrapperWidth: number) =>
@@ -47,6 +49,18 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
     onEventClick(this.props.events[index].id);
   }
 
+  handleEventMouseEnter = (index: number) => () => {
+    this.setState({
+      indexHover: index,
+    });
+  }
+
+  handleEventMouseLeave = () => () => {
+    this.setState({
+      indexHover: -1,
+    });
+  }
+
   componentWillReceiveProps({ index, events, wrapperWidth }: TimelineProps & WithStyles<TimelineStyles>) {
     const fillingBarProgress = this.calculateFillingBarProgress(events[index].position, wrapperWidth);
 
@@ -60,23 +74,42 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
 
   render() {
     const { classes, events, translateX, wrapperWidth, yearLabels } = this.props;
-    const { fillingBarProgress, index } = this.state;
+    const { fillingBarProgress, index, indexHover } = this.state;
 
     return (
       <div className={classes.container}>
-        <div className={classes.wrapper} style={{ width: wrapperWidth, transform: `translateX(${translateX}px)` }}>
-          {events.map((event, key) => (
-            <Event
-              date={event.date}
-              position={event.position}
-              key={event.id}
-              onClick={this.handleEventClick(key)}
-              active={events[index] === event}
-              older={key < index}
-            />
-          ))}
-          {yearLabels.map((label, key) => <Label {...label} key={key} />)}
-          <FillingBar value={fillingBarProgress} />
+        <div className={classes.overflowVisible}>
+          <div className={classes.wrapper}>
+            <div className={classes.content} style={{ width: wrapperWidth, transform: `translateX(${translateX}px)` }}>
+              {events.map((event, key) => (
+                <EventTooltip
+                  key={event.id}
+                  position={event.position}
+                  title={event.title}
+                  open={events[indexHover] === event}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className={classes.overflowHidden}>
+          <div className={classes.content} style={{ width: wrapperWidth, transform: `translateX(${translateX}px)` }}>
+            {events.map((event, key) => (
+              <Event
+                active={events[index] === event}
+                date={event.date}
+                key={event.id}
+                older={key < index}
+                onClick={this.handleEventClick(key)}
+                onMouseEnter={this.handleEventMouseEnter(key)}
+                onMouseLeave={this.handleEventMouseLeave()}
+                position={event.position}
+                title={event.title}
+              />
+            ))}
+            <FillingBar value={fillingBarProgress} />
+            {yearLabels.map((label, key) => <Label {...label} key={key} />)}
+          </div>
         </div>
       </div>
     );
