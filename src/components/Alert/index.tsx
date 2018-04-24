@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 import Snackbar, { SnackBarOrigin } from 'material-ui/Snackbar';
-import { WithStyles, withStyles } from 'material-ui/styles';
+import { StyleRulesCallback, WithStyles, withStyles } from 'material-ui/styles';
 
 import { AlertStyles } from './styles';
 import { FaClose } from 'react-icons/lib/fa';
 import IconButton from 'material-ui/IconButton';
 import Transition from './Transition';
+import { omit } from 'lodash';
 
 interface AlertProps {
   autoHideDuration?: number;
@@ -44,6 +45,7 @@ class Alert extends React.Component<AlertProps & WithStyles<AlertStyles>, AlertS
 
     return (
       <Snackbar
+        classes={omit(classes, ['close'])}
         action={[
           <IconButton
             aria-label="Close"
@@ -65,4 +67,4 @@ class Alert extends React.Component<AlertProps & WithStyles<AlertStyles>, AlertS
   }
 }
 
-export default withStyles(AlertStyles)(Alert);
+export default withStyles(AlertStyles as StyleRulesCallback<AlertStyles>)(Alert);
