@@ -1,6 +1,6 @@
 import { StyleRules } from 'material-ui/styles';
 
-export type HeaderStyles = 'appBar' | 'toolbar';
+export type HeaderStyles = 'appBar' | 'toolbar' | 'flex';
 export const HeaderStyles: StyleRules<HeaderStyles> = {
   appBar: {
     position: 'relative',
@@ -10,15 +10,7 @@ export const HeaderStyles: StyleRules<HeaderStyles> = {
   toolbar: {
     justifyContent: 'flex-end',
   },
-};
-
-export type HeaderLinkStyles = 'navLink' | 'button';
-export const HeaderLinkStyles: StyleRules<HeaderLinkStyles> = {
-  navLink: {
-    textDecoration: 'none',
-  },
-  button: {
-    textTransform: 'none',
-    fontWeight: 100,
+  flex: {
+    flex: 1,
   },
 };
