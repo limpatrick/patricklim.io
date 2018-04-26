@@ -1,12 +1,16 @@
 import * as React from 'react';
 
+import { IoCodeWorking, IoEmail, IoSocialGithub, IoSocialLinkedin } from 'react-icons/lib/io';
 import { WithStyles, withStyles } from 'material-ui/styles';
 import withRoutes, { WithRoutesInjectedProps } from 'components/containers/withRoutes';
 
 import AppBar from 'material-ui/AppBar';
-import HeaderLink from './HeaderLink';
 import { HeaderStyles } from './styles';
+import IconButton from 'material-ui/IconButton';
+import IconLink from 'components/IconLink';
+import IconNav from 'components/IconNav';
 import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
 
 interface HeaderProps {
   onLinkClick: (path: string) => void;
@@ -17,7 +21,7 @@ class Header extends React.Component<HeaderProps & WithStyles<HeaderStyles> & Wi
     const { onLinkClick } = this.props;
 
     onLinkClick(path);
-  }
+  };
 
   render() {
     const { classes, routes } = this.props;
@@ -25,9 +29,27 @@ class Header extends React.Component<HeaderProps & WithStyles<HeaderStyles> & Wi
     return (
       <AppBar className={classes.appBar} color="primary">
         <Toolbar className={classes.toolbar}>
-          {routes.map(({ path, label }, key) => (
-            <HeaderLink to={path} label={label} key={key} onClick={this.handleLinkClick(path)} />
-          ))}
+          <IconNav onClick={this.handleLinkClick(routes[0].path)} title="Patrick LIM" to={routes[0].path}>
+            <Typography variant="title">PL</Typography>
+          </IconNav>
+          <IconNav
+            className={classes.flex}
+            onClick={this.handleLinkClick(routes[1].path)}
+            title="Timeline"
+            to={routes[1].path}>
+            <IconButton disableRipple>
+              <IoCodeWorking />
+            </IconButton>
+          </IconNav>
+          <IconLink href="mailto:contact@patricklim.fr" title="Contact me at contact@patricklim.fr">
+            <IoEmail />
+          </IconLink>
+          <IconLink href="https://github.com/limpatrick" target="_blank" title="github.com/limpatrick">
+            <IoSocialGithub />
+          </IconLink>
+          <IconLink href="https://www.linkedin.com/in/lim-patrick/" target="_blank" title="linkedin.com/in/lim-patrick">
+            <IoSocialLinkedin />
+          </IconLink>
         </Toolbar>
       </AppBar>
     );
