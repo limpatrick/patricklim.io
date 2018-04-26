@@ -1,5 +1,4 @@
 import { ComponentType } from 'react';
-import Contact from 'components/views/Contact';
 import Home from 'components/views/Home';
 import Timeline from 'components/views/Timeline';
 
@@ -13,11 +12,6 @@ const routes: Route[] = [
     path: '/timeline',
     component: Timeline,
     label: 'Timeline',
-  },
-  {
-    path: '/contact',
-    component: Contact,
-    label: 'Contact',
   },
 ];
 
