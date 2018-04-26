@@ -21,22 +21,24 @@ class Header extends React.Component<HeaderProps & WithStyles<HeaderStyles> & Wi
     const { onLinkClick } = this.props;
 
     onLinkClick(path);
-  };
+  }
 
   render() {
     const { classes, routes } = this.props;
+    const homeRoute = routes[0];
+    const timelineRoute = routes[1];
 
     return (
       <AppBar className={classes.appBar} color="primary">
         <Toolbar className={classes.toolbar}>
-          <IconNav onClick={this.handleLinkClick(routes[0].path)} title="Patrick LIM" to={routes[0].path}>
+          <IconNav onClick={this.handleLinkClick(homeRoute.path)} title="Patrick LIM" to={homeRoute.path}>
             <Typography variant="title">PL</Typography>
           </IconNav>
           <IconNav
             className={classes.flex}
-            onClick={this.handleLinkClick(routes[1].path)}
+            onClick={this.handleLinkClick(timelineRoute.path)}
             title="Timeline"
-            to={routes[1].path}>
+            to={timelineRoute.path}>
             <IconButton disableRipple>
               <IoCodeWorking />
             </IconButton>
