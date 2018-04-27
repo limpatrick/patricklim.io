@@ -4,10 +4,10 @@ import routes, { Route } from 'src/routes';
 
 interface ExternalProps {}
 
-const withRoutes = <WrappedComponentProps extends {}>(
-  WrappedComponent: React.ComponentType<WrappedComponentProps & WithRoutesInjectedProps>
+const withRoutes = <P extends {}>(
+  WrappedComponent: React.ComponentType<P & WithRoutesInjectedProps>
 ) => {
-  const WithRoutes: React.SFC<WrappedComponentProps & ExternalProps> = (props) => (
+  const WithRoutes: React.SFC<P & ExternalProps> = (props) => (
     <WrappedComponent routes={routes} {...props} />
   );
 

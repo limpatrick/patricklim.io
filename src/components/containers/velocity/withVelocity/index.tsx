@@ -11,10 +11,10 @@ interface ExternalProps {}
 
 interface WithVelocityInjectedProps {}
 
-const withVelocity = (animation: Animation, handleVelocityComplete: () => void) => <WrappedComponentProps extends {}>(
-  WrappedComponent: React.ComponentType<WrappedComponentProps & WithVelocityInjectedProps>
+const withVelocity = (animation: Animation, handleVelocityComplete: () => void) => <P extends {}>(
+  WrappedComponent: React.ComponentType<P & WithVelocityInjectedProps>
 ) => {
-  class WithVelocity extends React.Component<WrappedComponentProps & WithStyles<WithVelocityStyles> & ExternalProps> {
+  class WithVelocity extends React.Component<P & WithStyles<WithVelocityStyles> & ExternalProps> {
     static DELAY = 500;
     static DURATION = 1000;
 
