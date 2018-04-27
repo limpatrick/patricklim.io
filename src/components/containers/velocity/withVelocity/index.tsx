@@ -1,34 +1,25 @@
 import * as React from 'react';
 
+import { Animation, VelocityComponent } from 'velocity-react';
 import { WithStyles, withStyles } from 'material-ui/styles';
 
-import { AnimationState } from 'src/redux/animation/reducers';
 import Hidden from 'material-ui/Hidden';
-import { StoreState } from 'src/redux';
-import { VelocityComponent } from 'velocity-react';
 import { WithVelocityStyles } from './styles';
-import { connect } from 'react-redux';
 import { omit } from 'lodash';
 
-interface ExternalProps {
-  animation: AnimationState;
-}
+interface ExternalProps {}
 
 interface WithVelocityInjectedProps {}
 
-const withVelocity = (handleVelocityComplete: () => void) => <WrappedComponentProps extends {}>(
+const withVelocity = (animation: Animation, handleVelocityComplete: () => void) => <WrappedComponentProps extends {}>(
   WrappedComponent: React.ComponentType<WrappedComponentProps & WithVelocityInjectedProps>
 ) => {
-  const mapStateToProps = (state: StoreState) => ({
-    animation: state.animation,
-  });
-
   class WithVelocity extends React.Component<WrappedComponentProps & WithStyles<WithVelocityStyles> & ExternalProps> {
     static DELAY = 500;
     static DURATION = 1000;
 
     render() {
-      const { animation, classes } = this.props;
+      const { classes } = this.props;
       // typescript spread operator on generic object not allowed
       const rest = omit(this.props, ['animation', 'classes', 'theme']);
 
@@ -47,7 +38,7 @@ const withVelocity = (handleVelocityComplete: () => void) => <WrappedComponentPr
     }
   }
 
-  return connect<ExternalProps>(mapStateToProps)(withStyles(WithVelocityStyles)(WithVelocity));
+  return withStyles(WithVelocityStyles)(WithVelocity);
 };
 
 export default withVelocity;

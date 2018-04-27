@@ -10,7 +10,6 @@ import { omit } from 'lodash';
 interface IconNavProps {
   children: React.ReactNode;
   className?: string;
-  onClick: () => void;
   title: string;
   to: string;
 }

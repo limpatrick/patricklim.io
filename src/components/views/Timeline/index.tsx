@@ -96,4 +96,4 @@ class Timeline extends React.Component<
   }
 }
 
-export default withVelocityAnimation(withVelocityOnComplete(withStyles(TimelineStyles)(Timeline)));
+export default withVelocityAnimation()(withVelocityOnComplete(withStyles(TimelineStyles)(Timeline)));
