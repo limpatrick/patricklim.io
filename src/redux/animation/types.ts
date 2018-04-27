@@ -1,5 +1,0 @@
-export const INITIALIZE_ROUTE = 'INITIALIZE_ROUTE';
-export type INITIALIZE_ROUTE = typeof INITIALIZE_ROUTE;
-
-export const UPDATE_ROUTE = 'UPDATE_ROUTE';
-export type UPDATE_ROUTE = typeof UPDATE_ROUTE;

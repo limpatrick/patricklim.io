@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
 
+import { Animation } from 'velocity-react';
 import { WithVelocityAnimationStyles } from './styles';
 import { handler } from '../withVelocityOnComplete';
 import { omit } from 'lodash';
@@ -11,7 +12,7 @@ interface ExternalProps {}
 
 interface WithVelocityAnimationInjectedProps {}
 
-const withVelocityAnimation = <WrappedComponentProps extends {}>(
+const withVelocityAnimation = (animation: Animation = 'transition.fadeIn') => <WrappedComponentProps extends {}>(
   WrappedComponent: React.ComponentType<WrappedComponentProps & WithVelocityAnimationInjectedProps>
 ) => {
   class WithVelocityAnimation extends React.Component<
@@ -30,7 +31,9 @@ const withVelocityAnimation = <WrappedComponentProps extends {}>(
     }
   }
 
-  return withVelocity(handler.handleVelocityComplete)(withStyles(WithVelocityAnimationStyles)(WithVelocityAnimation));
+  return withVelocity(animation, handler.handleVelocityComplete)(
+    withStyles(WithVelocityAnimationStyles)(WithVelocityAnimation)
+  );
 };
 
 export default withVelocityAnimation;

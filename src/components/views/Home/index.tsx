@@ -66,4 +66,4 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>> {
   }
 }
 
-export default withVelocityAnimation(withStyles(HomeStyles)(Home));
+export default withVelocityAnimation()(withStyles(HomeStyles)(Home));
