@@ -8,10 +8,10 @@ export interface WithVelocityOnCompleteInjectedProps {
   onVelocityComplete: (callback: () => void) => void;
 }
 
-const withVelocityOnComplete = <WrappedComponentProps extends {}>(
-  WrappedComponent: React.ComponentType<WrappedComponentProps & WithVelocityOnCompleteInjectedProps>
+const withVelocityOnComplete = <P extends {}>(
+  WrappedComponent: React.ComponentType<P & WithVelocityOnCompleteInjectedProps>
 ) => {
-  class WithVelocityOnComplete extends React.Component<WrappedComponentProps & ExternalProps> {
+  class WithVelocityOnComplete extends React.Component<P & ExternalProps> {
     handleVelocityOnComplete = (callback: () => void) => {
       velocityOnCompleteHandler.registerCallback(callback);
     }

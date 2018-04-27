@@ -12,11 +12,11 @@ interface ExternalProps {}
 
 interface WithVelocityAnimationInjectedProps {}
 
-const withVelocityAnimation = (animation: Animation = 'transition.fadeIn') => <WrappedComponentProps extends {}>(
-  WrappedComponent: React.ComponentType<WrappedComponentProps & WithVelocityAnimationInjectedProps>
+const withVelocityAnimation = (animation: Animation = 'transition.fadeIn') => <P extends {}>(
+  WrappedComponent: React.ComponentType<P & WithVelocityAnimationInjectedProps>
 ) => {
   class WithVelocityAnimation extends React.Component<
-    WrappedComponentProps & WithStyles<WithVelocityAnimationStyles> & ExternalProps
+    P & WithStyles<WithVelocityAnimationStyles> & ExternalProps
   > {
     render() {
       const { classes } = this.props;
