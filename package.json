@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode development --config webpack.config.development.ts --progress --hot --inline --watch --colors --open chrome"
+    "start": "webpack-dev-server --mode development --config webpack/webpack.dev.ts --progress --hot --inline --watch --colors --open chrome",
+    "build": "webpack --mode production --config webpack/webpack.prod.ts --progress && http-server ./dist"
   },
   "dependencies": {
     "jquery-tagcanvas": "^2.9.0",
@@ -40,9 +41,11 @@
     "@types/redux-logger": "^3.0.5",
     "@types/uuid": "^3.4.3",
     "@types/velocity-animate": "^1.2.32",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.10",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.0.6",
+    "http-server": "^0.11.1",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.3",
     "stylelint-config-standard": "^18.2.0",
@@ -54,6 +57,8 @@
     "typescript": "^2.7.2",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.1.1",
+    "webpack-manifest-plugin": "^2.0.2",
+    "webpack-merge": "^4.1.2"
   }
 }
