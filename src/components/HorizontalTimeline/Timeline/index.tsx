@@ -36,7 +36,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
   }
 
   private calculateFillingBarProgress = (eventXPosition: number, wrapperWidth: number) =>
-    eventXPosition / wrapperWidth * 100
+    (eventXPosition + 5) / wrapperWidth * 100
 
   handleEventClick = (index: number) => () => {
     const { onEventClick } = this.props;
@@ -104,7 +104,6 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
                 onMouseEnter={this.handleEventMouseEnter(key)}
                 onMouseLeave={this.handleEventMouseLeave()}
                 position={event.position}
-                title={event.title}
               />
             ))}
             <FillingBar value={fillingBarProgress} />
