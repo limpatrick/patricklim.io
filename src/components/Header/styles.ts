@@ -1,6 +1,6 @@
 import { StyleRules } from 'material-ui/styles';
 
-export type HeaderStyles = 'appBar' | 'toolbar' | 'flex';
+export type HeaderStyles = 'appBar' | 'toolbar' | 'flex' | 'logo';
 export const HeaderStyles: StyleRules<HeaderStyles> = {
   appBar: {
     position: 'relative',
@@ -12,5 +12,8 @@ export const HeaderStyles: StyleRules<HeaderStyles> = {
   },
   flex: {
     flex: 1,
+  },
+  logo: {
+    color: 'white',
   },
 };

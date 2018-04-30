@@ -1,16 +1,18 @@
 import * as React from 'react';
 
-import { IoCodeWorking, IoEmail, IoSocialGithub, IoSocialLinkedin } from 'react-icons/lib/io';
+import { IoCodeWorking, IoEmail, IoSocialLinkedin } from 'react-icons/lib/io';
 import { WithStyles, withStyles } from 'material-ui/styles';
 import withRoutes, { WithRoutesInjectedProps } from 'components/containers/withRoutes';
 
 import AppBar from 'material-ui/AppBar';
+import { FaGithubSquare } from 'react-icons/lib/fa';
 import { HeaderStyles } from './styles';
+import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 import IconLink from 'components/IconLink';
 import IconNav from 'components/IconNav';
+import Logo from 'components/logo';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 
 interface HeaderProps {}
 
@@ -22,7 +24,9 @@ const Header: React.SFC<HeaderProps & WithStyles<HeaderStyles> & WithRoutesInjec
     <AppBar className={classes.appBar} color="primary">
       <Toolbar className={classes.toolbar}>
         <IconNav title="Patrick LIM" to={homeRoute.path}>
-          <Typography variant="title">PL</Typography>
+          <Icon className={classes.logo}>
+            <Logo />
+          </Icon>
         </IconNav>
         <IconNav className={classes.flex} title="Timeline" to={timelineRoute.path}>
           <IconButton disableRipple>
@@ -33,7 +37,7 @@ const Header: React.SFC<HeaderProps & WithStyles<HeaderStyles> & WithRoutesInjec
           <IoEmail />
         </IconLink>
         <IconLink href="https://github.com/limpatrick" target="_blank" title="github.com/limpatrick">
-          <IoSocialGithub />
+          <FaGithubSquare />
         </IconLink>
         <IconLink href="https://www.linkedin.com/in/lim-patrick/" target="_blank" title="linkedin.com/in/lim-patrick">
           <IoSocialLinkedin />
