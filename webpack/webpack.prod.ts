@@ -1,16 +1,16 @@
 const { rootDir } = require('./constants.ts');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const common = require('./webpack.common.ts');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const manifestSeed = require('../public/manifest.json');
 const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
-const manifestSeed = require('../public/manifest.json');
 
 const config = merge(common, {
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name]-[hash].js',
   },
   module: {
     rules: [
@@ -31,6 +31,11 @@ const config = merge(common, {
     new ManifestPlugin({
       seed: manifestSeed,
     }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(rootDir, 'public/.htaccess'),
+      },
+    ]),
   ],
   optimization: {
     splitChunks: {
