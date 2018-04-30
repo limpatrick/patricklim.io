@@ -18,7 +18,6 @@ interface EventProps {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   position: number;
-  title: string;
 }
 
 const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
@@ -30,7 +29,6 @@ const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
   onMouseEnter,
   onMouseLeave,
   position,
-  title,
 }) => {
   const activeClassName = active ? classes.active : '';
   const olderClassName = older ? classes.older : '';

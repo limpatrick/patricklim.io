@@ -11,6 +11,6 @@ export const TimelineStyles: StyleRulesCallback<TimelineStyles> = (theme) => ({
     },
   },
   eventDescriptionContainer: {
-    maxWidth: 'fill-available',
+    maxWidth: '100%',
   },
 });

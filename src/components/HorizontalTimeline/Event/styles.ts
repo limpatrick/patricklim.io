@@ -16,6 +16,7 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
     root: {
       position: 'absolute',
       left: 0,
+      top: -11,
       width: 'auto',
       zIndex: 2,
       '&:hover': {
@@ -26,6 +27,12 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
           color: hoverColor,
         },
       },
+    },
+    label: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     active: {
       '& $typography': {
@@ -41,16 +48,12 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
       },
     },
     typography: {
-      position: 'absolute',
-      top: 0,
-      width: 'max-content',
+      position: 'relative',
       transition: colorTransition,
     },
     icon: {
-      position: 'absolute',
-      top: 15,
+      position: 'relative',
       fontSize: '0.75rem',
-      width: 'auto',
       height: 'auto',
       color: 'rgb(200, 200, 200)',
       transition: colorTransition,
