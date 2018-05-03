@@ -19,6 +19,7 @@ const tags: Tag[] = [
   { label: 'Java', weight: 25 },
   { label: 'JavaScript', weight: 60 },
   { label: 'JSS', weight: 20 },
+  { label: 'Less', weight: 25 },
   { label: 'Lodash', weight: 30 },
   { label: 'Material Design', weight: 25 },
   { label: 'Material UI', weight: 20 },
@@ -139,6 +140,7 @@ const database: Database = {
         getSkill('Bootstrap'),
         getSkill('RxJS'),
         getSkill('Lodash'),
+        getSkill('Less'),
       ],
     },
     {

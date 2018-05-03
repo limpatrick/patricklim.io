@@ -5,7 +5,7 @@ import { primaryColor } from 'src/theme';
 
 export type Options = Omit<typeof TagCanvas.options, 'z0' | 'z1' | 'z2'>;
 export const Options: Partial<Options> = {
-  depth: 0.8,
+  depth: 0.6,
   fadeIn: 3000,
   freezeActive: true,
   freezeDecel: true,
