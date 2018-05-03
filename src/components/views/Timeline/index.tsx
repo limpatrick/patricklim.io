@@ -59,19 +59,19 @@ class Timeline extends React.Component<
     return (
       <div>
         <Grid container direction="column" justify="center" alignItems="center">
-          <Grid item xs={12} className={classes.topContainer}>
+          <Grid item xs={12} className={classes.width}>
             <Grid
               container
               direction="row"
               justify="center"
               alignItems="center"
-              className={classes.topContainerWrapper}>
+              className={classes.minHeight}>
               <Grid item sm={12} md={6} className={classes.eventDescriptionContainer}>
                 <EventDescription />
               </Grid>
               <Grid item sm={12} md={6}>
-                <Grid container direction="column" justify="center" alignItems="center">
-                  <Grid item xs={12}>
+                <Grid container direction="column" justify="center" alignItems="stretch">
+                  <Grid item xs={12} className={classes.tagCloudContainer}>
                     <TagCloud />
                   </Grid>
                 </Grid>
@@ -83,7 +83,7 @@ class Timeline extends React.Component<
           </Grid>
         </Grid>
         <Alert
-          autoHideDuration={6000}
+          autoHideDuration={8000}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',

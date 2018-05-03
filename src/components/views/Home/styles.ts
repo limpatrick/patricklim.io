@@ -1,13 +1,15 @@
 import { StyleRules } from 'material-ui/styles';
+import { primaryColor } from 'src/theme';
 
-export type HomeStyles = 'container' | 'title' | 'icon' | 'marginTop';
+export type HomeStyles = 'container' | 'bold' | 'light' | 'icon' | 'marginTop' | 'highlight';
 export const HomeStyles: StyleRules<HomeStyles> = {
   container: {
-    height: '100%',
-    minHeight: 'fit-content',
+    minHeight: 'inherit',
   },
-  title: {
-    color: 'rgba(255, 255, 255, 0.7)',
+  bold: {
+    fontWeight: 900,
+  },
+  light: {
     fontWeight: 100,
   },
   icon: {
@@ -16,5 +18,10 @@ export const HomeStyles: StyleRules<HomeStyles> = {
   },
   marginTop: {
     marginTop: 75,
+  },
+  highlight: {
+    color: primaryColor,
+    fontFamily: 'source code pro',
+    fontWeight: 400,
   },
 };

@@ -84,7 +84,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
               {events.map((event, key) => (
                 <EventTooltip
                   key={event.id}
-                  position={event.position}
+                  position={event.position + 10}
                   title={event.title}
                   open={events[indexHover] === event}
                 />

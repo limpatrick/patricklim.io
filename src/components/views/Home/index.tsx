@@ -24,13 +24,13 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>> {
         <Grid item xs={12}>
           <Grid container direction="column" justify="center" alignItems="center">
             <Grid item xs={12}>
-              <Typography className={classes.title} component="h1" variant="display3">
+              <Typography className={classes.bold} component="h1" variant="display3">
                 Patrick Lim
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography className={classes.title} variant="headline" component="h2">
-                Front end developer.
+              <Typography className={classes.light} variant="headline" component="h2">
+                Front end <span className={classes.highlight}>developer</span>
               </Typography>
             </Grid>
             <Grid item xs={12}>

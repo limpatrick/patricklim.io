@@ -10,18 +10,19 @@ import { omit } from 'lodash';
 
 interface IconLinkProps {
   children: React.ReactNode;
+  className?: string;
   href: string;
   target?: string;
   title: string;
 }
 
 const IconLink: React.SFC<IconLinkProps & WithStyles<IconLinkStyles>> = (props) => {
-  const { classes, title } = props;
+  const { classes, className, title } = props;
   const tooltipClasses = omit(classes, 'iconButton');
-  const rest = { ...omit(props, ['classes', 'theme', 'title']) };
+  const rest = { ...omit(props, ['classes', 'className', 'theme', 'title']) };
 
   return (
-    <Tooltip title={title} classes={tooltipClasses}>
+    <Tooltip title={title} classes={tooltipClasses} className={className}>
       <IconButton component={Link} disableRipple {...rest} className={classes.iconButton} />
     </Tooltip>
   );

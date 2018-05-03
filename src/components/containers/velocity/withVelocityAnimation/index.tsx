@@ -1,11 +1,8 @@
 import * as React from 'react';
 
-import { WithStyles, withStyles } from 'material-ui/styles';
-
 import { Animation } from 'velocity-react';
-import { WithVelocityAnimationStyles } from './styles';
 import { handler } from '../withVelocityOnComplete';
-import { omit } from 'lodash';
+import { scrollbarsContentClass } from 'components/App/styles';
 import withVelocity from '../withVelocity';
 
 interface ExternalProps {}
@@ -15,25 +12,13 @@ interface WithVelocityAnimationInjectedProps {}
 const withVelocityAnimation = (animation: Animation = 'transition.fadeIn') => <P extends {}>(
   WrappedComponent: React.ComponentType<P & WithVelocityAnimationInjectedProps>
 ) => {
-  class WithVelocityAnimation extends React.Component<
-    P & WithStyles<WithVelocityAnimationStyles> & ExternalProps
-  > {
-    render() {
-      const { classes } = this.props;
-      // typescript spread operator on generic object not allowed
-      const rest = omit(this.props, ['classes', 'theme']);
-
-      return (
-        <div className={classes.container}>
-          <WrappedComponent {...rest} />
-        </div>
-      );
-    }
-  }
-
-  return withVelocity(animation, handler.handleVelocityComplete)(
-    withStyles(WithVelocityAnimationStyles)(WithVelocityAnimation)
+  const WithVelocityAnimation: React.SFC<P & ExternalProps> = (props) => (
+    <div className={scrollbarsContentClass}>
+      <WrappedComponent {...props} />
+    </div>
   );
+
+  return withVelocity(animation, handler.handleVelocityComplete)(WithVelocityAnimation);
 };
 
 export default withVelocityAnimation;

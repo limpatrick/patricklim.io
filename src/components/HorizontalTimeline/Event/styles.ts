@@ -1,10 +1,11 @@
 import { StyleRulesCallback, Theme } from 'material-ui/styles';
+import { primaryColor, secondaryColor } from 'src/theme';
 
 import { IconButtonClassKey } from 'material-ui/IconButton';
 
-const activeColor = 'rgb(255, 255, 255)';
+const activeColor = secondaryColor;
 const hoverColor = activeColor;
-const olderColor = 'rgb(200, 200, 200)';
+const olderColor = primaryColor;
 
 export type EventStyles = 'typography' | 'icon' | 'active' | 'older' | IconButtonClassKey;
 export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: Theme) => {
@@ -16,13 +17,10 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
     root: {
       position: 'absolute',
       left: 0,
-      top: -11,
+      top: -10,
       width: 'auto',
       zIndex: 2,
       '&:hover': {
-        '& $typography': {
-          color: hoverColor,
-        },
         '& $icon': {
           color: hoverColor,
         },
@@ -35,9 +33,6 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
       justifyContent: 'center',
     },
     active: {
-      '& $typography': {
-        color: activeColor,
-      },
       '& $icon': {
         color: activeColor,
       },

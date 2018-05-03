@@ -1,11 +1,13 @@
-import { StyleRules } from 'material-ui/styles';
+import { StyleRulesCallback } from 'material-ui/styles';
 
-export type TagCloudStyles = 'canvasWrapper' | 'canvas';
-export const TagCloudStyles: StyleRules<TagCloudStyles> = {
-  canvasWrapper: {
-    maxWidth: '100vw',
-  },
+export type TagCloudStyles = 'canvas';
+export const TagCloudStyles: StyleRulesCallback<TagCloudStyles> = (theme) => ({
   canvas: {
-    width: '100%',
+    height: '100%',
+    width: 'auto',
+    margin: 'auto',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
   },
-};
+});

@@ -3,6 +3,7 @@
 /// <reference path="utils/velocity-react.d.ts" />
 
 import 'typeface-roboto';
+import 'typeface-source-code-pro';
 import 'typeface-open-sans';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
