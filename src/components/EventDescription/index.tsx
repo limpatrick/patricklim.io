@@ -42,7 +42,7 @@ class EventDescription extends React.Component<EventDescriptionStateToProps & Wi
       <Grid container direction="column" alignItems="center" justify="center">
         {title && (
           <Grid item xs={12}>
-            <Typography variant="display3" align="center">
+            <Typography variant="display3" align="center" className={classes.title}>
               {title}
             </Typography>
           </Grid>
@@ -50,7 +50,7 @@ class EventDescription extends React.Component<EventDescriptionStateToProps & Wi
         {organization && (
           <Grid item xs={12}>
             <Typography variant="headline" align="center">
-              at {organization}
+              at <span className={classes.highlight}>{organization}</span>
             </Typography>
           </Grid>
         )}

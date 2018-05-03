@@ -1,11 +1,11 @@
-import { StyleRules } from 'material-ui/styles';
+import { altColor, defaultColor, lightDefaultColor, primaryColor, secondaryColor } from 'src/theme';
 
-export type HeaderStyles = 'appBar' | 'toolbar' | 'flex' | 'logo';
-export const HeaderStyles: StyleRules<HeaderStyles> = {
+import { StyleRulesCallback } from 'material-ui/styles';
+
+export type HeaderStyles = 'appBar' | 'toolbar' | 'flex' | 'logo' | 'icons';
+export const HeaderStyles: StyleRulesCallback<HeaderStyles> = (theme) => ({
   appBar: {
-    position: 'relative',
-    boxShadow: 'none',
-    background: 'transparent',
+    background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
   },
   toolbar: {
     justifyContent: 'flex-end',
@@ -14,6 +14,36 @@ export const HeaderStyles: StyleRules<HeaderStyles> = {
     flex: 1,
   },
   logo: {
-    color: 'white',
+    display: 'inline-flex',
+    alignItems: 'center',
+    textDecoration: 'none',
+    color: altColor,
+    transition: theme.transitions.create('color', {
+      easing: theme.transitions.easing.easeInOut,
+    }),
+    '&:active, &:hover': {
+      color: defaultColor,
+    },
+    '& > *': {
+      color: 'inherit',
+      fontWeight: 100,
+    },
   },
-};
+  icons: {
+    display: 'inline-flex',
+    '& a > *': {
+      color: altColor,
+      transition: theme.transitions.create('color', {
+        easing: theme.transitions.easing.easeInOut,
+      }),
+      '&:hover': {
+        color: lightDefaultColor,
+      },
+    },
+    '& a:first-child > span > span': {
+      '&:hover': {
+        color: lightDefaultColor,
+      },
+    },
+  },
+});

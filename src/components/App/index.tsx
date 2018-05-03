@@ -1,20 +1,53 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
+import withVelocityOnComplete, {
+  WithVelocityOnCompleteInjectedProps,
+  handler,
+} from 'components/containers/velocity/withVelocityOnComplete';
 
 import { AppStyles } from './styles';
-import Content from 'components/Content';
+import Footer from 'components/Footer';
 import Header from 'components/Header';
+import Scrollbars from 'react-custom-scrollbars';
+import SwitchRoutes from 'components/SwitchRoutes';
 
 interface AppProps {}
 
-const App: React.SFC<AppProps & WithStyles<AppStyles>> = ({ classes }) => (
-  <div className={classes.wrapper}>
-    <div className={classes.background}>
-      <Header />
-      <Content />
-    </div>
-  </div>
-);
+class App extends React.Component<AppProps & WithStyles<AppStyles> & WithVelocityOnCompleteInjectedProps> {
+  constructor(props: AppProps & WithStyles<AppStyles> & WithVelocityOnCompleteInjectedProps) {
+    super(props);
 
-export default withStyles(AppStyles)(App);
+    const { onVelocityComplete } = this.props;
+
+    onVelocityComplete(this.onVelocityComplete);
+  }
+
+  private onVelocityComplete = () => {
+    this.setState({ noMinHeight: true });
+  }
+
+  componentWillUnmount() {
+    handler.removeCallback(this.onVelocityComplete);
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.wrapper}>
+        <div className={classes.content}>
+          <Header />
+          <Scrollbars className={classes.scrollbars}>
+            <div className={classes.minHeight}>
+              <SwitchRoutes />
+              <Footer />
+            </div>
+          </Scrollbars>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default withVelocityOnComplete(withStyles(AppStyles)(App));

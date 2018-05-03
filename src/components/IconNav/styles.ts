@@ -1,18 +1,13 @@
-import { StyleRulesCallback, Theme } from 'material-ui/styles';
-
+import { StyleRules } from 'material-ui/styles';
 import { TooltipClassKey } from 'material-ui/Tooltip';
+import { defaultColor } from 'src/theme';
 
 export type IconNavStyles = 'navLink' | TooltipClassKey;
-export const IconNavStyles: Partial<StyleRulesCallback<IconNavStyles>> = (theme: Theme) => ({
+export const IconNavStyles: Partial<StyleRules<IconNavStyles>> = {
   navLink: {
+    color: defaultColor,
     textDecoration: 'none',
     display: 'inline-flex',
-    '&:hover, & *:hover': {
-      color: 'rgba(255, 255, 255, 0.7)',
-      transition: theme.transitions.create('color', {
-        easing: theme.transitions.easing.easeInOut,
-      }),
-    },
     '& > *': {
       alignItems: 'center',
       display: 'inline-flex',
@@ -28,4 +23,4 @@ export const IconNavStyles: Partial<StyleRulesCallback<IconNavStyles>> = (theme:
   tooltip: {
     margin: 0,
   },
-});
+};

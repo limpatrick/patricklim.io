@@ -1,5 +1,6 @@
 import { LinearProgressClassKey } from 'material-ui/Progress';
 import { StyleRules } from 'material-ui/styles';
+import { primaryColor } from 'src/theme';
 
 export type FillingBarStyles = 'container' | LinearProgressClassKey;
 export const FillingBarStyles: Partial<StyleRules<FillingBarStyles>> = {
@@ -12,9 +13,9 @@ export const FillingBarStyles: Partial<StyleRules<FillingBarStyles>> = {
     height: 2,
   },
   barColorPrimary: {
-    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+    backgroundColor: primaryColor,
   },
   colorPrimary: {
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: 'rgba(0, 0, 0, 0.26)',
   },
 };

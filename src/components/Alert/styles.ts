@@ -1,4 +1,5 @@
 import { StyleRulesCallback, Theme } from 'material-ui/styles';
+import { altColor, primaryColor } from 'src/theme';
 
 import { SnackbarClassKey } from 'material-ui/Snackbar';
 
@@ -7,6 +8,8 @@ export const AlertStyles: Partial<StyleRulesCallback<AlertStyles>> = (theme: The
   root: {
     '& > div': {
       flexWrap: 'initial',
+      background: primaryColor,
+      color: altColor,
     },
   },
   close: {
