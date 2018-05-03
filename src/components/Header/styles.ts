@@ -1,11 +1,11 @@
-import { altColor, defaultColor, lightDefaultColor, primaryColor, secondaryColor } from 'src/theme';
+import { altColor, defaultColor, lightDefaultColor, primaryColor, secondaryColor, thirdColor } from 'src/theme';
 
 import { StyleRulesCallback } from 'material-ui/styles';
 
 export type HeaderStyles = 'appBar' | 'toolbar' | 'flex' | 'logo' | 'icons';
 export const HeaderStyles: StyleRulesCallback<HeaderStyles> = (theme) => ({
   appBar: {
-    background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+    background: `linear-gradient(135deg, ${primaryColor}, ${thirdColor}, ${secondaryColor})`,
   },
   toolbar: {
     justifyContent: 'flex-end',
