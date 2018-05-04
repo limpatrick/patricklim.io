@@ -35,16 +35,14 @@ class App extends React.Component<AppProps & WithStyles<AppStyles> & WithVelocit
     const { classes } = this.props;
 
     return (
-      <div className={classes.wrapper}>
-        <div className={classes.content}>
-          <Header />
-          <Scrollbars className={classes.scrollbars}>
-            <div className={classes.minHeight}>
-              <SwitchRoutes />
-              <Footer />
-            </div>
-          </Scrollbars>
-        </div>
+      <div className={classes.container}>
+        <Header />
+        <Scrollbars className={classes.scrollbars}>
+          <div className={classes.content}>
+            <SwitchRoutes />
+            <Footer />
+          </div>
+        </Scrollbars>
       </div>
     );
   }
