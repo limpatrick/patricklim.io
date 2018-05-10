@@ -19,7 +19,7 @@ interface IconLinkProps {
 const IconLink: React.SFC<IconLinkProps & WithStyles<IconLinkStyles>> = (props) => {
   const { classes, className, title } = props;
   const tooltipClasses = omit(classes, 'iconButton');
-  const rest = { ...omit(props, ['classes', 'className', 'theme', 'title']) };
+  const rest = omit(props, ['classes', 'className', 'theme', 'title']);
 
   return (
     <Tooltip title={title} classes={tooltipClasses} className={className}>
