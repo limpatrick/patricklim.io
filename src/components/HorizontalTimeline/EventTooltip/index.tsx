@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-import { WithStyles, withStyles } from 'material-ui/styles';
+import { StyleRules, WithStyles, withStyles } from 'material-ui/styles';
 
 import { EventTooltipStyles } from './styles';
 import Tooltip from 'material-ui/Tooltip';
+import { omit } from 'lodash';
 
 interface EventTooltipProps {
   open: boolean;
@@ -17,9 +18,9 @@ const EventTooltip: React.SFC<EventTooltipProps & WithStyles<EventTooltipStyles>
   position,
   title,
 }) => (
-  <Tooltip title={title} placement="top" open={open}>
+  <Tooltip title={title} placement="top" open={open} classes={omit(classes, 'content')}>
     <div style={{ left: position }} className={classes.content} />
   </Tooltip>
 );
 
-export default withStyles(EventTooltipStyles)(EventTooltip);
+export default withStyles(EventTooltipStyles as StyleRules<EventTooltipStyles>)(EventTooltip);

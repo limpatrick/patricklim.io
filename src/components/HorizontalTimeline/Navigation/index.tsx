@@ -22,19 +22,25 @@ class Navigation extends React.Component<NavigationProps & WithStyles<Navigation
   }
 
   render() {
-    const { classes, disabled, type } = this.props;
-    const Chevron = type === 'previous' ? FaChevronLeft : FaChevronRight;
-    const title = upperFirst(type);
+    const { classes, disabled } = this.props;
 
-    return (
-      <Tooltip title={title} className={classes.tooltip}>
-        <div>
-          <IconButton aria-label={type} onClick={this.handleClick} disabled={disabled} className={classes.iconButton}>
-            <Chevron />
-          </IconButton>
-        </div>
-      </Tooltip>
-    );
+    if (disabled) {
+      return <div className={classes.tooltip} />;
+    } else {
+      const { type } = this.props;
+      const Chevron = type === 'previous' ? FaChevronLeft : FaChevronRight;
+      const title = upperFirst(type);
+
+      return (
+        <Tooltip title={title} className={classes.tooltip}>
+          <div>
+            <IconButton aria-label={type} onClick={this.handleClick} disabled={disabled} className={classes.iconButton}>
+              <Chevron />
+            </IconButton>
+          </div>
+        </Tooltip>
+      );
+    }
   }
 }
 

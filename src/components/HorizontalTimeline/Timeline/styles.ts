@@ -16,23 +16,26 @@ export const TimelineStyles: StyleRulesCallback<TimelineStyles> = (theme) => {
     overflowHidden: {
       overflow: 'hidden',
       position: 'absolute',
-      width: 'calc(100vw - 140px)',
+      maxWidth: 'calc(100vw - 140px)',
     },
     overflowVisible: {
       height: 106,
       overflow: 'hidden',
       position: 'absolute',
-      width: '100%',
+      maxWidth: 'calc(100vw - 20px)',
       '& > $wrapper': {
         alignItems: 'flex-end',
         display: 'flex',
         flexDirection: 'row',
         height: '100%',
         justifyContent: 'center',
-        position: 'absolute',
+        position: 'relative',
         '& > $content': {
-          marginLeft: 70,
+          margin: '0 60px',
         },
+      },
+      [theme.breakpoints.down('xs')]: {
+        height: 122,
       },
     },
     content: {

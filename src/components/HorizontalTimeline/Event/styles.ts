@@ -17,7 +17,7 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
     root: {
       position: 'absolute',
       left: 0,
-      top: -10,
+      top: -3,
       width: 'auto',
       zIndex: 2,
       '&:hover': {
@@ -43,7 +43,8 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
       },
     },
     typography: {
-      position: 'relative',
+      position: 'absolute',
+      top: 0,
       transition: colorTransition,
     },
     icon: {
