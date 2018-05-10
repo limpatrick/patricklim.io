@@ -86,11 +86,12 @@ class HorizontalTimeline extends React.Component<
 
   private getState = (data: Event[]): HorizontalTimelineState => {
     const { predefinedEventDistance } = this.props;
+    const edgeDistance = predefinedEventDistance ? predefinedEventDistance : HorizontalTimeline.EDGE_DISTANCE;
     const events = predefinedEventDistance
       ? getEventsWithPredefinedPosition(data, predefinedEventDistance)
-      : getEventsWithPosition(data, HorizontalTimeline.EDGE_DISTANCE, HorizontalTimeline.MIN_EVENT_DISTANCE);
+      : getEventsWithPosition(data, edgeDistance, HorizontalTimeline.MIN_EVENT_DISTANCE);
     const yearLabels = predefinedEventDistance ? [] : getEventsYearLabel(events, HorizontalTimeline.MIN_EVENT_DISTANCE);
-    const wrapperWidth = calculateWrapperWidth(events, HorizontalTimeline.EDGE_DISTANCE);
+    const wrapperWidth = calculateWrapperWidth(events, edgeDistance);
     const inferiorBoundary = wrapperWidth;
     const timelineWidth = 0;
 
