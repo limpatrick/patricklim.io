@@ -79,7 +79,7 @@ class Timeline extends React.Component<
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            <HorizontalTimeline />
+            <HorizontalTimeline predefinedEventDistance={100} />
           </Grid>
         </Grid>
         <Alert

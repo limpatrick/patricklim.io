@@ -11,6 +11,7 @@ import { TimelineStyles } from './styles';
 
 interface TimelineProps {
   events: EventPosition[];
+  format: string;
   index: number;
   onEventClick: (id: string) => void;
   translateX: number;
@@ -73,7 +74,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
   }
 
   render() {
-    const { classes, events, translateX, wrapperWidth, yearLabels } = this.props;
+    const { classes, events, format, translateX, wrapperWidth, yearLabels } = this.props;
     const { fillingBarProgress, index, indexHover } = this.state;
 
     return (
@@ -98,6 +99,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
               <Event
                 active={events[index] === event}
                 date={event.date}
+                format={format}
                 key={event.id}
                 older={key < index}
                 onClick={this.handleEventClick(key)}

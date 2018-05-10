@@ -104,3 +104,6 @@ export const getEventsWithPosition = (events: Event[], edgeDistance: number, min
     return { ...event, position };
   });
 };
+
+export const getEventsWithPredefinedPosition = (events: Event[], edgeDistance: number) =>
+  map(events, (event, index) => ({ ...event, position: edgeDistance * (index + 1) }));

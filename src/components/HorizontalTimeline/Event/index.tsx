@@ -13,6 +13,7 @@ import { omit } from 'lodash';
 interface EventProps {
   active: boolean;
   date: Moment;
+  format: string;
   older: boolean;
   onClick: () => void;
   onMouseEnter: () => void;
@@ -24,6 +25,7 @@ const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
   active,
   classes,
   date,
+  format,
   older,
   onClick,
   onMouseEnter,
@@ -44,9 +46,9 @@ const Event: React.SFC<EventProps & WithStyles<EventStyles>> = ({
       onMouseLeave={onMouseLeave}
       disableRipple>
       <Typography className={classes.typography} component="span" variant="caption">
-        {date.format('MMM')}
+        {date.format(format)}
       </Typography>
-      <Icon className={classes.icon} aria-label={date.format('MMM')}>
+      <Icon className={classes.icon} aria-label={date.format(format)}>
         <FaCircle />
       </Icon>
     </IconButton>
