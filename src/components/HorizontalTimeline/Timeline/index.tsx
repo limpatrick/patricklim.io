@@ -8,6 +8,7 @@ import EventTooltip from '../EventTooltip';
 import FillingBar from '../FillingBar';
 import Label from '../Label';
 import { TimelineStyles } from './styles';
+import { eventWidth } from '../Event/styles';
 
 interface TimelineProps {
   events: EventPosition[];
@@ -36,8 +37,10 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
     this.state = { fillingBarProgress, index, indexHover: -1 };
   }
 
+  private static readonly EVENT_CENTER = eventWidth / 2;
+
   private calculateFillingBarProgress = (eventXPosition: number, wrapperWidth: number) =>
-    (eventXPosition + 5) / wrapperWidth * 100
+    (eventXPosition + Timeline.EVENT_CENTER) / wrapperWidth * 100
 
   handleEventClick = (index: number) => () => {
     const { onEventClick } = this.props;
@@ -85,7 +88,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
               {events.map((event, key) => (
                 <EventTooltip
                   key={event.id}
-                  position={event.position + 10}
+                  position={event.position + Timeline.EVENT_CENTER}
                   title={event.title}
                   open={events[indexHover] === event}
                 />

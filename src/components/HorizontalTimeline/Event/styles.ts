@@ -7,6 +7,8 @@ const activeColor = secondaryColor;
 const hoverColor = activeColor;
 const olderColor = primaryColor;
 
+export const eventWidth = 48;
+
 export type EventStyles = 'typography' | 'icon' | 'active' | 'older' | IconButtonClassKey;
 export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: Theme) => {
   const colorTransition = theme.transitions.create('color', {
@@ -17,8 +19,8 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
     root: {
       position: 'absolute',
       left: 0,
-      top: -3,
-      width: 'auto',
+      top: -10,
+      width: eventWidth,
       zIndex: 2,
       '&:hover': {
         '& $icon': {
@@ -43,8 +45,7 @@ export const EventStyles: Partial<StyleRulesCallback<EventStyles>> = (theme: The
       },
     },
     typography: {
-      position: 'absolute',
-      top: 0,
+      position: 'relative',
       transition: colorTransition,
     },
     icon: {
