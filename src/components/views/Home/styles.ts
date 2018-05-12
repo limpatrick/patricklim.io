@@ -8,9 +8,15 @@ export const HomeStyles: StyleRules<HomeStyles> = {
   },
   bold: {
     fontWeight: 900,
+    '& > *': {
+      opacity: 0,
+    },
   },
   light: {
     fontWeight: 100,
+    '& > *': {
+      opacity: 0,
+    },
   },
   icon: {
     marginRight: 4,
@@ -18,6 +24,7 @@ export const HomeStyles: StyleRules<HomeStyles> = {
   },
   marginTop: {
     marginTop: 75,
+    opacity: 0,
   },
   highlight: {
     color: primaryColor,
