@@ -21,6 +21,7 @@ export const AppStyles: StyleRulesCallback<AppStyles> = (theme) => {
     content: {},
     scrollbars: {
       '& > div:first-child': {
+        scrollBehavior: 'smooth',
         marginTop: headerHeight,
         [theme.breakpoints.down('xs')]: {
           marginTop: xsHeaderHeight,

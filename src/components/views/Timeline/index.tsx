@@ -1,10 +1,6 @@
 import * as React from 'react';
 
 import { WithStyles, withStyles } from 'material-ui/styles';
-import withVelocityOnComplete, {
-  WithVelocityOnCompleteInjectedProps,
-  handler,
-} from 'components/containers/velocity/withVelocityOnComplete';
 
 import Alert from 'components/Alert';
 import EventDescription from 'components/EventDescription';
@@ -17,55 +13,19 @@ import withVelocityAnimation from 'components/containers/velocity/withVelocityAn
 
 interface TimelineProps {}
 
-interface TimelineState {
-  showAlerts: boolean;
-}
-
-class Timeline extends React.Component<
-  TimelineProps & WithStyles<TimelineStyles> & WithVelocityOnCompleteInjectedProps,
-  TimelineState
-> {
-  constructor(props: TimelineProps & WithStyles<TimelineStyles> & WithVelocityOnCompleteInjectedProps) {
-    super(props);
-
-    this.state = { showAlerts: false };
-
-    const { onVelocityComplete } = this.props;
-
-    onVelocityComplete(this.showAlerts);
-  }
-
-  private showAlerts = () => {
-    this.setState({
-      showAlerts: true,
-    });
-  }
-
-  componentWillUnmount() {
-    handler.removeCallback(this.showAlerts);
-  }
-
-  shouldComponentUpdate(
-    nextProps: TimelineProps & WithStyles<TimelineStyles> & WithVelocityOnCompleteInjectedProps,
-    nextState: TimelineState
-  ) {
-    return !isEqual(nextState, this.state);
+class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles>> {
+  shouldComponentUpdate(nextProps: TimelineProps & WithStyles<TimelineStyles>) {
+    return !isEqual(nextProps, this.props);
   }
 
   render() {
     const { classes } = this.props;
-    const { showAlerts } = this.state;
 
     return (
       <div>
         <Grid container direction="column" justify="center" alignItems="center">
           <Grid item xs={12} className={classes.width}>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-              className={classes.minHeight}>
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.minHeight}>
               <Grid item sm={12} md={6} className={classes.eventDescriptionContainer}>
                 <EventDescription />
               </Grid>
@@ -89,11 +49,10 @@ class Timeline extends React.Component<
             horizontal: 'center',
           }}
           message="You can scroll to zoom in/out and select an event"
-          open={showAlerts}
         />
       </div>
     );
   }
 }
 
-export default withVelocityAnimation()(withVelocityOnComplete(withStyles(TimelineStyles)(Timeline)));
+export default withVelocityAnimation()(withStyles(TimelineStyles)(Timeline));

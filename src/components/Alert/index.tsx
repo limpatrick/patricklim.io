@@ -2,28 +2,47 @@ import * as React from 'react';
 
 import Snackbar, { SnackBarOrigin } from 'material-ui/Snackbar';
 import { StyleRulesCallback, WithStyles, withStyles } from 'material-ui/styles';
+import { isEqual, omit } from 'lodash';
+import withVelocityOnComplete, {
+  WithVelocityOnCompleteInjectedProps,
+  handler,
+} from 'components/containers/velocity/withVelocityOnComplete';
 
 import { AlertStyles } from './styles';
 import { FaClose } from 'react-icons/lib/fa';
 import IconButton from 'material-ui/IconButton';
 import Transition from './Transition';
-import { omit } from 'lodash';
 
 interface AlertProps {
   autoHideDuration?: number;
   anchorOrigin?: SnackBarOrigin;
   message: string;
-  open: boolean;
 }
 
 interface AlertState {
   open: boolean;
 }
 
-class Alert extends React.Component<AlertProps & WithStyles<AlertStyles>, AlertState> {
-  state = {
-    open: false,
-  };
+class Alert extends React.Component<
+  AlertProps & WithStyles<AlertStyles> & WithVelocityOnCompleteInjectedProps,
+  AlertState
+> {
+  constructor(props: AlertProps & WithStyles<AlertStyles> & WithVelocityOnCompleteInjectedProps) {
+    super(props);
+
+    const { onVelocityComplete } = this.props;
+
+    this.state = {
+      open: false,
+    };
+
+    this.showAlert = this.showAlert.bind(this);
+    onVelocityComplete(this.showAlert);
+  }
+
+  private showAlert = () => {
+    this.setState({ open: true });
+  }
 
   handleClose = (event: React.SyntheticEvent<{}>, reason?: string) => {
     if (reason === 'clickaway') {
@@ -33,10 +52,15 @@ class Alert extends React.Component<AlertProps & WithStyles<AlertStyles>, AlertS
     this.setState({ open: false });
   }
 
-  componentWillReceiveProps(nextProps: AlertProps & WithStyles<AlertStyles>) {
-    const { open } = nextProps;
+  componentWillUnmount() {
+    handler.removeCallback(this.showAlert);
+  }
 
-    this.setState({ open });
+  shouldComponentUpdate(
+    nextProps: AlertProps & WithStyles<AlertStyles> & WithVelocityOnCompleteInjectedProps,
+    nextState: AlertState
+  ) {
+    return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
   }
 
   render() {
@@ -67,4 +91,4 @@ class Alert extends React.Component<AlertProps & WithStyles<AlertStyles>, AlertS
   }
 }
 
-export default withStyles(AlertStyles as StyleRulesCallback<AlertStyles>)(Alert);
+export default withVelocityOnComplete(withStyles(AlertStyles as StyleRulesCallback<AlertStyles>)(Alert));

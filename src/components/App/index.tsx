@@ -1,34 +1,31 @@
 import * as React from 'react';
 
+import { RouteComponentProps, withRouter } from 'react-router';
 import { WithStyles, withStyles } from 'material-ui/styles';
-import withVelocityOnComplete, {
-  WithVelocityOnCompleteInjectedProps,
-  handler,
-} from 'components/containers/velocity/withVelocityOnComplete';
 
 import { AppStyles } from './styles';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import Scrollbars from 'react-custom-scrollbars';
+import { StoreState } from 'src/redux';
 import SwitchRoutes from 'components/SwitchRoutes';
+import { connect } from 'react-redux';
 
-interface AppProps {}
+interface AppProps {
+  selectedId?: string;
+}
 
-class App extends React.Component<AppProps & WithStyles<AppStyles> & WithVelocityOnCompleteInjectedProps> {
-  constructor(props: AppProps & WithStyles<AppStyles> & WithVelocityOnCompleteInjectedProps) {
-    super(props);
+class App extends React.Component<AppProps & WithStyles<AppStyles> & RouteComponentProps<{}>> {
+  private scrollBars: Scrollbars;
 
-    const { onVelocityComplete } = this.props;
-
-    onVelocityComplete(this.onVelocityComplete);
+  ref = (node: Scrollbars | null) => {
+    if (node) {
+      this.scrollBars = node;
+    }
   }
 
-  private onVelocityComplete = () => {
-    this.setState({ noMinHeight: true });
-  }
-
-  componentWillUnmount() {
-    handler.removeCallback(this.onVelocityComplete);
+  componentDidUpdate() {
+    this.scrollBars.scrollTop(0);
   }
 
   render() {
@@ -37,7 +34,7 @@ class App extends React.Component<AppProps & WithStyles<AppStyles> & WithVelocit
     return (
       <div className={classes.container}>
         <Header />
-        <Scrollbars className={classes.scrollbars}>
+        <Scrollbars className={classes.scrollbars} ref={this.ref}>
           <div className={classes.content}>
             <SwitchRoutes />
             <Footer />
@@ -48,4 +45,8 @@ class App extends React.Component<AppProps & WithStyles<AppStyles> & WithVelocit
   }
 }
 
-export default withVelocityOnComplete(withStyles(AppStyles)(App));
+const mapStateToProps = (state: StoreState): AppProps => ({
+  selectedId: state.events.selectedId, // force app to render, in order to scrollTop on event selection
+});
+
+export default withRouter(connect(mapStateToProps)(withStyles(AppStyles)(App)));
