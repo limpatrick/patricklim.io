@@ -20,5 +20,6 @@ export const Options: Partial<Options> = {
   textFont: `source code pro, ${join(fontFamily, ', ')}`,
   weight: true,
   weightFrom: 'data-weight',
+  wheelZoom: false,
   zoom: 0.6,
 };

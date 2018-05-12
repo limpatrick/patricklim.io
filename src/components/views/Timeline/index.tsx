@@ -49,7 +49,7 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
             vertical: 'bottom',
             horizontal: 'center',
           }}
-          message="You can scroll to zoom in/out and select an event"
+          message="You can select an event to navigate through the timeline"
         />
       </div>
     );
