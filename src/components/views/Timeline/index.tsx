@@ -9,6 +9,7 @@ import HorizontalTimeline from 'components/HorizontalTimeline';
 import TagCloud from 'components/TagCloud';
 import { TimelineStyles } from './styles';
 import { isEqual } from 'lodash';
+import { scrollbarsContentClass } from 'components/App/styles';
 import withVelocityAnimation from 'components/containers/velocity/withVelocityAnimation';
 
 interface TimelineProps {}
@@ -55,4 +56,4 @@ class Timeline extends React.Component<TimelineProps & WithStyles<TimelineStyles
   }
 }
 
-export default withVelocityAnimation()(withStyles(TimelineStyles)(Timeline));
+export default withVelocityAnimation({ className: scrollbarsContentClass })(withStyles(TimelineStyles)(Timeline));
