@@ -30,8 +30,6 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>, HomeState
     this.setState({ disableActions: false });
   }
 
-  getTimelineNavLink: React.SFC = (props) => <NavLink to={'/timeline'} {...props} />;
-
   render() {
     const { classes } = this.props;
     const { disableActions } = this.state;
