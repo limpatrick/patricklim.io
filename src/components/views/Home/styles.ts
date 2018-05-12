@@ -1,8 +1,9 @@
-import { StyleRules } from 'material-ui/styles';
-import { primaryColor } from 'src/theme';
+import { primaryColor, secondaryColor } from 'src/theme';
 
-export type HomeStyles = 'container' | 'bold' | 'light' | 'icon' | 'marginTop' | 'highlight';
-export const HomeStyles: StyleRules<HomeStyles> = {
+import { StyleRulesCallback } from 'material-ui/styles';
+
+export type HomeStyles = 'container' | 'bold' | 'light' | 'icon' | 'marginTop' | 'highlight' | 'link';
+export const HomeStyles: StyleRulesCallback<HomeStyles> = (theme) => ({
   container: {
     minHeight: 'inherit',
   },
@@ -31,4 +32,16 @@ export const HomeStyles: StyleRules<HomeStyles> = {
     fontFamily: 'source code pro',
     fontWeight: 400,
   },
-};
+  link: {
+    color: primaryColor,
+    textDecoration: 'none',
+    fontFamily: 'source code pro',
+    fontWeight: 600,
+    transition: theme.transitions.create('color', {
+      easing: theme.transitions.easing.easeOut,
+    }),
+    '&:hover': {
+      color: secondaryColor,
+    },
+  },
+});

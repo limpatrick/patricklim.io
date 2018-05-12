@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { IoCodeWorking, IoEmail } from 'react-icons/lib/io';
 import { WithStyles, withStyles } from 'material-ui/styles';
 
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 import { HomeStyles } from './styles';
+import { IoEmail } from 'react-icons/lib/io';
 import Link from 'components/Link';
 import { NavLink } from 'react-router-dom';
 import Typography from 'material-ui/Typography';
@@ -16,25 +16,25 @@ import withVelocityAnimation from 'components/containers/velocity/withVelocityAn
 interface HomeProps {}
 
 interface HomeState {
-  disabled: boolean;
+  disableActions: boolean;
 }
 
 class Home extends React.Component<HomeProps & WithStyles<HomeStyles>, HomeState> {
   constructor(props: HomeProps & WithStyles<HomeStyles>) {
     super(props);
 
-    this.state = { disabled: true };
+    this.state = { disableActions: true };
   }
 
-  activateButtons = () => {
-    this.setState({ disabled: false });
+  activateActions = () => {
+    this.setState({ disableActions: false });
   }
 
   getTimelineNavLink: React.SFC = (props) => <NavLink to={'/timeline'} {...props} />;
 
   render() {
     const { classes } = this.props;
-    const { disabled } = this.state;
+    const { disableActions } = this.state;
 
     return (
       <Grid className={classes.container} container direction="row" justify="center" alignItems="center">
@@ -66,21 +66,19 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>, HomeState
                 duration={1000}
                 delay={3250}
                 runOnMount
-                begin={this.activateButtons}>
+                begin={this.activateActions}>
                 <Grid className={classes.marginTop} container direction="row" justify="center" alignItems="center">
                   <Grid item xs={12}>
                     <Typography variant="body1" component="div" align="center">
-                      Have a look at{' '}
-                      <Button
-                        variant="raised"
-                        color="default"
-                        size="small"
-                        disabled={disabled}
-                        component={this.getTimelineNavLink}>
-                        <IoCodeWorking className={classes.icon} />
-                        Timeline
-                      </Button>{' '}
-                      to know more about me.
+                      Take a look{' '}
+                      {disableActions ? (
+                        'here'
+                      ) : (
+                        <NavLink to={'/timeline'} className={classes.link}>
+                          here
+                        </NavLink>
+                      )}{' '}
+                      to find out more about me.
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
@@ -89,7 +87,7 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>, HomeState
                         variant="raised"
                         color="default"
                         size="small"
-                        disabled={disabled}
+                        disabled={disableActions}
                         component={(props) => <Link href="mailto:contact@patricklim.fr" {...props} />}>
                         <IoEmail className={classes.icon} />
                         contact@patricklim.fr
