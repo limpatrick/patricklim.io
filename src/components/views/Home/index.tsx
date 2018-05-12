@@ -24,7 +24,7 @@ class Home extends React.Component<HomeProps & WithStyles<HomeStyles>> {
         <Grid item xs={12}>
           <Grid container direction="column" justify="center" alignItems="center">
             <Grid item xs={12}>
-              <Typography className={classes.bold} component="h1" variant="display3">
+              <Typography className={classes.bold} component="h1" variant="display3" align="center">
                 Patrick Lim
               </Typography>
             </Grid>
