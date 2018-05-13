@@ -53,11 +53,13 @@ const competences: Tag[] = [
 
 const getSkill = (label: string) => find(tags, (tag) => tag.label === label) as Tag;
 
+const dateFormat = 'MM/YYYY';
+
 const database: Database = {
   events: [
     {
       id: v4(),
-      date: moment('06/2014', 'MM/YYYY'),
+      date: moment('06/2014', dateFormat),
       duration: moment.duration(2, 'years'),
       title: 'Diploma in IT',
       labels: ['Diploma'],
@@ -67,9 +69,9 @@ const database: Database = {
     },
     {
       id: v4(),
-      date: moment('07/2014', 'MM/YYYY'),
+      date: moment('07/2014', dateFormat),
       duration: moment.duration(10, 'months'),
-      title: 'Web PHP developer',
+      title: 'Web developer',
       labels: ['Internship', 'Full time'],
       organization: 'Equinoa',
       description: `Development of various projects under PHP on behalf of several clients (pharmaceutical, investment 
@@ -78,9 +80,9 @@ const database: Database = {
     },
     {
       id: v4(),
-      date: moment('01/2016', 'MM/YYYY'),
+      date: moment('01/2016', dateFormat),
       duration: moment.duration(7, 'months'),
-      title: 'Full-stack developer',
+      title: 'Web developer',
       labels: ['Internship', 'Full time'],
       organization: 'Wedoogift',
       description: `Maintenance and improvement of the first version of a web platform in PHP for a start-up company 
@@ -97,7 +99,7 @@ const database: Database = {
     },
     {
       id: v4(),
-      date: moment('07/2017', 'MM/YYYY'),
+      date: moment('07/2017', dateFormat),
       duration: moment.duration(6, 'months'),
       title: 'Software engineer',
       labels: ['Internship'],
@@ -116,7 +118,7 @@ const database: Database = {
     },
     {
       id: v4(),
-      date: moment('09/2017', 'MM/YYYY'),
+      date: moment('09/2017', dateFormat),
       duration: moment.duration(3, 'years'),
       title: `Master's Degree in Engineering`,
       labels: ['Engineering degree'],
@@ -127,13 +129,13 @@ const database: Database = {
     },
     {
       id: v4(),
-      date: moment('02/2018', 'MM/YYYY'),
+      date: moment('02/2018', dateFormat),
       duration: moment.duration(5, 'months'),
       title: 'Front end developer',
       labels: ['Full time'],
-      organization: 'Société Générale',
-      description: `Development of a dashboard in the field of the KYC process and which is integrated within an 
-      internal CRM of the bank.`,
+      organization: 'Societe Generale Corporate and Investment Banking',
+      description: `Intervention on the internal CRM of Societe Generale and development on the laboratory part of the 
+      CRM, realization of POC on topics of mass mailing and a dashboard around the KYC process.`,
       skills: [
         getSkill('AngularJS'),
         getSkill('TypeScript'),
@@ -145,11 +147,11 @@ const database: Database = {
     },
     {
       id: v4(),
-      date: moment('04/2018', 'MM/YYYY'),
-      duration: moment.duration(1, 'months'),
+      date: moment('04/2018', dateFormat),
+      duration: moment.duration(0, 'months'),
       title: 'patricklim.fr',
       labels: ['Project'],
-      description: `Realization of my personal website using React.`,
+      description: `Development of my personal website.`,
       skills: [
         getSkill('React'),
         getSkill('TypeScript'),
