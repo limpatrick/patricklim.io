@@ -8,7 +8,7 @@
 import './layout.css';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
-import { SiteTitleQuery } from '../../generated/graphql-types';
+import { SiteTitleQuery } from '@generated/graphql-types';
 import Header from './header';
 
 export const query = graphql`

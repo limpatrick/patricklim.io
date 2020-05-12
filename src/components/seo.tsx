@@ -8,7 +8,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { SeoQuery } from '../../generated/graphql-types';
+import { SeoQuery } from '@generated/graphql-types';
 
 export const query = graphql`
   query Seo {
