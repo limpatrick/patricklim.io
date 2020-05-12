@@ -30,6 +30,16 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: 'generated/graphql-types.ts',
+        codegenConfig: {
+          avoidOptionals: true,
+          maybeValue: 'T',
+        },
+      },
+    },
     'gatsby-plugin-typescript',
     'gatsby-plugin-typescript-checker',
     {

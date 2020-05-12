@@ -38,5 +38,5 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['gatsby-*.js'],
+  ignorePatterns: ['gatsby-*.js', 'generated/*'],
 };

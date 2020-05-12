@@ -8,24 +8,27 @@
 import './layout.css';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
+import { SiteTitleQuery } from '../../generated/graphql-types';
 import Header from './header';
+
+export const query = graphql`
+  query SiteTitle {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
 
 type Props = { children: React.ReactNode };
 
 const Layout = ({ children }: Props) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+  const { site } = useStaticQuery<SiteTitleQuery>(query);
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header siteTitle={site.siteMetadata.title} />
       <div
         style={{
           margin: `0 auto`,
