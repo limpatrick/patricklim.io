@@ -19,7 +19,11 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "~/*": ["src/*"],
+      "@generated/*": ["generated/*"]
+    }
   },
   "exclude": ["node_modules", "public", ".cache"]
 }
