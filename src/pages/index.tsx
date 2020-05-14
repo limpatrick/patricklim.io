@@ -30,12 +30,12 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Patrick Lim | Full-stack developer" />
+      <SEO title="Patrick Lim | Full stack developer" />
       <Typography className={titleClasses.root} variant="h1" gutterBottom>
         patrick lim
       </Typography>
       <Typography className={subtitleClasses.root} variant="subtitle1" component="p" gutterBottom>
-        full-stack developer
+        full stack developer
       </Typography>
     </Layout>
   );
