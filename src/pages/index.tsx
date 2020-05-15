@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '~/components/layout';
 import SEO from '~/components/seo';
+import SkillSet from '~/components/skill-set';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -30,13 +31,14 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Patrick Lim | Full stack developer" />
+      <SEO title="home" />
       <Typography className={titleClasses.root} variant="h1" gutterBottom>
         patrick lim
       </Typography>
       <Typography className={subtitleClasses.root} variant="subtitle1" component="p" gutterBottom>
         full stack developer
       </Typography>
+      <SkillSet />
     </Layout>
   );
 };
