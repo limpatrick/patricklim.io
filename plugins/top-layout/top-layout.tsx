@@ -1,7 +1,7 @@
 import React from 'react';
+import Header from '~/components/header';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Header from './components/header';
 
 const theme = createMuiTheme({
   overrides: {

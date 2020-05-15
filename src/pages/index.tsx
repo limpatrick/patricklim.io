@@ -1,6 +1,7 @@
 import React from 'react';
 import SEO from '~/components/seo';
 import SkillSet from '~/components/skill-set';
+import scrollToHelper from '~/helpers/scroll-to';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -39,16 +40,6 @@ const skillSetId = 'skill-set-section';
 const IndexPage = () => {
   const classes = useStyles();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const anchor = ((event.target as HTMLDivElement).ownerDocument || document).querySelector(
-      `#${skillSetId}`
-    );
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
   return (
     <>
       <SEO title="home" />
@@ -69,7 +60,7 @@ const IndexPage = () => {
           </Typography>
         </Grid>
         <Box className={classes.next}>
-          <IconButton aria-label="next" onClick={handleClick}>
+          <IconButton aria-label="next" onClick={scrollToHelper(skillSetId)}>
             <ExpandMoreIcon />
           </IconButton>
         </Box>
