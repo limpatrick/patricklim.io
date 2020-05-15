@@ -1,12 +1,15 @@
 import React from 'react';
-import Layout from '~/components/layout';
 import SEO from '~/components/seo';
 import SkillSet from '~/components/skill-set';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-const useTitleStyles = makeStyles({
-  root: {
+const useStyles = makeStyles({
+  intro: { border: '1px solid', minHeight: 'calc(100vh - 64px)' },
+  skillSet: { border: '1px solid', minHeight: '100vh' },
+  title: {
     fontFamily: '"Varela", "Roboto", "Helvetica", "Arial", sans-serif',
     fontSize: '3rem',
     fontWeight: 'bold',
@@ -14,10 +17,7 @@ const useTitleStyles = makeStyles({
     textAlign: 'center',
     textTransform: 'uppercase',
   },
-});
-
-const useSubtitleStyles = makeStyles({
-  root: {
+  subtitle: {
     color: '#94a4ba',
     fontFamily: '"Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
     letterSpacing: '0.06rem',
@@ -26,20 +26,34 @@ const useSubtitleStyles = makeStyles({
 });
 
 const IndexPage = () => {
-  const titleClasses = useTitleStyles();
-  const subtitleClasses = useSubtitleStyles();
+  const classes = useStyles();
 
   return (
-    <Layout>
+    <>
       <SEO title="home" />
-      <Typography className={titleClasses.root} variant="h1" gutterBottom>
-        patrick lim
-      </Typography>
-      <Typography className={subtitleClasses.root} variant="subtitle1" component="p" gutterBottom>
-        full stack developer
-      </Typography>
-      <SkillSet />
-    </Layout>
+      <Grid
+        className={classes.intro}
+        container
+        direction="column"
+        justify="center"
+        alignItems="center">
+        <Grid item>
+          <Typography className={classes.title} variant="h1" gutterBottom>
+            patrick lim
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography className={classes.subtitle} variant="subtitle1" component="p" gutterBottom>
+            full stack developer
+          </Typography>
+        </Grid>
+      </Grid>
+      <Container maxWidth="lg">
+        <Grid className={classes.skillSet} container justify="center" alignItems="center">
+          <SkillSet />
+        </Grid>
+      </Container>
+    </>
   );
 };
 
