@@ -8,13 +8,15 @@ import Zoom from '@material-ui/core/Zoom';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import useStyles from './styles';
 
+const id = 'back-to-top-anchor';
+
 const Header = () => {
   const classes = useStyles();
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const anchor = ((event.target as HTMLDivElement).ownerDocument || document).querySelector(
-      '#back-to-top-anchor'
+      `#${id}`
     );
 
     if (anchor) {
@@ -24,7 +26,7 @@ const Header = () => {
 
   return (
     <>
-      <AppBar id="back-to-top-anchor" className={classes.header} position="static" elevation={0}>
+      <AppBar id={id} className={classes.header} position="static" elevation={0}>
         <Toolbar>
           <Grid container direction="row" justify="flex-end" alignItems="center">
             <Grid item>EN / FR</Grid>
@@ -33,7 +35,7 @@ const Header = () => {
       </AppBar>
       <Zoom in={trigger}>
         <div className={classes.scrollButton} onClick={handleClick} role="presentation">
-          <Fab color="secondary" size="small" aria-label="scroll back to top">
+          <Fab size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
         </div>
