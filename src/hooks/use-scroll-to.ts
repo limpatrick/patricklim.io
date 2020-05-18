@@ -1,0 +1,17 @@
+import { useState } from 'react';
+
+const useScrollTo = (idSelector: string) => {
+  const [id, setId] = useState(idSelector);
+
+  const scrollTo = (event: React.MouseEvent & { target: { ownerDocument?: Document } }) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(`#${id}`);
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  return { id, setId, scrollTo };
+};
+
+export default useScrollTo;
