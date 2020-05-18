@@ -2,7 +2,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export default makeStyles((theme: Theme) =>
   createStyles({
-    root: { border: '0px solid', minHeight: 'calc(100vh - 64px)' },
+    root: { minHeight: 'calc(100vh - 64px)' },
     title: {
       fontFamily: '"Varela", "Roboto", "Helvetica", "Arial", sans-serif',
       fontSize: '3rem',
