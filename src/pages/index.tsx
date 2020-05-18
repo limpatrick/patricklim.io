@@ -1,7 +1,7 @@
 import React from 'react';
 import SEO from '~/components/seo';
 import SkillSet from '~/components/skill-set';
-import scrollToHelper from '~/helpers/scroll-to';
+import useScrollTo from '~/hooks/use-scroll-to';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -39,6 +39,7 @@ const skillSetId = 'skill-set-section';
 
 const IndexPage = () => {
   const classes = useStyles();
+  const { scrollTo } = useScrollTo(skillSetId);
 
   return (
     <>
@@ -60,7 +61,7 @@ const IndexPage = () => {
           </Typography>
         </Grid>
         <Box className={classes.next}>
-          <IconButton aria-label="next" onClick={scrollToHelper(skillSetId)}>
+          <IconButton aria-label="next" onClick={scrollTo}>
             <ExpandMoreIcon />
           </IconButton>
         </Box>

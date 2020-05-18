@@ -1,5 +1,5 @@
 import React from 'react';
-import scrollToHelper from '~/helpers/scroll-to';
+import useScrollTo from '~/hooks/use-scroll-to';
 import AppBar from '@material-ui/core/AppBar';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
@@ -14,6 +14,7 @@ const id = 'back-to-top-anchor';
 const Header = () => {
   const classes = useStyles();
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
+  const { scrollTo } = useScrollTo(id);
 
   return (
     <>
@@ -25,7 +26,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       <Zoom in={trigger}>
-        <div className={classes.scrollButton} onClick={scrollToHelper(id)} role="presentation">
+        <div className={classes.scrollButton} onClick={scrollTo} role="presentation">
           <Fab size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
