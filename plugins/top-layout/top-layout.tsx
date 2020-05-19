@@ -1,3 +1,4 @@
+import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import Header from '~/components/header';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
@@ -20,9 +21,11 @@ type Props = { children: React.ReactNode };
 const TopLayout = ({ children }: Props) => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Header />
-    {children}
-    // TODO: footer
+    <SnackbarProvider>
+      <Header />
+      {children}
+      // TODO: footer
+    </SnackbarProvider>
   </ThemeProvider>
 );
 
