@@ -13,9 +13,6 @@ export default makeStyles((theme: Theme) =>
         height: '94px',
       },
     },
-    close: {
-      padding: theme.spacing(0.5),
-    },
     error: {
       '& > .MuiLink-root': {
         color: 'inherit',
