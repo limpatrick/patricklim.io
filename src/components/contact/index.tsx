@@ -8,11 +8,9 @@ import { showError } from '~/utils/formik';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
 import SendIcon from '@material-ui/icons/Send';
 import useStyles from './styles';
 
@@ -21,15 +19,14 @@ const Contact = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const action: SnackbarAction = key => (
-    <IconButton
-      className={classes.close}
+    <Button
       aria-label="close"
       color="inherit"
       onClick={() => {
         closeSnackbar(key);
       }}>
-      <CloseIcon />
-    </IconButton>
+      Close
+    </Button>
   );
 
   return (
