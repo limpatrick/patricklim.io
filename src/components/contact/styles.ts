@@ -15,5 +15,8 @@ export default makeStyles((theme: Theme) =>
         color: 'inherit',
       },
     },
+    send: {
+      textAlign: 'center',
+    },
   })
 );
