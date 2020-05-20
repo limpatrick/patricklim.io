@@ -14,7 +14,7 @@ import useStyles from './styles';
 
 type Props = { id: string };
 
-const Home = ({ id }: Props) => {
+const Intro = ({ id }: Props) => {
   const [{ text1, text2 }, dispatch] = useReducer(reducer, initialState);
   const classes = useStyles();
   const { scrollTo } = useScrollTo(id);
@@ -63,4 +63,4 @@ const Home = ({ id }: Props) => {
   );
 };
 
-export default Home;
+export default Intro;
