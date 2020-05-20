@@ -16,7 +16,6 @@ export default makeStyles((theme: Theme) =>
     },
     subtitle: {
       color: '#94a4ba',
-      fontFamily: '"Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
       letterSpacing: '0.06rem',
       textAlign: 'center',
     },
