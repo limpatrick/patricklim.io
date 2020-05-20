@@ -4,6 +4,7 @@ import { TextField } from 'formik-material-ui';
 import { SnackbarAction, useSnackbar } from 'notistack';
 import React from 'react';
 import * as Yup from 'yup';
+import Card from '~/components/card';
 import Layout from '~/components/layout';
 import { showError } from '~/utils/formik';
 import Button from '@material-ui/core/Button';
@@ -31,89 +32,94 @@ const Contact = () => {
 
   return (
     <Layout>
-      <Formik
-        initialValues={{ name: '', email: '', message: '' }}
-        validationSchema={Yup.object({
-          name: Yup.string().trim().required('Required'),
-          email: Yup.string().email('Invalid email address').required('Required'),
-          message: Yup.string().trim().required('Required'),
-        })}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          // TODO
-          setTimeout(() => {
-            enqueueSnackbar(`Your message has been sent. I'll get back to you as soon as I can.`, {
-              variant: 'success',
-            });
+      <Card title="Contact">
+        <Formik
+          initialValues={{ name: '', email: '', message: '' }}
+          validationSchema={Yup.object({
+            name: Yup.string().trim().required('Required'),
+            email: Yup.string().email('Invalid email address').required('Required'),
+            message: Yup.string().trim().required('Required'),
+          })}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            // TODO
+            setTimeout(() => {
+              enqueueSnackbar(
+                `Your message has been sent. I'll get back to you as soon as I can.`,
+                {
+                  variant: 'success',
+                }
+              );
 
-            enqueueSnackbar(
-              <Typography className={classes.error} variant="body2">
-                Something went wrong. Please try again or contact me directly at{' '}
-                <Link href="mailto:contact@patricklim.fr">contact@patricklim.fr</Link>.
-              </Typography>,
-              {
-                action,
-                persist: true,
-                variant: 'error',
-              }
+              enqueueSnackbar(
+                <Typography className={classes.error} variant="body2">
+                  Something went wrong. Please try again or contact me directly at{' '}
+                  <Link href="mailto:contact@patricklim.fr">contact@patricklim.fr</Link>.
+                </Typography>,
+                {
+                  action,
+                  persist: true,
+                  variant: 'error',
+                }
+              );
+
+              setSubmitting(false);
+              resetForm();
+              console.log(JSON.stringify(values, null, 2));
+            }, 500);
+          }}>
+          {({ submitForm, isSubmitting, touched, errors }) => {
+            const fullHeight =
+              showError(touched, errors, 'name') || showError(touched, errors, 'email');
+
+            return (
+              <Form className={classes.form}>
+                <Grid container justify="flex-start" alignItems="center" spacing={2}>
+                  <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
+                    <Field
+                      component={TextField}
+                      name="name"
+                      label="Name"
+                      fullWidth
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
+                    <Field
+                      component={TextField}
+                      name="email"
+                      label="Email"
+                      fullWidth
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Field
+                      component={TextField}
+                      name="message"
+                      label="Message"
+                      fullWidth
+                      variant="outlined"
+                      multiline
+                      rows={10}
+                    />
+                    {isSubmitting && <LinearProgress />}
+                  </Grid>
+                  <Grid className={classes.send} item xs>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      disabled={isSubmitting}
+                      onClick={submitForm}
+                      endIcon={<SendIcon />}>
+                      Send
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Form>
             );
-
-            setSubmitting(false);
-            resetForm();
-            console.log(JSON.stringify(values, null, 2));
-          }, 500);
-        }}>
-        {({ submitForm, isSubmitting, touched, errors }) => {
-          const fullHeight =
-            showError(touched, errors, 'name') || showError(touched, errors, 'email');
-
-          return (
-            <Form className={classes.form}>
-              <Grid container justify="flex-start" alignItems="center" spacing={2}>
-                <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
-                  <Field
-                    component={TextField}
-                    name="name"
-                    label="Name"
-                    fullWidth
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
-                  <Field
-                    component={TextField}
-                    name="email"
-                    label="Email"
-                    fullWidth
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Field
-                    component={TextField}
-                    name="message"
-                    label="Message"
-                    fullWidth
-                    variant="outlined"
-                    multiline
-                    rows={10}
-                  />
-                  {isSubmitting && <LinearProgress />}
-                </Grid>
-                <Grid item>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    disabled={isSubmitting}
-                    onClick={submitForm}
-                    endIcon={<SendIcon />}>
-                    Send
-                  </Button>
-                </Grid>
-              </Grid>
-            </Form>
-          );
-        }}
-      </Formik>
+          }}
+        </Formik>
+      </Card>
     </Layout>
   );
 };

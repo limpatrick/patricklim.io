@@ -1,13 +1,12 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-export default makeStyles({
-  root: {
-    '& > .MuiGrid-root': {
-      minHeight: '100vh',
-      '&$containerFullScreen': {
-        minHeight: 'calc(100vh - 95px)',
+export default makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& > .MuiPaper-root': {
+        marginTop: theme.spacing(12),
+        marginBottom: theme.spacing(12),
       },
     },
-  },
-  containerFullScreen: {},
-});
+  })
+);
