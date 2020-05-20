@@ -6,6 +6,9 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: '"Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
+  },
   overrides: {
     MuiCssBaseline: {
       '@global': {

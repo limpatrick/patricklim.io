@@ -8,7 +8,6 @@ export default makeStyles((theme: Theme) =>
         paddingBottom: theme.spacing(4),
         '& .MuiCardHeader-title': {
           fontSize: '2rem',
-          fontFamily: '"Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
           textAlign: 'center',
         },
       },
