@@ -10,6 +10,9 @@ export default makeStyles((theme: Theme) =>
       letterSpacing: '0.56rem',
       textAlign: 'center',
       textTransform: 'uppercase',
+      '& > span': {
+        display: 'inline-block',
+      },
     },
     subtitle: {
       color: '#94a4ba',
