@@ -2,6 +2,15 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export default makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      '& $intro, & $mail': {
+        paddingLeft: theme.spacing(1),
+      },
+    },
+    intro: {
+      marginBottom: theme.spacing(4),
+    },
+    mail: {},
     form: {
       width: '100%',
     },

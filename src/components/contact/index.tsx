@@ -31,8 +31,11 @@ const Contact = () => {
   );
 
   return (
-    <Layout>
+    <Layout className={classes.root}>
       <Card title="Contact">
+        <Typography className={classes.intro}>
+          No matter at what point you are with your project, I&apos;ll be happy to help.
+        </Typography>
         <Formik
           initialValues={{ name: '', email: '', message: '' }}
           validationSchema={Yup.object({
@@ -51,7 +54,7 @@ const Contact = () => {
               );
 
               enqueueSnackbar(
-                <Typography className={classes.error} variant="body2">
+                <Typography className={classes.error}>
                   Something went wrong. Please try again or contact me directly at{' '}
                   <Link href="mailto:contact@patricklim.fr">contact@patricklim.fr</Link>.
                 </Typography>,
@@ -104,7 +107,7 @@ const Contact = () => {
                     />
                     {isSubmitting && <LinearProgress />}
                   </Grid>
-                  <Grid className={classes.send} item xs>
+                  <Grid className={classes.send} item xs={12}>
                     <Button
                       type="submit"
                       variant="contained"
@@ -113,6 +116,12 @@ const Contact = () => {
                       endIcon={<SendIcon />}>
                       Send
                     </Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography className={classes.mail}>
+                      Alternatively, you can send an e-mail to{' '}
+                      <Link href="mailto:contact@patricklim.fr">contact@patricklim.fr</Link>.
+                    </Typography>
                   </Grid>
                 </Grid>
               </Form>
