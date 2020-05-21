@@ -30,8 +30,8 @@ import { Icon } from '@iconify/react';
 
 export type Skill = {
   name: string;
-  default: IconType;
-  active: IconType;
+  default: IconType | ImgType;
+  active: IconType | ImgType;
 };
 
 export type IconType = {
@@ -39,6 +39,8 @@ export type IconType = {
   height: React.ComponentProps<typeof Icon>['height'];
   width?: React.ComponentProps<typeof Icon>['width'];
 };
+
+export type ImgType = { filename: string };
 
 export const skills: Skill[] = [
   {
@@ -74,7 +76,7 @@ export const skills: Skill[] = [
   {
     name: 'Ant Design',
     default: { icon: antdesignIcon, height: '2rem' },
-    active: { icon: antdesignIcon, height: '2.1rem' },
+    active: { filename: 'ant-design.png' },
   },
   {
     name: 'Bootstrap',
