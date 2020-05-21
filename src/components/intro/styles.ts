@@ -2,10 +2,14 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export default makeStyles((theme: Theme) =>
   createStyles({
-    root: { minHeight: 'calc(100vh - 64px)' },
+    root: {
+      minHeight: 'calc(100vh - 64px)',
+      '& $title, & $subtitle': {
+        fontFamily: '"Varela", "Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
+      },
+    },
     title: {
-      fontFamily: '"Varela", "Roboto", "Helvetica", "Arial", sans-serif',
-      fontSize: '3rem',
+      fontSize: '3.5rem',
       fontWeight: 'bold',
       letterSpacing: '0.56rem',
       textAlign: 'center',

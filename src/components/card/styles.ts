@@ -7,7 +7,7 @@ export default makeStyles((theme: Theme) =>
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4),
         '& .MuiCardHeader-title': {
-          fontSize: '2rem',
+          fontSize: '2.5rem',
           textAlign: 'center',
         },
       },
