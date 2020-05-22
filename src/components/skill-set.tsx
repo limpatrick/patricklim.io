@@ -1,10 +1,10 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import { map } from 'ramda';
 import React from 'react';
-import Card from '~/components/card';
-import Layout from '~/components/layout';
 import Skill from '~/components/skill';
 import { skills } from '~/data/skills';
+import Card from '~/layouts/card';
+import Container from '~/layouts/container';
 import { propIsNil } from '~/utils/ramda';
 import { getIconOrSrc } from '~/utils/skills';
 import { GetImagesQuery } from '@generated/graphql-types';
@@ -31,7 +31,7 @@ const SkillSet = ({ id }: Props) => {
   const data = useStaticQuery<GetImagesQuery>(query);
 
   return (
-    <Layout id={id}>
+    <Container id={id}>
       <Card title="Techonologies">
         <Grid container justify="flex-start" alignItems="center">
           {map(({ name, active }) => {
@@ -45,7 +45,7 @@ const SkillSet = ({ id }: Props) => {
           }, skills)}
         </Grid>
       </Card>
-    </Layout>
+    </Container>
   );
 };
 
