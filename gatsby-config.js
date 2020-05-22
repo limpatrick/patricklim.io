@@ -58,5 +58,14 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        path: `${__dirname}/src/locales`,
+        languages: [`en`, `fr`],
+        defaultLanguage: `en`,
+        redirect: true,
+      },
+    },
   ],
 };

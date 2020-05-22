@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import { useIntl } from 'gatsby-plugin-intl';
 import { map } from 'ramda';
 import React from 'react';
 import Skill from '~/components/skill';
@@ -29,10 +30,11 @@ type Props = { id: string };
 
 const SkillSet = ({ id }: Props) => {
   const data = useStaticQuery<GetImagesQuery>(query);
+  const { formatMessage } = useIntl();
 
   return (
     <Container id={id}>
-      <Card title="Techonologies">
+      <Card title={formatMessage({ id: 'skill-set.title' })}>
         <Grid container justify="flex-start" alignItems="center">
           {map(({ name, active }) => {
             const args = getIconOrSrc(active, data);
