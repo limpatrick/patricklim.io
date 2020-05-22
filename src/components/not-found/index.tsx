@@ -1,3 +1,4 @@
+import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import Container from '~/layouts/container';
 import Button from '@material-ui/core/Button';
@@ -7,6 +8,7 @@ import useStyles from './styles';
 
 const NotFound = () => {
   const classes = useStyles();
+  const { formatMessage } = useIntl();
 
   return (
     <Container>
@@ -18,17 +20,17 @@ const NotFound = () => {
         alignItems="center">
         <Grid item xs={12}>
           <Typography component="h1" variant="h3" gutterBottom>
-            NOT FOUND
+            {formatMessage({ id: 'not-found.title' })}
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="body1" gutterBottom>
-            You just hit a route that doesn&#39;t exist... the sadness.
+            {formatMessage({ id: 'not-found.subtitle' })}
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <Button href="/" color="primary">
-            Go back
+            {formatMessage({ id: 'not-found.back-btn' })}
           </Button>
         </Grid>
       </Grid>

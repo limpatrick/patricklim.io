@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
+import { useIntl } from 'gatsby-plugin-intl';
 import { SnackbarAction, useSnackbar } from 'notistack';
 import React from 'react';
 import * as Yup from 'yup';
@@ -15,9 +16,12 @@ import Typography from '@material-ui/core/Typography';
 import SendIcon from '@material-ui/icons/Send';
 import useStyles from './styles';
 
+const email = <Link href="mailto:contact@patricklim.fr">contact@patricklim.fr</Link>;
+
 const Contact = () => {
   const classes = useStyles();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { formatMessage } = useIntl();
 
   const action: SnackbarAction = key => (
     <Button
@@ -26,37 +30,35 @@ const Contact = () => {
       onClick={() => {
         closeSnackbar(key);
       }}>
-      Close
+      {formatMessage({ id: 'contact.close-btn' })}
     </Button>
   );
 
   return (
     <Container className={classes.root}>
-      <Card title="Contact">
-        <Typography className={classes.intro}>
-          No matter at what point you are with your project, I&apos;ll be happy to help.
-        </Typography>
+      <Card title={formatMessage({ id: 'contact.title' })}>
+        <Typography className={classes.intro}>{formatMessage({ id: 'contact.intro' })}</Typography>
         <Formik
           initialValues={{ name: '', email: '', message: '' }}
           validationSchema={Yup.object({
-            name: Yup.string().trim().required('Required'),
-            email: Yup.string().email('Invalid email address').required('Required'),
-            message: Yup.string().trim().required('Required'),
+            name: Yup.string()
+              .trim()
+              .required(formatMessage({ id: 'contact.errors.required' })),
+            email: Yup.string()
+              .email(formatMessage({ id: 'contact.errors.email' }))
+              .required(formatMessage({ id: 'contact.errors.required' })),
+            message: Yup.string()
+              .trim()
+              .required(formatMessage({ id: 'contact.errors.required' })),
           })}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             // TODO
             setTimeout(() => {
-              enqueueSnackbar(
-                `Your message has been sent. I'll get back to you as soon as I can.`,
-                {
-                  variant: 'success',
-                }
-              );
+              enqueueSnackbar(formatMessage({ id: 'contact.success-msg' }), { variant: 'success' });
 
               enqueueSnackbar(
-                <Typography className={classes.error}>
-                  Something went wrong. Please try again or contact me directly at{' '}
-                  <Link href="mailto:contact@patricklim.fr">contact@patricklim.fr</Link>.
+                <Typography className={classes.error} variant="body2">
+                  {formatMessage({ id: 'contact.error-msg' }, { email })}.
                 </Typography>,
                 {
                   action,
@@ -81,7 +83,7 @@ const Contact = () => {
                     <Field
                       component={TextField}
                       name="name"
-                      label="Name"
+                      label={formatMessage({ id: 'contact.labels.name' })}
                       fullWidth
                       variant="outlined"
                     />
@@ -90,7 +92,7 @@ const Contact = () => {
                     <Field
                       component={TextField}
                       name="email"
-                      label="Email"
+                      label={formatMessage({ id: 'contact.labels.email' })}
                       fullWidth
                       variant="outlined"
                     />
@@ -99,7 +101,7 @@ const Contact = () => {
                     <Field
                       component={TextField}
                       name="message"
-                      label="Message"
+                      label={formatMessage({ id: 'contact.labels.message' })}
                       fullWidth
                       variant="outlined"
                       multiline
@@ -114,13 +116,12 @@ const Contact = () => {
                       disabled={isSubmitting}
                       onClick={submitForm}
                       endIcon={<SendIcon />}>
-                      Send
+                      {formatMessage({ id: 'contact.send-btn' })}
                     </Button>
                   </Grid>
                   <Grid item xs={12}>
                     <Typography className={classes.mail}>
-                      Alternatively, you can send an e-mail to{' '}
-                      <Link href="mailto:contact@patricklim.fr">contact@patricklim.fr</Link>.
+                      {formatMessage({ id: 'contact.alternative' }, { email })}
                     </Typography>
                   </Grid>
                 </Grid>
