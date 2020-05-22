@@ -4,8 +4,8 @@ import { TextField } from 'formik-material-ui';
 import { SnackbarAction, useSnackbar } from 'notistack';
 import React from 'react';
 import * as Yup from 'yup';
-import Card from '~/components/card';
-import Layout from '~/components/layout';
+import Card from '~/layouts/card';
+import Container from '~/layouts/container';
 import { showError } from '~/utils/formik';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -31,7 +31,7 @@ const Contact = () => {
   );
 
   return (
-    <Layout className={classes.root}>
+    <Container className={classes.root}>
       <Card title="Contact">
         <Typography className={classes.intro}>
           No matter at what point you are with your project, I&apos;ll be happy to help.
@@ -129,7 +129,7 @@ const Contact = () => {
           }}
         </Formik>
       </Card>
-    </Layout>
+    </Container>
   );
 };
 
