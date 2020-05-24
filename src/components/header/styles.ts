@@ -6,6 +6,15 @@ export default makeStyles((theme: Theme) =>
       backgroundColor: 'transparent',
       color: 'inherit',
     },
+    links: {
+      '&, & > .MuiLink-root': {
+        color: 'inherit',
+      },
+      '& > $activeLink': {
+        textDecoration: 'underline',
+      },
+    },
+    activeLink: {},
     scrollButton: {
       position: 'fixed',
       bottom: theme.spacing(2),

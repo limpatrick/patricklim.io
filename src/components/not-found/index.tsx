@@ -1,6 +1,7 @@
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import Container from '~/layouts/container';
+import { getPath } from '~/utils/intl';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -8,7 +9,7 @@ import useStyles from './styles';
 
 const NotFound = () => {
   const classes = useStyles();
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
 
   return (
     <Container>
@@ -29,7 +30,7 @@ const NotFound = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Button href="/" color="primary">
+          <Button href={getPath(locale, '/404/')} color="primary">
             {formatMessage({ id: 'not-found.back-btn' })}
           </Button>
         </Grid>

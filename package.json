@@ -36,6 +36,7 @@
     "typeface-raleway": "^0.0.75",
     "typeface-roboto": "^0.0.75",
     "typeface-varela": "^0.0.72",
+    "utility-types": "^3.10.0",
     "yup": "^0.28.5"
   },
   "devDependencies": {
