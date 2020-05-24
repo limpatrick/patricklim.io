@@ -1,3 +1,6 @@
+const languages = [`en`, `fr`];
+const localesPath = `${__dirname}/generated/locales`;
+
 module.exports = {
   siteMetadata: {
     title: `Patrick Lim - Full stack developer`,
@@ -58,10 +61,18 @@ module.exports = {
       },
     },
     {
+      resolve: `intl-yaml-to-json`,
+      options: {
+        languages,
+        sourcePath: `${__dirname}/src/locales`,
+        destinationPath: localesPath,
+      },
+    },
+    {
       resolve: `gatsby-plugin-intl`,
       options: {
-        path: `${__dirname}/src/locales`,
-        languages: [`en`, `fr`],
+        path: localesPath,
+        languages,
         defaultLanguage: `en`,
         redirect: true,
       },
