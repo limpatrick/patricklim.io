@@ -5,7 +5,6 @@ module.exports = {
     author: `Patrick Lim`,
   },
   plugins: [
-    `top-layout`,
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
     {
