@@ -30,7 +30,7 @@ const NotFound = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Button href={getPath(locale, '/404/')} color="primary">
+          <Button href={getPath(locale, '/')} color="primary">
             {formatMessage({ id: 'not-found.back-btn' })}
           </Button>
         </Grid>
