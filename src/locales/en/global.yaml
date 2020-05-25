@@ -1,12 +1,11 @@
-back-aria-label: go back
-back-btn: Go back
+aria-label:
+  back: go back
+  back-top: scroll back to top
+  close: close
+  next: next
+  send: send
 
-back-top-aria-label: scroll back to top
-
-close-aria-label: close
-close-btn: Close
-
-next-aria-label: next
-
-send-aria-label: send
-send-btn: Send
+btn:
+  back: Go back
+  close: Close
+  send: Send

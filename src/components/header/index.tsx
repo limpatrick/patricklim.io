@@ -49,7 +49,7 @@ const Header = ({ path }: Props) => {
       </AppBar>
       <Zoom in={trigger}>
         <div className={classes.scrollButton} onClick={scrollTo} role="presentation">
-          <Fab size="small" aria-label={formatMessage({ id: 'global.back-top-aria-label' })}>
+          <Fab size="small" aria-label={formatMessage({ id: 'global.aria-label.back-top' })}>
             <KeyboardArrowUpIcon />
           </Fab>
         </div>

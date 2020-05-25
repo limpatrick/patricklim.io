@@ -31,10 +31,10 @@ const NotFound = () => {
         </Grid>
         <Grid item xs={12}>
           <Button
-            aria-label={formatMessage({ id: 'global.back-aria-label' })}
+            aria-label={formatMessage({ id: 'global.aria-label.back' })}
             href={getPath(locale, '/')}
             color="primary">
-            {formatMessage({ id: 'global.back-btn' })}
+            {formatMessage({ id: 'global.btn.back' })}
           </Button>
         </Grid>
       </Grid>

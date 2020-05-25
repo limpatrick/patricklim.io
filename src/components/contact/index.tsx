@@ -25,12 +25,12 @@ const Contact = () => {
 
   const action: SnackbarAction = key => (
     <Button
-      aria-label={formatMessage({ id: 'global.close-aria-label' })}
+      aria-label={formatMessage({ id: 'global.aria-label.close' })}
       color="inherit"
       onClick={() => {
         closeSnackbar(key);
       }}>
-      {formatMessage({ id: 'global.close-btn' })}
+      {formatMessage({ id: 'global.btn.close' })}
     </Button>
   );
 
@@ -111,13 +111,13 @@ const Contact = () => {
                   </Grid>
                   <Grid className={classes.send} item xs={12}>
                     <Button
-                      aria-label={formatMessage({ id: 'global.send-aria-label' })}
+                      aria-label={formatMessage({ id: 'global.aria-label.send' })}
                       type="submit"
                       variant="contained"
                       disabled={isSubmitting}
                       onClick={submitForm}
                       endIcon={<SendIcon />}>
-                      {formatMessage({ id: 'global.send-btn' })}
+                      {formatMessage({ id: 'global.btn.send' })}
                     </Button>
                   </Grid>
                   <Grid item xs={12}>
