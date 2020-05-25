@@ -1,3 +1,4 @@
+import { useIntl } from 'gatsby-plugin-intl';
 import React, { useReducer } from 'react';
 import useScrollTo from '~/hooks/use-scroll-to';
 import Box from '@material-ui/core/Box';
@@ -18,6 +19,7 @@ const Intro = ({ id }: Props) => {
   const [{ text1, text2 }, dispatch] = useReducer(reducer, initialState);
   const classes = useStyles();
   const { scrollTo } = useScrollTo(id);
+  const { formatMessage } = useIntl();
 
   return (
     <Grid
@@ -55,7 +57,7 @@ const Intro = ({ id }: Props) => {
         </Grow>
       </Grid>
       <Box className={classes.next}>
-        <IconButton aria-label="next" onClick={scrollTo}>
+        <IconButton aria-label={formatMessage({ id: 'global.next-aria-label' })} onClick={scrollTo}>
           <ExpandMoreIcon />
         </IconButton>
       </Box>
