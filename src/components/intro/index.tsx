@@ -57,7 +57,7 @@ const Intro = ({ id }: Props) => {
         </Grow>
       </Grid>
       <Box className={classes.next}>
-        <IconButton aria-label={formatMessage({ id: 'global.next-aria-label' })} onClick={scrollTo}>
+        <IconButton aria-label={formatMessage({ id: 'global.aria-label.next' })} onClick={scrollTo}>
           <ExpandMoreIcon />
         </IconButton>
       </Box>

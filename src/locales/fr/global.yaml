@@ -1,12 +1,11 @@
-back-aria-label: retour
-back-btn: Retour
+aria-label:
+  back: retour
+  back-top: revenir en haut
+  close: fermer
+  next: suivant
+  send: envoyer
 
-back-top-aria-label: revenir en haut
-
-close-aria-label: fermer
-close-btn: Fermer
-
-next-aria-label: suivant
-
-send-aria-label: envoyer
-send-btn: Envoyer
+btn:
+  back: Retour
+  close: Fermer
+  send: Envoyer
