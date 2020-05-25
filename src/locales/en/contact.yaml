@@ -1,5 +1,4 @@
 title: Contact me
-close-btn: Close
 intro: No matter at what point you are with your project, I'll be happy to help.
 labels:
   name: Name
@@ -10,5 +9,4 @@ errors:
   email: Invalid e-mail address
 success-msg: Your message has been sent. I'll get back to you as soon as I can.
 error-msg: Something went wrong. Please try again or contact me directly at {email}.
-send-btn: Send
 alternative: You can also reach me by e-mail at {email}.

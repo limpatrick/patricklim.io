@@ -30,8 +30,11 @@ const NotFound = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Button href={getPath(locale, '/')} color="primary">
-            {formatMessage({ id: 'not-found.back-btn' })}
+          <Button
+            aria-label={formatMessage({ id: 'global.back-aria-label' })}
+            href={getPath(locale, '/')}
+            color="primary">
+            {formatMessage({ id: 'global.back-btn' })}
           </Button>
         </Grid>
       </Grid>

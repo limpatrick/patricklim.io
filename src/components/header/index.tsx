@@ -20,7 +20,7 @@ const Header = ({ path }: Props) => {
   const classes = useStyles();
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
   const { scrollTo } = useScrollTo(id);
-  const { locale } = useIntl();
+  const { formatMessage, locale } = useIntl();
 
   const getLink = (language: string) => {
     const text = language.toUpperCase();
@@ -49,7 +49,7 @@ const Header = ({ path }: Props) => {
       </AppBar>
       <Zoom in={trigger}>
         <div className={classes.scrollButton} onClick={scrollTo} role="presentation">
-          <Fab size="small" aria-label="scroll back to top">
+          <Fab size="small" aria-label={formatMessage({ id: 'global.back-top-aria-label' })}>
             <KeyboardArrowUpIcon />
           </Fab>
         </div>
