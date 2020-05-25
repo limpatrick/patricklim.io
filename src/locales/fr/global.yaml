@@ -4,6 +4,8 @@ aria-label:
   close: fermer
   next: suivant
   send: envoyer
+  toggle-dark: activer le thème sombre
+  toggle-light: activer le thème clair
 
 btn:
   back: Retour

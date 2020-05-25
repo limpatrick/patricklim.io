@@ -8,7 +8,7 @@ import Footer from '~/components/footer';
 import Header from '~/components/header';
 import { ThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from './src/theme';
+import { ConfigProvider } from './src/components/config';
 
 export const wrapPageElement = ({
   element,
@@ -29,8 +29,12 @@ export const wrapPageElement = ({
 );
 
 export const wrapRootElement = ({ element }) => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <SnackbarProvider>{element}</SnackbarProvider>
-  </ThemeProvider>
+  <ConfigProvider>
+    {([{ theme }]) => (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <SnackbarProvider>{element}</SnackbarProvider>
+      </ThemeProvider>
+    )}
+  </ConfigProvider>
 );

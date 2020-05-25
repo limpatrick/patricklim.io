@@ -1,6 +1,7 @@
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import Link from '~/components/link';
+import ToggleTheme from '~/components/toggle-theme';
 import useScrollTo from '~/hooks/use-scroll-to';
 import AppBar from '@material-ui/core/AppBar';
 import Fab from '@material-ui/core/Fab';
@@ -40,9 +41,12 @@ const Header = ({ path }: Props) => {
     <>
       <AppBar id={id} className={classes.header} position="static" elevation={0}>
         <Toolbar>
-          <Grid container direction="row" justify="flex-end" alignItems="center">
+          <Grid className={classes.actions} container justify="flex-end" alignItems="center">
             <Grid className={classes.links} item>
               {getLink('en')} / {getLink('fr')}
+            </Grid>
+            <Grid item>
+              <ToggleTheme />
             </Grid>
           </Grid>
         </Toolbar>
