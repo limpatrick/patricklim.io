@@ -6,6 +6,11 @@ export default makeStyles((theme: Theme) =>
       backgroundColor: 'transparent',
       color: 'inherit',
     },
+    actions: {
+      '& > .MuiGrid-root:not(:last-child)': {
+        marginRight: theme.spacing(1),
+      },
+    },
     links: {
       '&, & > .MuiLink-root': {
         color: 'inherit',
