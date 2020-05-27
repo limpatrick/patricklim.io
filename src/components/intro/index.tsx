@@ -51,7 +51,12 @@ const Intro = ({ id }: Props) => {
           in={text1 && text2}
           timeout={{ enter: duration.complex }}
           onEntered={() => dispatch(textEntered('text3'))}>
-          <Typography className={classes.subtitle} variant="overline" component="p" gutterBottom>
+          <Typography
+            className={classes.subtitle}
+            color="textSecondary"
+            variant="overline"
+            component="p"
+            gutterBottom>
             full stack javascript developer
           </Typography>
         </Grow>

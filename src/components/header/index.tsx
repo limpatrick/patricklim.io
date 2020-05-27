@@ -1,13 +1,12 @@
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
-import Link from '~/components/link';
+import ButtonLink from '~/components/button-link';
 import ToggleTheme from '~/components/toggle-theme';
 import useScrollTo from '~/hooks/use-scroll-to';
 import AppBar from '@material-ui/core/AppBar';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Zoom from '@material-ui/core/Zoom';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -23,27 +22,26 @@ const Header = ({ path }: Props) => {
   const { scrollTo } = useScrollTo(id);
   const { formatMessage, locale } = useIntl();
 
-  const getLink = (language: string) => {
+  const getButtonLink = (language: string) => {
     const text = language.toUpperCase();
 
     return locale !== language ? (
-      <Link language={language} to={path} underline="none">
+      <ButtonLink language={language} to={path}>
         {text}
-      </Link>
+      </ButtonLink>
     ) : (
-      <Typography className={classes.activeLink} component="span" variant="body2">
-        {text}
-      </Typography>
+      <ButtonLink disabled>{text}</ButtonLink>
     );
   };
 
   return (
     <>
-      <AppBar id={id} className={classes.header} position="static" elevation={0}>
+      <AppBar id={id} color="transparent" position="static" elevation={0}>
         <Toolbar>
           <Grid className={classes.actions} container justify="flex-end" alignItems="center">
             <Grid className={classes.links} item>
-              {getLink('en')} / {getLink('fr')}
+              {getButtonLink('en')}
+              {getButtonLink('fr')}
             </Grid>
             <Grid item>
               <ToggleTheme />
@@ -53,7 +51,10 @@ const Header = ({ path }: Props) => {
       </AppBar>
       <Zoom in={trigger}>
         <div className={classes.scrollButton} onClick={scrollTo} role="presentation">
-          <Fab size="small" aria-label={formatMessage({ id: 'global.aria-label.back-top' })}>
+          <Fab
+            color="primary"
+            size="small"
+            aria-label={formatMessage({ id: 'global.aria-label.back-top' })}>
             <KeyboardArrowUpIcon />
           </Fab>
         </div>
