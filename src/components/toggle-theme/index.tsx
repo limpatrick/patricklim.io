@@ -2,12 +2,14 @@ import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import { toggleTheme, useConfig } from '~/components/config';
 import IconButton from '@material-ui/core/IconButton';
-import Brightness2RoundedIcon from '@material-ui/icons/Brightness2Rounded';
-import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded';
+import MoonIcon from '@material-ui/icons/Brightness2Sharp';
+import SunIcon from '@material-ui/icons/WbSunnyRounded';
+import useStyles from './styles';
 
 const ToggleTheme = () => {
   const [{ themeKey }, dispatch] = useConfig();
   const { formatMessage } = useIntl();
+  const classes = useStyles();
 
   return (
     <IconButton
@@ -20,7 +22,7 @@ const ToggleTheme = () => {
       })}
       onClick={() => dispatch(toggleTheme())}
       size="small">
-      {themeKey === 'dark' ? <WbSunnyRoundedIcon /> : <Brightness2RoundedIcon />}
+      {themeKey === 'dark' ? <SunIcon /> : <MoonIcon className={classes.moon} />}
     </IconButton>
   );
 };
