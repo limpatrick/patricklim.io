@@ -1,4 +1,4 @@
-import { setItem } from '~/utils/local-storage';
+import { setItem, THEME_KEY } from '~/utils/local-storage';
 import { themeMap } from './themes';
 import { Action, SET_THEME, State, TOGGLE_THEME } from './types';
 
@@ -9,14 +9,12 @@ export default function reducer(state: State, action: Action): State {
     case SET_THEME: {
       const themeKey = action.payload;
 
-      setItem('theme', themeKey);
-
       return { ...state, theme: themeMap[action.payload], themeKey };
     }
     case TOGGLE_THEME: {
       const themeKey = state.themeKey === 'light' ? 'dark' : 'light';
 
-      setItem('theme', themeKey);
+      setItem(THEME_KEY, themeKey);
 
       return { ...state, theme: themeMap[themeKey], themeKey };
     }
