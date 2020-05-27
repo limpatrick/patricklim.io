@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { getItem, THEME_KEY } from '~/utils/local-storage';
+import { getItem, THEME_KEY } from '~/utils/storage';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { setTheme } from './actions';
 import reducer, { initialState } from './reducer';

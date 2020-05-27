@@ -1,4 +1,4 @@
-import { setItem, THEME_KEY } from '~/utils/local-storage';
+import { setItem, THEME_KEY } from '~/utils/storage';
 import { themeMap } from './themes';
 import { Action, SET_THEME, State, TOGGLE_THEME } from './types';
 
