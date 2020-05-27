@@ -2,24 +2,16 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core';
 
 export default makeStyles((theme: Theme) =>
   createStyles({
-    header: {
-      backgroundColor: 'transparent',
-      color: 'inherit',
-    },
     actions: {
       '& > .MuiGrid-root:not(:last-child)': {
         marginRight: theme.spacing(1),
       },
     },
     links: {
-      '&, & > .MuiLink-root': {
-        color: 'inherit',
-      },
-      '& > $activeLink': {
-        textDecoration: 'underline',
+      '& > .MuiButton-root': {
+        minWidth: 0,
       },
     },
-    activeLink: {},
     scrollButton: {
       position: 'fixed',
       bottom: theme.spacing(2),

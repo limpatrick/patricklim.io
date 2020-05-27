@@ -19,7 +19,6 @@ export default makeStyles((theme: Theme) =>
       },
     },
     subtitle: {
-      color: '#94a4ba',
       letterSpacing: '0.06rem',
       textAlign: 'center',
     },

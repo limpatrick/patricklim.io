@@ -5,18 +5,15 @@ import { useIntl } from 'gatsby-plugin-intl';
 import { SnackbarAction, useSnackbar } from 'notistack';
 import React from 'react';
 import * as Yup from 'yup';
+import MailTo from '~/components/mail-to';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
 import { showError } from '~/utils/formik';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import SendIcon from '@material-ui/icons/Send';
 import useStyles from './styles';
-
-const email = <Link href="mailto:contact@patricklim.fr">contact@patricklim.fr</Link>;
 
 const Contact = () => {
   const classes = useStyles();
@@ -57,8 +54,8 @@ const Contact = () => {
               enqueueSnackbar(formatMessage({ id: 'contact.success-msg' }), { variant: 'success' });
 
               enqueueSnackbar(
-                <Typography className={classes.error} variant="body2">
-                  {formatMessage({ id: 'contact.error-msg' }, { email })}.
+                <Typography variant="body2">
+                  {formatMessage({ id: 'contact.error-msg' }, { email: <MailTo /> })}.
                 </Typography>,
                 {
                   action,
@@ -113,16 +110,19 @@ const Contact = () => {
                     <Button
                       aria-label={formatMessage({ id: 'global.aria-label.send' })}
                       type="submit"
+                      color="primary"
                       variant="contained"
                       disabled={isSubmitting}
-                      onClick={submitForm}
-                      endIcon={<SendIcon />}>
+                      onClick={submitForm}>
                       {formatMessage({ id: 'global.btn.send' })}
                     </Button>
                   </Grid>
                   <Grid item xs={12}>
                     <Typography className={classes.mail}>
-                      {formatMessage({ id: 'contact.alternative' }, { email })}
+                      {formatMessage(
+                        { id: 'contact.alternative' },
+                        { email: <MailTo color="primary" /> }
+                      )}
                     </Typography>
                   </Grid>
                 </Grid>

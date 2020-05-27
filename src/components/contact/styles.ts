@@ -19,11 +19,6 @@ export default makeStyles((theme: Theme) =>
         height: '94px',
       },
     },
-    error: {
-      '& > .MuiLink-root': {
-        color: 'inherit',
-      },
-    },
     send: {
       textAlign: 'center',
     },
