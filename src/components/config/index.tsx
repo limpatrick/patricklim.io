@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { getItem } from '~/utils/local-storage';
+import { getItem, THEME_KEY } from '~/utils/local-storage';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { setTheme } from './actions';
 import reducer, { initialState } from './reducer';
 import { Dispatch, State } from './types';
@@ -11,12 +12,18 @@ type Props = { children: React.ReactNode | ((e: [State, Dispatch]) => React.Reac
 
 const ConfigProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   useEffect(() => {
-    const themeKey = getItem('theme');
+    const storedThemeKey = getItem(THEME_KEY);
+    const themeKey =
+      storedThemeKey !== null && (storedThemeKey === 'light' || storedThemeKey === 'dark')
+        ? storedThemeKey
+        : prefersDarkMode
+        ? 'dark'
+        : 'light';
 
-    if (themeKey !== state.themeKey && (themeKey === 'light' || themeKey === 'dark'))
-      dispatch(setTheme(themeKey));
+    if (themeKey !== state.themeKey) dispatch(setTheme(themeKey));
   }, []);
 
   return (
