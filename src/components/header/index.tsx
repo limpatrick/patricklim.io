@@ -2,6 +2,7 @@ import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import ButtonLink from '~/components/button-link';
 import ToggleTheme from '~/components/toggle-theme';
+import { BACK_TOP_ANCHOR_ID } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
 import AppBar from '@material-ui/core/AppBar';
 import Fab from '@material-ui/core/Fab';
@@ -12,14 +13,12 @@ import Zoom from '@material-ui/core/Zoom';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import useStyles from './styles';
 
-const id = 'back-to-top-anchor';
-
 type Props = { path: string };
 
 const Header = ({ path }: Props) => {
   const classes = useStyles();
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
-  const { scrollTo } = useScrollTo(id);
+  const { scrollTo } = useScrollTo(BACK_TOP_ANCHOR_ID);
   const { formatMessage, locale } = useIntl();
 
   const getButtonLink = (language: string) => {
@@ -36,7 +35,7 @@ const Header = ({ path }: Props) => {
 
   return (
     <>
-      <AppBar id={id} color="transparent" position="static" elevation={0}>
+      <AppBar id={BACK_TOP_ANCHOR_ID} color="transparent" position="static" elevation={0}>
         <Toolbar>
           <Grid className={classes.actions} container justify="flex-end" alignItems="center">
             <Grid className={classes.links} item>

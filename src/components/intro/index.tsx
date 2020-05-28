@@ -1,5 +1,6 @@
 import { useIntl } from 'gatsby-plugin-intl';
 import React, { useReducer } from 'react';
+import { SKILL_SET_ID } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -13,12 +14,10 @@ import { textEntered } from './actions';
 import reducer, { initialState } from './reducer';
 import useStyles from './styles';
 
-type Props = { id: string };
-
-const Intro = ({ id }: Props) => {
+const Intro = () => {
   const [{ text1, text2 }, dispatch] = useReducer(reducer, initialState);
   const classes = useStyles();
-  const { scrollTo } = useScrollTo(id);
+  const { scrollTo } = useScrollTo(SKILL_SET_ID);
   const { formatMessage } = useIntl();
 
   return (

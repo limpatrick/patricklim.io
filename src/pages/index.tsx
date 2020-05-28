@@ -4,13 +4,11 @@ import Intro from '~/components/intro';
 import SEO from '~/components/seo';
 import SkillSet from '~/components/skill-set';
 
-const skillSetId = 'skill-set-section';
-
 const IndexPage = () => (
   <>
     <SEO title="home" />
-    <Intro id={skillSetId} />
-    <SkillSet id={skillSetId} />
+    <Intro />
+    <SkillSet />
     <Contact />
   </>
 );
