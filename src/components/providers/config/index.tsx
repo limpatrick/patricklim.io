@@ -24,7 +24,7 @@ const ConfigProvider = ({ children }: Props) => {
         : 'light';
 
     if (themeKey !== state.themeKey) dispatch(setTheme(themeKey));
-  }, []);
+  }, [prefersDarkMode]);
 
   return (
     <ConfigStateContext.Provider value={state}>
