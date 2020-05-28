@@ -3,6 +3,7 @@ import { useIntl } from 'gatsby-plugin-intl';
 import { map } from 'ramda';
 import React from 'react';
 import Skill from '~/components/skill';
+import { SKILL_SET_ID } from '~/constants';
 import { skills } from '~/data/skills';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
@@ -26,14 +27,12 @@ export const query = graphql`
   }
 `;
 
-type Props = { id: string };
-
-const SkillSet = ({ id }: Props) => {
+const SkillSet = () => {
   const data = useStaticQuery<GetImagesQuery>(query);
   const { formatMessage } = useIntl();
 
   return (
-    <Container id={id}>
+    <Container id={SKILL_SET_ID}>
       <Card title={formatMessage({ id: 'skill-set.title' })}>
         <Grid container justify="flex-start" alignItems="center">
           {map(({ name, active }) => {
