@@ -2,13 +2,13 @@ import 'typeface-raleway';
 import 'typeface-roboto';
 import 'typeface-varela';
 import { IntlContextProvider, IntlProvider } from 'gatsby-plugin-intl';
-import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import Footer from '~/components/footer';
 import Header from '~/components/header';
 import { ThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ConfigProvider } from './src/components/config';
+import { ConfigProvider } from './src/components/providers/config';
+import SnackbarProvider from './src/components/providers/snackbar';
 
 export const wrapPageElement = ({
   element,

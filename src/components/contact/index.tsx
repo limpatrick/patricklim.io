@@ -51,13 +51,23 @@ const Contact = () => {
           onSubmit={(values, { setSubmitting, resetForm }) => {
             // TODO
             setTimeout(() => {
-              enqueueSnackbar(formatMessage({ id: 'contact.success-msg' }), { variant: 'success' });
+              enqueueSnackbar(formatMessage({ id: 'contact.success-msg' }), {
+                anchorOrigin: {
+                  vertical: 'top',
+                  horizontal: 'center',
+                },
+                variant: 'success',
+              });
 
               enqueueSnackbar(
                 <Typography variant="body2">
                   {formatMessage({ id: 'contact.error-msg' }, { email: <MailTo /> })}.
                 </Typography>,
                 {
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  },
                   action,
                   persist: true,
                   variant: 'error',

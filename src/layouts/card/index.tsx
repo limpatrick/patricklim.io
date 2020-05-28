@@ -10,7 +10,7 @@ const CustomCard = ({ children, title }: Props) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} elevation={2}>
+    <Card className={classes.root} elevation={8}>
       <CardHeader title={title} />
       <CardContent>{children}</CardContent>
     </Card>
