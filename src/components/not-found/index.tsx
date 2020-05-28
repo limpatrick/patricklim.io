@@ -29,7 +29,7 @@ const NotFound = () => {
             {formatMessage({ id: 'not-found.subtitle' })}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid className={classes.buttonWrapper} item xs={12}>
           <Button
             aria-label={formatMessage({ id: 'global.aria-label.back' })}
             href={getPath(locale, '/')}
