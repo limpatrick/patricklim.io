@@ -32,7 +32,7 @@ const Contact = () => {
   );
 
   return (
-    <Container className={classes.root}>
+    <Container className={classes.root} gutterBottom>
       <Card title={formatMessage({ id: 'contact.title' })}>
         <Typography className={classes.intro}>{formatMessage({ id: 'contact.intro' })}</Typography>
         <Formik

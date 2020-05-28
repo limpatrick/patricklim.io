@@ -1,12 +1,17 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
+const spacing = 12;
+
 export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      '& > .MuiPaper-root': {
-        marginTop: theme.spacing(12),
-        marginBottom: theme.spacing(12),
+      '&:not(:last-child)': {
+        marginTop: theme.spacing(spacing),
+        marginBottom: theme.spacing(spacing),
       },
+    },
+    gutterBottom: {
+      marginBottom: theme.spacing(spacing / 2),
     },
   })
 );

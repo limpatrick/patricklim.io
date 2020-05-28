@@ -9,6 +9,7 @@ export default makeStyles((theme: Theme) =>
     },
     intro: {
       marginBottom: theme.spacing(4),
+      marginTop: theme.spacing(2),
     },
     mail: {},
     form: {
