@@ -21,9 +21,11 @@ export const wrapPageElement = ({
    */
   <IntlProvider locale={intl.language} defaultLocale={intl.defaultLocale} messages={intl.messages}>
     <IntlContextProvider value={intl}>
-      <Header path={intl.originalPath} />
-      <main>{element}</main>
-      <Footer />
+      <SnackbarProvider>
+        <Header path={intl.originalPath} />
+        <main>{element}</main>
+        <Footer />
+      </SnackbarProvider>
     </IntlContextProvider>
   </IntlProvider>
 );
@@ -33,7 +35,7 @@ export const wrapRootElement = ({ element }) => (
     {([{ theme }]) => (
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <SnackbarProvider>{element}</SnackbarProvider>
+        {element}
       </ThemeProvider>
     )}
   </ConfigProvider>
