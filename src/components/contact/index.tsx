@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
-import { useIntl } from 'gatsby-plugin-intl';
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { SnackbarAction, useSnackbar } from 'notistack';
 import React from 'react';
 import * as Yup from 'yup';
@@ -51,7 +51,7 @@ const Contact = () => {
           onSubmit={(values, { setSubmitting, resetForm }) => {
             // TODO
             setTimeout(() => {
-              enqueueSnackbar(formatMessage({ id: 'contact.success-msg' }), {
+              enqueueSnackbar(<FormattedMessage id="contact.success-msg" />, {
                 anchorOrigin: {
                   vertical: 'top',
                   horizontal: 'center',
@@ -61,7 +61,7 @@ const Contact = () => {
 
               enqueueSnackbar(
                 <Typography variant="body2">
-                  {formatMessage({ id: 'contact.error-msg' }, { email: <MailTo /> })}.
+                  <FormattedMessage id="contact.error-msg" values={{ email: <MailTo /> }} />
                 </Typography>,
                 {
                   anchorOrigin: {
