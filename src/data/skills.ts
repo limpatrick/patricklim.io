@@ -1,17 +1,21 @@
 import React from 'react';
 import antdesignIcon from '@iconify/icons-ant-design/ant-design';
+import lessIcon from '@iconify/icons-cib/less';
+import sassIcon from '@iconify/icons-cib/sass-alt';
 import nodejsIcon from '@iconify/icons-fa-brands/node';
 import bootstrapActiveIcon from '@iconify/icons-logos/bootstrap';
 import dockerActiveIcon from '@iconify/icons-logos/docker-icon';
 import gatsbyActiveIcon from '@iconify/icons-logos/gatsby';
 import graphqlActiveIcon from '@iconify/icons-logos/graphql';
 import javascriptActiveIcon from '@iconify/icons-logos/javascript';
+import lessActiveIcon from '@iconify/icons-logos/less';
 import materialuiActiveIcon from '@iconify/icons-logos/material-ui';
 import mysqlActiveIcon from '@iconify/icons-logos/mysql';
 import nodejsActiveIcon from '@iconify/icons-logos/nodejs';
 import postgresqlActiveIcon from '@iconify/icons-logos/postgresql';
 import reactActiveIcon from '@iconify/icons-logos/react';
 import reduxActiveIcon from '@iconify/icons-logos/redux';
+import sassActiveIcon from '@iconify/icons-logos/sass';
 import typescriptActiveIcon from '@iconify/icons-logos/typescript-icon';
 import webpackActiveIcon from '@iconify/icons-logos/webpack';
 import bootstrapIcon from '@iconify/icons-simple-icons/bootstrap';
@@ -102,6 +106,16 @@ export const skills: Skill[] = [
     name: 'MySQL',
     default: { icon: mysqlIcon, height: '2rem' },
     active: { icon: mysqlActiveIcon, height: '2rem' },
+  },
+  {
+    name: 'Less',
+    default: { icon: lessIcon, height: '2rem' },
+    active: { icon: lessActiveIcon, height: '2rem' },
+  },
+  {
+    name: 'Sass',
+    default: { icon: sassIcon, height: '2rem' },
+    active: { icon: sassActiveIcon, height: '2rem' },
   },
   {
     name: 'Docker',

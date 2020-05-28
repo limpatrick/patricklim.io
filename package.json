@@ -4,6 +4,7 @@
   "version": "2.0.0",
   "dependencies": {
     "@iconify/icons-ant-design": "^1.0.8",
+    "@iconify/icons-cib": "^1.0.3",
     "@iconify/icons-fa-brands": "^1.0.12",
     "@iconify/icons-logos": "^1.0.11",
     "@iconify/icons-simple-icons": "^1.0.32",
