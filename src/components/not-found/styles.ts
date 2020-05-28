@@ -2,6 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   grid: {
-    minHeight: 'calc(100vh - 95px)',
+    minHeight: 'calc(100vh - 127px)',
   },
 });
