@@ -1,6 +1,6 @@
+import MuiContainer from '@material-ui/core/Container';
 import clsx from 'clsx';
 import React from 'react';
-import MuiContainer from '@material-ui/core/Container';
 import useStyles from './styles';
 
 type Props = {
@@ -17,7 +17,8 @@ const Container = ({ children, className, gutterBottom, id }: Props) => {
     <MuiContainer
       id={id}
       className={clsx(classes.root, className, { [classes.gutterBottom]: gutterBottom === true })}
-      maxWidth="lg">
+      maxWidth="lg"
+    >
       {children}
     </MuiContainer>
   );

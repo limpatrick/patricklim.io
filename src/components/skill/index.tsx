@@ -1,11 +1,11 @@
-import Img from 'gatsby-image';
-import React from 'react';
-import { IconType } from '~/data/skills';
 import { GetImagesQuery } from '@generated/graphql-types';
 import { Icon } from '@iconify/react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Img from 'gatsby-image';
+import React from 'react';
+import { IconType } from '~/data/skills';
 import useStyles from './styles';
 
 type Props = { name: string } & Partial<IconType> & {
@@ -23,7 +23,8 @@ const Skill = ({ name, icon, height, width, src }: Props) => {
       container
       direction="column"
       justify="space-between"
-      alignItems="center">
+      alignItems="center"
+    >
       <Box p={1}>
         <Grid className={classes.iconWrapper} container justify="center" alignItems="center" item>
           {icon !== undefined ? (

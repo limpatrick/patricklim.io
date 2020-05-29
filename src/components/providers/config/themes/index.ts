@@ -5,8 +5,8 @@ import light from './light';
 export type ThemeKey = 'light' | 'dark';
 
 const themeMap: Record<ThemeKey, Theme> = {
-  light: light,
-  dark: dark,
+  light,
+  dark,
 };
 
 export { light, dark, themeMap };

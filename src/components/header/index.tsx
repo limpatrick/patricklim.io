@@ -1,9 +1,3 @@
-import { useIntl } from 'gatsby-plugin-intl';
-import React from 'react';
-import ButtonLink from '~/components/button-link';
-import ToggleTheme from '~/components/toggle-theme';
-import { BACK_TOP_ANCHOR_ID } from '~/constants';
-import useScrollTo from '~/hooks/use-scroll-to';
 import AppBar from '@material-ui/core/AppBar';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
@@ -11,6 +5,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Zoom from '@material-ui/core/Zoom';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { useIntl } from 'gatsby-plugin-intl';
+import React from 'react';
+import ButtonLink from '~/components/button-link';
+import ToggleTheme from '~/components/toggle-theme';
+import { BACK_TOP_ANCHOR_ID } from '~/constants';
+import useScrollTo from '~/hooks/use-scroll-to';
 import useStyles from './styles';
 
 type Props = { path: string };
@@ -54,7 +54,8 @@ const Header = ({ path }: Props) => {
           <Fab
             color="primary"
             size="small"
-            aria-label={formatMessage({ id: 'global.aria-label.back-top' })}>
+            aria-label={formatMessage({ id: 'global.aria-label.back-top' })}
+          >
             <KeyboardArrowUpIcon />
           </Fab>
         </div>

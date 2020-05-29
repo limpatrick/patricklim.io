@@ -1,3 +1,7 @@
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
@@ -9,10 +13,6 @@ import MailTo from '~/components/mail-to';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
 import { showError } from '~/utils/formik';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 
 const Contact = () => {
@@ -26,7 +26,8 @@ const Contact = () => {
       color="inherit"
       onClick={() => {
         closeSnackbar(key);
-      }}>
+      }}
+    >
       {formatMessage({ id: 'global.btn.close' })}
     </Button>
   );
@@ -76,9 +77,11 @@ const Contact = () => {
 
               setSubmitting(false);
               resetForm();
+              // eslint-disable-next-line no-console
               console.log(JSON.stringify(values, null, 2));
             }, 500);
-          }}>
+          }}
+        >
           {({ submitForm, isSubmitting, touched, errors }) => {
             const fullHeight =
               showError(touched, errors, 'name') || showError(touched, errors, 'email');
@@ -123,7 +126,8 @@ const Contact = () => {
                       color="primary"
                       variant="contained"
                       disabled={isSubmitting}
-                      onClick={submitForm}>
+                      onClick={submitForm}
+                    >
                       {formatMessage({ id: 'global.btn.send' })}
                     </Button>
                   </Grid>

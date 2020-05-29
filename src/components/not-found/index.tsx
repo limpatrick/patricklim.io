@@ -1,10 +1,10 @@
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import Container from '~/layouts/container';
 import { getPath } from '~/utils/intl';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 
 const NotFound = () => {
@@ -18,7 +18,8 @@ const NotFound = () => {
         container
         direction="column"
         justify="center"
-        alignItems="center">
+        alignItems="center"
+      >
         <Grid item xs={12}>
           <Typography component="h1" variant="h3" gutterBottom>
             {formatMessage({ id: 'not-found.title' })}
@@ -33,7 +34,8 @@ const NotFound = () => {
           <Button
             aria-label={formatMessage({ id: 'global.aria-label.back' })}
             href={getPath(locale, '/')}
-            color="primary">
+            color="primary"
+          >
             {formatMessage({ id: 'global.btn.back' })}
           </Button>
         </Grid>

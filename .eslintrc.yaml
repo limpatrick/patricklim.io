@@ -9,7 +9,9 @@ extends:
   - airbnb/hooks
   - plugin:@typescript-eslint/eslint-recommended
   - plugin:@typescript-eslint/recommended
+  - prettier
   - prettier/@typescript-eslint
+  - prettier/react
 
 settings:
   react:
@@ -34,8 +36,6 @@ parserOptions:
   sourceType: module
 
 rules:
-  react/prop-types: off
-  '@typescript-eslint/explicit-function-return-type': off
   import/extensions:
     - error
     - ignorePackages
@@ -45,6 +45,10 @@ rules:
       ts: never
       tsx: never
       mjs: never
+  '@typescript-eslint/explicit-function-return-type': off
+  import/prefer-default-export: off
+  react/prop-types: off
+  react/jsx-props-no-spreading: off
 
 overrides:
   - files:

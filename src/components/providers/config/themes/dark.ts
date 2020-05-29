@@ -1,9 +1,9 @@
-import { mergeDeepRight } from 'ramda';
 import { createMuiTheme, darken, lighten, ThemeOptions } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import teal from '@material-ui/core/colors/teal';
 import muiTransitions from '@material-ui/core/styles/transitions';
+import { mergeDeepRight } from 'ramda';
 import base, { transitions } from './base';
 
 const backgroundColor = grey['900'];
@@ -21,10 +21,10 @@ export default createMuiTheme(
         main: grey['300'],
       },
       error: {
-        main: red['A100'],
+        main: red.A100,
       },
       success: {
-        main: teal['A400'],
+        main: teal.A400,
       },
     },
     overrides: {
