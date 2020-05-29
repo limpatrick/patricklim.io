@@ -2,6 +2,7 @@ import { mergeDeepRight } from 'ramda';
 import { createMuiTheme, ThemeOptions } from '@material-ui/core';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import green from '@material-ui/core/colors/green';
+import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import base from './base';
 
@@ -26,6 +27,11 @@ export default createMuiTheme(
           '::selection': {
             background: blueGrey['A100'],
           },
+        },
+      },
+      MuiCardHeader: {
+        root: {
+          backgroundColor: grey['50'],
         },
       },
       MuiOutlinedInput: {
