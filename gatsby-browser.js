@@ -40,3 +40,11 @@ export const wrapRootElement = ({ element }) => (
     )}
   </ConfigProvider>
 );
+
+export const shouldUpdateScroll = ({ prevRouterProps: { location }, getSavedScrollPosition }) => {
+  const currentPosition = getSavedScrollPosition(location);
+
+  window.scrollTo(...(currentPosition || [0, 0]));
+
+  return false;
+};

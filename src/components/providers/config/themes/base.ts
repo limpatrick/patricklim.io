@@ -1,4 +1,9 @@
-import { duration, easing, ThemeOptions } from '@material-ui/core';
+import { duration, ThemeOptions } from '@material-ui/core';
+import muiTransitions from '@material-ui/core/styles/transitions';
+
+export const transitions = {
+  backgroundColor: muiTransitions.create('background-color', { duration: duration.complex }),
+};
 
 export default {
   typography: {
@@ -9,9 +14,14 @@ export default {
       '@global': {
         body: {
           '&, & *': {
-            transition: `background-color ${duration.complex / 1000}s ${easing.sharp}`,
+            transition: transitions.backgroundColor,
           },
         },
+      },
+    },
+    MuiPaper: {
+      root: {
+        transition: [muiTransitions.create('box-shadow'), transitions.backgroundColor].join(', '),
       },
     },
   },

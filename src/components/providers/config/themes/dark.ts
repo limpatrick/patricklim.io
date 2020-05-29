@@ -3,7 +3,10 @@ import { createMuiTheme, darken, lighten, ThemeOptions } from '@material-ui/core
 import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import teal from '@material-ui/core/colors/teal';
-import base from './base';
+import muiTransitions from '@material-ui/core/styles/transitions';
+import base, { transitions } from './base';
+
+const backgroundColor = grey['900'];
 
 export default createMuiTheme(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,8 +14,8 @@ export default createMuiTheme(
     palette: {
       type: 'dark',
       background: {
-        default: grey['900'],
-        paper: darken(grey['900'], 0.05),
+        default: backgroundColor,
+        paper: darken(backgroundColor, 0.05),
       },
       primary: {
         main: grey['300'],
@@ -32,10 +35,18 @@ export default createMuiTheme(
           },
         },
       },
+      MuiAppBar: {
+        root: {
+          transition: [muiTransitions.create('box-shadow'), transitions.backgroundColor].join(', '),
+          '&$colorPrimary': {
+            backgroundColor,
+          },
+        },
+      },
       MuiOutlinedInput: {
         root: {
           '&:hover $notchedOutline': {
-            borderColor: lighten(grey['900'], 0.5),
+            borderColor: lighten(backgroundColor, 0.5),
           },
         },
       },
