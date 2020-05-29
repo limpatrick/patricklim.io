@@ -15,7 +15,7 @@ import reducer, { initialState } from './reducer';
 import useStyles from './styles';
 
 const Intro = () => {
-  const [{ text1, text2 }, dispatch] = useReducer(reducer, initialState);
+  const [{ text1, text2, text3 }, dispatch] = useReducer(reducer, initialState);
   const classes = useStyles();
   const { scrollTo } = useScrollTo(SKILL_SET_ID);
   const { formatMessage } = useIntl();
@@ -60,11 +60,15 @@ const Intro = () => {
           </Typography>
         </Grow>
       </Grid>
-      <Box className={classes.next}>
-        <IconButton aria-label={formatMessage({ id: 'global.aria-label.next' })} onClick={scrollTo}>
-          <ExpandMoreIcon />
-        </IconButton>
-      </Box>
+      <Slide direction="down" in={text3} timeout={{ enter: duration.complex }}>
+        <Box className={classes.next}>
+          <IconButton
+            aria-label={formatMessage({ id: 'global.aria-label.next' })}
+            onClick={scrollTo}>
+            <ExpandMoreIcon />
+          </IconButton>
+        </Box>
+      </Slide>
     </Grid>
   );
 };

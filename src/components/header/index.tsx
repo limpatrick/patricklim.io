@@ -35,7 +35,7 @@ const Header = ({ path }: Props) => {
 
   return (
     <>
-      <AppBar id={BACK_TOP_ANCHOR_ID} color="transparent" position="static" elevation={0}>
+      <AppBar elevation={trigger ? 4 : 0}>
         <Toolbar>
           <Grid className={classes.actions} container justify="flex-end" alignItems="center">
             <Grid className={classes.links} item>
@@ -48,6 +48,7 @@ const Header = ({ path }: Props) => {
           </Grid>
         </Toolbar>
       </AppBar>
+      <Toolbar id={BACK_TOP_ANCHOR_ID} />
       <Zoom in={trigger}>
         <div className={classes.scrollButton} onClick={scrollTo} role="presentation">
           <Fab

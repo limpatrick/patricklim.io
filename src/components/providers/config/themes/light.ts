@@ -4,7 +4,10 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 import green from '@material-ui/core/colors/green';
 import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
-import base from './base';
+import muiTransitions from '@material-ui/core/styles/transitions';
+import base, { transitions } from './base';
+
+const backgroundColor = '#fff';
 
 export default createMuiTheme(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -12,7 +15,7 @@ export default createMuiTheme(
     palette: {
       primary: blueGrey,
       background: {
-        default: '#fff',
+        default: backgroundColor,
       },
       error: {
         main: red['400'],
@@ -26,6 +29,14 @@ export default createMuiTheme(
         '@global': {
           '::selection': {
             background: blueGrey['A100'],
+          },
+        },
+      },
+      MuiAppBar: {
+        root: {
+          transition: [muiTransitions.create('box-shadow'), transitions.backgroundColor].join(', '),
+          '&$colorPrimary': {
+            backgroundColor,
           },
         },
       },

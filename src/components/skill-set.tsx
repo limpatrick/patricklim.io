@@ -32,21 +32,24 @@ const SkillSet = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <Container id={SKILL_SET_ID}>
-      <Card title={formatMessage({ id: 'skill-set.title' })}>
-        <Grid container justify="flex-start" alignItems="center">
-          {map(({ name, active }) => {
-            const args = getIconOrSrc(active, data);
+    <>
+      <div id={SKILL_SET_ID} />
+      <Container>
+        <Card title={formatMessage({ id: 'skill-set.title' })}>
+          <Grid container justify="flex-start" alignItems="center">
+            {map(({ name, active }) => {
+              const args = getIconOrSrc(active, data);
 
-            return !propIsNil('icon', args) || !propIsNil('src', args) ? (
-              <Grid key={name} item xs={4} sm={3} md={2}>
-                <Skill name={name} {...args} />
-              </Grid>
-            ) : null;
-          }, skills)}
-        </Grid>
-      </Card>
-    </Container>
+              return !propIsNil('icon', args) || !propIsNil('src', args) ? (
+                <Grid key={name} item xs={4} sm={3} md={2}>
+                  <Skill name={name} {...args} />
+                </Grid>
+              ) : null;
+            }, skills)}
+          </Grid>
+        </Card>
+      </Container>
+    </>
   );
 };
 
