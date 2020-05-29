@@ -14,7 +14,8 @@ const SnackbarProvider = ({ children }: Props) => {
         variantError: classes.error,
         variantInfo: classes.info,
         variantWarning: classes.warning,
-      }}>
+      }}
+    >
       {children}
     </NotistackProvider>
   );

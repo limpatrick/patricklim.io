@@ -1,3 +1,5 @@
+import { GetImagesQuery } from '@generated/graphql-types';
+import Grid from '@material-ui/core/Grid';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
 import { map } from 'ramda';
@@ -9,8 +11,6 @@ import Card from '~/layouts/card';
 import Container from '~/layouts/container';
 import { propIsNil } from '~/utils/ramda';
 import { getIconOrSrc } from '~/utils/skills';
-import { GetImagesQuery } from '@generated/graphql-types';
-import Grid from '@material-ui/core/Grid';
 
 export const query = graphql`
   query GetImages {

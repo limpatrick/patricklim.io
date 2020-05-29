@@ -1,10 +1,10 @@
-import { mergeDeepRight } from 'ramda';
 import { createMuiTheme, ThemeOptions } from '@material-ui/core';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import green from '@material-ui/core/colors/green';
 import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import muiTransitions from '@material-ui/core/styles/transitions';
+import { mergeDeepRight } from 'ramda';
 import base, { transitions } from './base';
 
 const backgroundColor = '#fff';
@@ -28,7 +28,7 @@ export default createMuiTheme(
       MuiCssBaseline: {
         '@global': {
           '::selection': {
-            background: blueGrey['A100'],
+            background: blueGrey.A100,
           },
         },
       },
@@ -48,7 +48,7 @@ export default createMuiTheme(
       MuiOutlinedInput: {
         root: {
           '&:hover $notchedOutline': {
-            borderColor: blueGrey['A200'],
+            borderColor: blueGrey.A200,
           },
         },
       },

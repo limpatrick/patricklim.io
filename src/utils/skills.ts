@@ -1,6 +1,6 @@
+import { GetImagesQuery } from '@generated/graphql-types';
 import { find, path, pathEq, pathOr, pipe } from 'ramda';
 import { IconType, ImgType } from '~/data/skills';
-import { GetImagesQuery } from '@generated/graphql-types';
 
 export const isIconType = (icon: IconType | ImgType): icon is IconType =>
   (icon as IconType).icon !== undefined;
@@ -26,5 +26,5 @@ export const getFixed = (
 export const getIconOrSrc = (
   elem: IconType | ImgType,
   data: GetImagesQuery
-): IconType | { src: ReturnType<typeof getFixed> } =>
+): Partial<IconType> & { src?: ReturnType<typeof getFixed> } =>
   isIconType(elem) ? elem : { src: getFixed(elem.filename, data) };

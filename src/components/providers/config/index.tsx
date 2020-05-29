@@ -1,8 +1,9 @@
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import { getItem, THEME_KEY } from '~/utils/storage';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { setTheme } from './actions';
 import reducer, { initialState } from './reducer';
+import { ThemeKey } from './themes';
 import { Dispatch, State } from './types';
 
 const ConfigStateContext = createContext<State | undefined>(undefined);
@@ -16,15 +17,14 @@ const ConfigProvider = ({ children }: Props) => {
 
   useEffect(() => {
     const storedThemeKey = getItem(THEME_KEY);
-    const themeKey =
-      storedThemeKey !== null && (storedThemeKey === 'light' || storedThemeKey === 'dark')
-        ? storedThemeKey
-        : prefersDarkMode
-        ? 'dark'
-        : 'light';
+    let themeKey: ThemeKey;
+
+    if (storedThemeKey !== null && (storedThemeKey === 'light' || storedThemeKey === 'dark'))
+      themeKey = storedThemeKey;
+    else themeKey = prefersDarkMode ? 'dark' : 'light';
 
     if (themeKey !== state.themeKey) dispatch(setTheme(themeKey));
-  }, [prefersDarkMode]);
+  }, [prefersDarkMode, state.themeKey]);
 
   return (
     <ConfigStateContext.Provider value={state}>
