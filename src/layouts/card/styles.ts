@@ -12,7 +12,7 @@ export default makeStyles((theme: Theme) =>
         '& .MuiCardHeader-title': {
           fontSize: '2.5rem',
           textAlign: 'center',
-          fontWeight: 300,
+          fontWeight: 500,
         },
       },
     },

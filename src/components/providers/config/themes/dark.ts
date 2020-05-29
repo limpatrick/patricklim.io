@@ -1,5 +1,6 @@
 import { mergeDeepRight } from 'ramda';
-import { createMuiTheme, ThemeOptions } from '@material-ui/core';
+import { createMuiTheme, darken, lighten, ThemeOptions } from '@material-ui/core';
+import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import teal from '@material-ui/core/colors/teal';
 import base from './base';
@@ -10,11 +11,11 @@ export default createMuiTheme(
     palette: {
       type: 'dark',
       background: {
-        default: '#212121',
-        paper: '#242424',
+        default: grey['900'],
+        paper: darken(grey['900'], 0.05),
       },
       primary: {
-        main: '#e0e0e0',
+        main: grey['300'],
       },
       error: {
         main: red['A100'],
@@ -27,20 +28,20 @@ export default createMuiTheme(
       MuiCssBaseline: {
         '@global': {
           '::selection': {
-            background: '#eeeeee',
+            background: grey['200'],
           },
         },
       },
       MuiOutlinedInput: {
         root: {
           '&:hover $notchedOutline': {
-            borderColor: '#8d8d8d',
+            borderColor: lighten(grey['900'], 0.5),
           },
         },
       },
       MuiTypography: {
         colorPrimary: {
-          color: '#bdbdbd',
+          color: grey['400'],
         },
       },
     },
