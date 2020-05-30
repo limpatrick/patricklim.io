@@ -8,6 +8,7 @@ import { mergeDeepRight } from 'ramda';
 import base, { transitions } from './base';
 
 const backgroundColor = '#fff';
+const nprogressColor = red['600'];
 
 export default createMuiTheme(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,6 +30,20 @@ export default createMuiTheme(
         '@global': {
           '::selection': {
             background: blueGrey.A100,
+          },
+          body: {
+            '& #nprogress': {
+              '& .bar': {
+                backgroundColor: nprogressColor,
+              },
+              '& .peg': {
+                boxShadow: `0 0 10px ${nprogressColor}, 0 0 5px ${nprogressColor}`,
+              },
+              '& .spinner-icon': {
+                borderTopColor: nprogressColor,
+                borderLeftColor: nprogressColor,
+              },
+            },
           },
         },
       },

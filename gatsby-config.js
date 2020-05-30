@@ -79,5 +79,6 @@ module.exports = {
         redirect: true,
       },
     },
+    `nprogress`,
   ],
 };
