@@ -3,7 +3,7 @@ import MoonIcon from '@material-ui/icons/Brightness2Sharp';
 import SunIcon from '@material-ui/icons/WbSunnyRounded';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
-import { toggleTheme, useConfig } from '~/components/providers/config';
+import { toggleTheme, useConfig } from '~/providers/config';
 import useStyles from './styles';
 
 const ToggleTheme = () => {
