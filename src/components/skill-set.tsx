@@ -7,10 +7,10 @@ import React from 'react';
 import Skill from '~/components/skill';
 import { SKILL_SET_ID } from '~/constants';
 import { skills } from '~/data/skills';
+import { propIsNil } from '~/helpers/ramda';
+import { getIconOrSrc } from '~/helpers/skills';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
-import { propIsNil } from '~/utils/ramda';
-import { getIconOrSrc } from '~/utils/skills';
 
 export const query = graphql`
   query GetImages {

@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
+import { getPath } from '~/helpers/intl';
 import Container from '~/layouts/container';
-import { getPath } from '~/utils/intl';
 import useStyles from './styles';
 
 const NotFound = () => {

@@ -2,7 +2,7 @@ import { GatsbyLinkProps, Link as GatsbyLink } from 'gatsby';
 import { IntlContextConsumer } from 'gatsby-plugin-intl';
 import React from 'react';
 import { IntlConfig } from 'react-intl';
-import { getPath } from '~/utils/intl';
+import { getPath } from '~/helpers/intl';
 
 type Intl = {
   defaultLanguage: string;
