@@ -5,7 +5,7 @@ import { IntlContextProvider, IntlProvider } from 'gatsby-plugin-intl';
 import React from 'react';
 import Footer from '~/components/footer';
 import Header from '~/components/header';
-import SnackbarProvider from '~/components/providers/snackbar';
+import SnackbarProvider from '~/providers/snackbar';
 import { IntlProps } from '~/typings/gatsby-plugin-intl';
 
 type Props = { children: React.ReactNode } & { intl: IntlProps };
