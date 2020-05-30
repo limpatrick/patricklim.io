@@ -8,7 +8,7 @@ import { mergeDeepRight } from 'ramda';
 import base, { transitions } from './base';
 
 const backgroundColor = '#fff';
-const nprogressColor = red['600'];
+const nprogressColor = blueGrey['700'];
 
 export default createMuiTheme(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
