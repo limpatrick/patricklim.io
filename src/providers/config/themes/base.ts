@@ -1,5 +1,6 @@
 import { duration, ThemeOptions } from '@material-ui/core';
 import muiTransitions from '@material-ui/core/styles/transitions';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 export const transitions = {
   backgroundColor: muiTransitions.create('background-color', { duration: duration.complex }),
@@ -13,8 +14,13 @@ export default {
     MuiCssBaseline: {
       '@global': {
         body: {
-          '&, & *': {
+          '&, *': {
             transition: transitions.backgroundColor,
+          },
+          '& #nprogress': {
+            '& .bar, .spinner': {
+              zIndex: zIndex.appBar + 1,
+            },
           },
         },
       },
