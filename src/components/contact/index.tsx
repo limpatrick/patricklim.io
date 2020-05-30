@@ -10,9 +10,9 @@ import { SnackbarAction, useSnackbar } from 'notistack';
 import React from 'react';
 import * as Yup from 'yup';
 import MailTo from '~/components/mail-to';
+import { showError } from '~/helpers/formik';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
-import { showError } from '~/utils/formik';
 import useStyles from './styles';
 
 const Contact = () => {

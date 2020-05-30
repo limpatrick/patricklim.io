@@ -1,6 +1,6 @@
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { getItem, THEME_KEY } from '~/utils/storage';
+import { getItem, THEME_KEY } from '~/helpers/storage';
 import { setTheme } from './actions';
 import reducer, { initialState } from './reducer';
 import { ThemeKey } from './themes';
