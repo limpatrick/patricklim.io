@@ -58,6 +58,8 @@ const Contact = () => {
                   horizontal: 'center',
                 },
                 variant: 'success',
+                preventDuplicate: true,
+                persist: true,
               });
 
               enqueueSnackbar(
@@ -71,6 +73,7 @@ const Contact = () => {
                   },
                   action,
                   persist: true,
+                  preventDuplicate: true,
                   variant: 'error',
                 }
               );
