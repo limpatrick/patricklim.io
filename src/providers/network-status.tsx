@@ -7,7 +7,9 @@ const NetworkStatusContext = createContext<State | undefined>(undefined);
 type Props = { children: React.ReactNode };
 
 const NetworkStatusProvider = ({ children }: Props) => {
-  const [online, setOnline] = useState<State>(navigator.onLine);
+  const [online, setOnline] = useState<State>(
+    typeof navigator !== 'undefined' ? navigator.onLine : true // force to true for ssr
+  );
 
   const handleNetworkChange = () => {
     setOnline(navigator.onLine);
