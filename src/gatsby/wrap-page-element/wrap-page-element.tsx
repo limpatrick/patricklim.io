@@ -5,6 +5,7 @@ import { IntlContextProvider, IntlProvider } from 'gatsby-plugin-intl';
 import React from 'react';
 import Footer from '~/components/footer';
 import Header from '~/components/header';
+import NetworkAlert from '~/components/network-alert';
 import SnackbarProvider from '~/providers/snackbar';
 import { IntlProps } from '~/typings/gatsby-plugin-intl';
 
@@ -21,6 +22,7 @@ const WrapPageElement = ({ children, intl }: Props) => (
   >
     <IntlContextProvider value={intl}>
       <SnackbarProvider>
+        <NetworkAlert />
         <Header path={intl.originalPath} />
         <main>{children}</main>
         <Footer />

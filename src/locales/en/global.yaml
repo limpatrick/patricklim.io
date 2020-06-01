@@ -12,3 +12,5 @@ btn:
   back: Go back
   close: Close
   send: Send
+
+no-network: No network connection
