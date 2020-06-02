@@ -11,7 +11,7 @@ const WrapRootElement = ({ children }: Props) => (
     {([{ theme }]) => (
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <NetworkStatusProvider> {children}</NetworkStatusProvider>
+        <NetworkStatusProvider>{children}</NetworkStatusProvider>
       </ThemeProvider>
     )}
   </ConfigProvider>
