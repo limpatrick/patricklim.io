@@ -19,6 +19,6 @@ export default function reducer(state: State, action: Action): State {
       return { ...state, theme: themeMap[themeKey], themeKey };
     }
     default:
-      throw new Error(`Unhandled action type: ${(action as Action).type}`);
+      throw new Error(`Unhandled config's action`);
   }
 }
