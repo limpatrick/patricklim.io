@@ -6,7 +6,8 @@ export const THEME_KEY = 'theme';
 export type Key = typeof THEME_KEY;
 
 export const PREFIX = 'pl';
-export const key = (k: Key) => `${PREFIX}_${k}`;
+export const SEPARATOR = '-';
+export const key = (k: Key) => `${PREFIX}${SEPARATOR}${k}`;
 
 export const getItem = (k: Key) => get(key(k));
 export const removeItem = (k: Key, o?: CookieAttributes) => remove(key(k), o);
