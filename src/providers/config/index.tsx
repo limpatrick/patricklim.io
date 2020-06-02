@@ -1,36 +1,55 @@
+import { Theme } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { getItem, THEME_KEY } from '~/helpers/storage';
-import { setTheme } from './actions';
-import reducer, { initialState } from './reducer';
-import { ThemeKey } from './themes';
-import { Dispatch, State } from './types';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { getItem, setItem, THEME_KEY } from '~/helpers/storage';
+import { ThemeKey, themeMap } from './themes';
+
+type State = { theme: Theme; themeKey: ThemeKey };
+type Actions = {
+  setTheme: (theme: ThemeKey) => void;
+  toggleTheme: () => void;
+};
+type Props = { children: React.ReactNode | ((e: [State, Actions]) => React.ReactNode) };
 
 const ConfigStateContext = createContext<State | undefined>(undefined);
-const ConfigDispatchContext = createContext<Dispatch | undefined>(undefined);
+const ConfigActionsContext = createContext<Actions | undefined>(undefined);
 
-type Props = { children: React.ReactNode | ((e: [State, Dispatch]) => React.ReactNode) };
+const initialState: State = { theme: themeMap.light, themeKey: 'light' };
 
 const ConfigProvider = ({ children }: Props) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, setState] = useState(initialState);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const { themeKey } = state;
+
+  const setTheme: Actions['setTheme'] = useCallback(key => {
+    setState({ theme: themeMap[key], themeKey: key });
+  }, []);
+
+  const toggleTheme: Actions['toggleTheme'] = useCallback(() => {
+    const key = themeKey === 'light' ? 'dark' : 'light';
+
+    setItem(THEME_KEY, key);
+    setTheme(key);
+  }, [setTheme, themeKey]);
+
+  const actions = { setTheme, toggleTheme };
 
   useEffect(() => {
     const storedThemeKey = getItem(THEME_KEY);
-    let themeKey: ThemeKey;
+    let key: ThemeKey;
 
     if (storedThemeKey !== null && (storedThemeKey === 'light' || storedThemeKey === 'dark'))
-      themeKey = storedThemeKey;
-    else themeKey = prefersDarkMode ? 'dark' : 'light';
+      key = storedThemeKey;
+    else key = prefersDarkMode ? 'dark' : 'light';
 
-    if (themeKey !== state.themeKey) dispatch(setTheme(themeKey));
-  }, [prefersDarkMode, state.themeKey]);
+    if (key !== themeKey) setTheme(key);
+  }, [prefersDarkMode, setTheme, themeKey]);
 
   return (
     <ConfigStateContext.Provider value={state}>
-      <ConfigDispatchContext.Provider value={dispatch}>
-        {typeof children === 'function' ? children([state, dispatch]) : children}
-      </ConfigDispatchContext.Provider>
+      <ConfigActionsContext.Provider value={actions}>
+        {typeof children === 'function' ? children([state, actions]) : children}
+      </ConfigActionsContext.Provider>
     </ConfigStateContext.Provider>
   );
 };
@@ -43,8 +62,8 @@ const useConfigState = () => {
   return context;
 };
 
-const useConfigDispatch = () => {
-  const context = useContext(ConfigDispatchContext);
+const useConfigActions = () => {
+  const context = useContext(ConfigActionsContext);
 
   if (context === undefined)
     throw new Error('useConfigDispatch must be used within a ConfigProvider');
@@ -52,7 +71,6 @@ const useConfigDispatch = () => {
   return context;
 };
 
-const useConfig = (): [State, Dispatch] => [useConfigState(), useConfigDispatch()];
+const useConfig = (): [State, Actions] => [useConfigState(), useConfigActions()];
 
-export { useConfig, ConfigProvider, useConfigDispatch, useConfigState };
-export * from './actions';
+export { useConfig, ConfigProvider, useConfigActions, useConfigState };
