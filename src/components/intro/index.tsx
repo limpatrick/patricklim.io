@@ -61,7 +61,7 @@ const Intro = () => {
             component="p"
             gutterBottom
           >
-            full stack javascript developer
+            {formatMessage({ id: 'home.subtitle' })}
           </Typography>
         </Grow>
       </Grid>
