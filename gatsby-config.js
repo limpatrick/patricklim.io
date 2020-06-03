@@ -3,11 +3,11 @@ const localesPath = `${__dirname}/generated/locales`;
 
 module.exports = {
   siteMetadata: {
-    title: `Patrick Lim - Full stack developer`,
-    description: `Full stack developer on React and Node.js`,
     author: `Patrick Lim`,
     email: `contact@patricklim.fr`,
     emailSubject: `patricklim.fr`,
+    siteURL: `https://patricklim.fr`,
+    siteName: `patricklim.fr`,
   },
   plugins: [
     `gatsby-plugin-material-ui`,
