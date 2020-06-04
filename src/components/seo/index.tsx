@@ -5,18 +5,12 @@ import { map, toPairs } from 'ramda';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { getLocaleCodes, LocaleCode } from '~/helpers/intl';
+import useSiteMetadata from '~/hooks/use-site-metadata';
 import useSiteURL from '~/hooks/use-site-url';
 import SchemaOrg from './schema-org';
 
 export const query = graphql`
   query Seo {
-    site {
-      siteMetadata {
-        author
-        siteURL
-        siteName
-      }
-    }
     file(relativePath: { eq: "screenshot.png" }) {
       childImageSharp {
         fixed(width: 1200) {
@@ -36,7 +30,6 @@ type Props = {
 
 const SEO = ({ description, keywords, path, title }: Props) => {
   const {
-    site: { siteMetadata },
     file: {
       childImageSharp: {
         fixed: { src: imageSrc },
@@ -45,8 +38,9 @@ const SEO = ({ description, keywords, path, title }: Props) => {
   } = useStaticQuery<SeoQuery>(query);
   const { locale, formatMessage } = useIntl();
   const { getUrl, getUrls } = useSiteURL();
+  const { author, siteName, siteURL } = useSiteMetadata();
 
-  const imageUrl = `${siteMetadata.siteURL}${imageSrc}`;
+  const imageUrl = `${siteURL}${imageSrc}`;
   const localeCodes = getLocaleCodes(locale as LocaleCode);
   const metaTitle = title ?? formatMessage({ id: 'home.pageTitle' });
   const metaDescription = description || formatMessage({ id: 'metadata.description' });
@@ -61,7 +55,7 @@ const SEO = ({ description, keywords, path, title }: Props) => {
 
         {/* General tags */}
         <title>{metaTitle}</title>
-        <meta name="author" content={siteMetadata.author} />
+        <meta name="author" content={author} />
         <meta name="description" content={metaDescription} />
         <meta name="image" content={imageUrl} />
         <link rel="canonical" href={canonicalUrl} />
@@ -78,7 +72,7 @@ const SEO = ({ description, keywords, path, title }: Props) => {
         <meta property="og:description" content={metaDescription} />
         <meta property="og:image" content={imageUrl} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={siteMetadata.siteURL} />
+        <meta property="og:url" content={siteURL} />
         <meta property="og:locale" content={localeCodes.current} />
         {map(
           alternate => (
@@ -89,18 +83,18 @@ const SEO = ({ description, keywords, path, title }: Props) => {
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:creator" content={siteMetadata.author} />
+        <meta name="twitter:creator" content={author} />
         <meta name="twitter:image" content={imageUrl} />
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={metaDescription} />
       </Helmet>
       <SchemaOrg
-        alternateName={siteMetadata.author}
+        alternateName={author}
         description={metaDescription}
         image={imageUrl}
         keywords={keywordsList}
-        name={siteMetadata.siteName}
-        url={siteMetadata.siteURL}
+        name={siteName}
+        url={siteURL}
       />
     </>
   );
