@@ -1,9 +1,9 @@
 import { IntlConfig, IntlFormatters } from 'gatsby-plugin-intl';
 import { filter, keys, map, omit, pipe, test, values } from 'ramda';
+import { LanguageCode } from '~/typings/global';
 
-export type LocaleCode = 'fr' | 'en';
-
-export const codesMap: Record<LocaleCode, string> = {
+export type CodeMap = Record<LanguageCode, string>;
+export const codesMap: CodeMap = {
   fr: 'fr_FR',
   en: 'en_US',
 };
@@ -12,10 +12,10 @@ export const localeCodes = keys(codesMap);
 
 export const getPath = (locale: string, to: string) => `/${locale}${to}`;
 
-export const getAlternateLocaleCodes = (code: LocaleCode): string[] =>
+export const getAlternateLocaleCodes = (code: LanguageCode): string[] =>
   pipe(omit([code]), values)(codesMap);
 
-export const getLocaleCodes = (code: LocaleCode) => ({
+export const getLocaleCodes = (code: LanguageCode) => ({
   alternates: getAlternateLocaleCodes(code),
   current: code === 'fr' ? codesMap.fr : codesMap.en,
 });

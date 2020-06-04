@@ -1,28 +1,28 @@
 import { useIntl } from 'gatsby-plugin-intl';
 import { assoc, reduce } from 'ramda';
 import { useCallback } from 'react';
-import { LocaleCode, localeCodes } from '~/helpers/intl';
-import useSiteMetadata from './use-site-metadata';
+import { SITE_URL } from '~/constants';
+import { localeCodes } from '~/helpers/intl';
+import { LanguageCode } from '~/typings/global';
 
 const useSiteURL = () => {
-  const { siteURL } = useSiteMetadata();
   const { locale } = useIntl();
 
-  const getUrl = useCallback((path: string, code: string = locale) => `${siteURL}/${code}${path}`, [
-    locale,
-    siteURL,
-  ]);
+  const getUrl = useCallback(
+    (path: string, code: string = locale) => `${SITE_URL}/${code}${path}`,
+    [locale]
+  );
   const getUrls = useCallback(
     (path: string) =>
       reduce(
         (acc, code) => assoc(code, getUrl(path, code), acc),
-        { 'x-default': `${siteURL}${path}` } as Record<LocaleCode | 'x-default', string>,
+        { 'x-default': `${SITE_URL}${path}` } as Record<LanguageCode | 'x-default', string>,
         localeCodes
       ),
-    [getUrl, siteURL]
+    [getUrl]
   );
 
-  return { siteURL, locale, getUrl, getUrls };
+  return { siteURL: SITE_URL, locale, getUrl, getUrls };
 };
 
 export default useSiteURL;

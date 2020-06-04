@@ -1,4 +1,10 @@
-const languages = [`en`, `fr`];
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
+
+console.log(`Using environment config: '${activeEnv}'`);
+
+require('dotenv').config({ path: `.env.${activeEnv}` });
+
+const languages = process.env.LANGUAGES.split(',');
 const localesPath = `${__dirname}/generated/locales`;
 
 module.exports = {
@@ -6,7 +12,6 @@ module.exports = {
     author: `Patrick Lim`,
     email: `contact@patricklim.fr`,
     emailSubject: `patricklim.fr`,
-    siteURL: `https://patricklim.fr`,
     siteName: `patricklim.fr`,
   },
   plugins: [
