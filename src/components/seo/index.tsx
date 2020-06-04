@@ -4,9 +4,10 @@ import { useIntl } from 'gatsby-plugin-intl';
 import { map, toPairs } from 'ramda';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { getLocaleCodes, LocaleCode } from '~/helpers/intl';
+import { getLocaleCodes } from '~/helpers/intl';
 import useSiteMetadata from '~/hooks/use-site-metadata';
 import useSiteURL from '~/hooks/use-site-url';
+import { LanguageCode } from '~/typings/global';
 import SchemaOrg from './schema-org';
 
 export const query = graphql`
@@ -37,11 +38,11 @@ const SEO = ({ description, keywords, path, title }: Props) => {
     },
   } = useStaticQuery<SeoQuery>(query);
   const { locale, formatMessage } = useIntl();
-  const { getUrl, getUrls } = useSiteURL();
-  const { author, siteName, siteURL } = useSiteMetadata();
+  const { getUrl, getUrls, siteURL } = useSiteURL();
+  const { author, siteName } = useSiteMetadata();
 
   const imageUrl = `${siteURL}${imageSrc}`;
-  const localeCodes = getLocaleCodes(locale as LocaleCode);
+  const localeCodes = getLocaleCodes(locale as LanguageCode);
   const metaTitle = title ?? formatMessage({ id: 'home.pageTitle' });
   const metaDescription = description || formatMessage({ id: 'metadata.description' });
   const keywordsList = keywords ? keywords.join(', ') : '';
