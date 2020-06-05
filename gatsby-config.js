@@ -4,6 +4,15 @@ console.log(`Using environment config: '${activeEnv}'`);
 
 require('dotenv').config({ path: `.env.${activeEnv}` });
 
+const {
+  SITE_URL,
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = SITE_URL,
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env;
+const isNetlifyProduction = NETLIFY_ENV === 'production';
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 const languages = process.env.LANGUAGES.split(',');
 const localesPath = `${__dirname}/generated/locales`;
 
@@ -13,6 +22,7 @@ module.exports = {
     email: `contact@patricklim.fr`,
     emailSubject: `patricklim.fr`,
     siteName: `patricklim.fr`,
+    siteUrl,
   },
   plugins: [
     `gatsby-plugin-material-ui`,
@@ -93,5 +103,26 @@ module.exports = {
       },
     },
     `nprogress`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: '*' }],
+          },
+          'branch-deploy': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null,
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null,
+          },
+        },
+      },
+    },
   ],
 };

@@ -38,10 +38,10 @@ const SEO = ({ description, keywords, path, title }: Props) => {
     },
   } = useStaticQuery<SeoQuery>(query);
   const { locale, formatMessage } = useIntl();
-  const { getUrl, getUrls, siteURL } = useSiteURL();
+  const { getUrl, getUrls, siteUrl } = useSiteURL();
   const { author, siteName } = useSiteMetadata();
 
-  const imageUrl = `${siteURL}${imageSrc}`;
+  const imageUrl = `${siteUrl}${imageSrc}`;
   const localeCodes = getLocaleCodes(locale as LanguageCode);
   const metaTitle = title ?? formatMessage({ id: 'home.pageTitle' });
   const metaDescription = description || formatMessage({ id: 'metadata.description' });
@@ -73,7 +73,7 @@ const SEO = ({ description, keywords, path, title }: Props) => {
         <meta property="og:description" content={metaDescription} />
         <meta property="og:image" content={imageUrl} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={siteURL} />
+        <meta property="og:url" content={siteUrl} />
         <meta property="og:locale" content={localeCodes.current} />
         {map(
           alternate => (
@@ -95,7 +95,7 @@ const SEO = ({ description, keywords, path, title }: Props) => {
         image={imageUrl}
         keywords={keywordsList}
         name={siteName}
-        url={siteURL}
+        url={siteUrl}
       />
     </>
   );
