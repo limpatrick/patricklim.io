@@ -61,6 +61,7 @@
     "eslint-plugin-react-hooks": "2.5.0",
     "gatsby-plugin-eslint": "^2.0.8",
     "prettier": "2.0.5",
+    "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
   },
   "keywords": [
@@ -72,7 +73,7 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "GATSBY_ACTIVE_ENV=production gatsby serve",
-    "clean": "gatsby clean",
+    "clean": "rimraf generated && gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }
