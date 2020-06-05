@@ -124,5 +124,20 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [
+          `/dev-404-page`,
+          `/*/dev-404-page`,
+          `/offline-plugin-app-shell-fallback`,
+          `/*/offline-plugin-app-shell-fallback`,
+          `/404`,
+          `/*/404`,
+          `/404.html`,
+          `/*/404.html`,
+        ],
+      },
+    },
   ],
 };
