@@ -1,18 +1,18 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const yaml = require('js-yaml');
 
 exports.onPreBootstrap = (_, { languages, sourcePath, destinationPath }) => {
   const translations = loadTranslationObject(sourcePath, languages);
 
   // Create directory structure
-  fs.existsSync(destinationPath) || fs.mkdirSync(destinationPath);
+  fs.ensureDirSync(destinationPath);
 
   // Save bundled translation files
   for (const languageCode of languages) {
-    fs.writeFileSync(
+    fs.writeJsonSync(
       path.join(destinationPath, `${languageCode}.json`),
-      JSON.stringify(translations[languageCode])
+      translations[languageCode]
     );
   }
 };
