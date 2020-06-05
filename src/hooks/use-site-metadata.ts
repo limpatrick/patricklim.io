@@ -9,6 +9,7 @@ export const query = graphql`
         email
         emailSubject
         siteName
+        siteUrl
       }
     }
   }
