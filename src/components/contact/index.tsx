@@ -52,7 +52,7 @@ const Contact = () => {
           })}
           onSubmit={async (values, { setSubmitting, resetForm }) => {
             try {
-              await fetch('/', {
+              await fetch(`?t=${Math.floor(Date.now() / 1000)}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: encode({ 'form-name': FORM_NAME, ...values }),
