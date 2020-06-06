@@ -10,6 +10,7 @@ import { SnackbarAction, useSnackbar } from 'notistack';
 import React from 'react';
 import * as Yup from 'yup';
 import MailTo from '~/components/mail-to';
+import { FORM_NAME } from '~/constants';
 import { encode, showError } from '~/helpers/formik';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
@@ -54,7 +55,7 @@ const Contact = () => {
               await fetch('/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: encode({ 'form-name': 'contact', ...values }),
+                body: encode({ 'form-name': FORM_NAME, ...values }),
               });
 
               enqueueSnackbar(<FormattedMessage id="contact.success-msg" />, {
@@ -93,7 +94,8 @@ const Contact = () => {
               showError(touched, errors, 'name') || showError(touched, errors, 'email');
 
             return (
-              <Form className={classes.form} data-netlify>
+              <Form className={classes.form} data-netlify name={FORM_NAME}>
+                <input type="hidden" name="form-name" value={FORM_NAME} />
                 <Grid container justify="flex-start" alignItems="center" spacing={2}>
                   <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
                     <Field
