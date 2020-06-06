@@ -93,7 +93,7 @@ const Contact = () => {
               showError(touched, errors, 'name') || showError(touched, errors, 'email');
 
             return (
-              <Form className={classes.form}>
+              <Form className={classes.form} data-netlify>
                 <Grid container justify="flex-start" alignItems="center" spacing={2}>
                   <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
                     <Field
