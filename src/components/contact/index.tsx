@@ -7,7 +7,6 @@ import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { SnackbarAction, useSnackbar } from 'notistack';
-import { omit } from 'ramda';
 import React from 'react';
 import * as Yup from 'yup';
 import MailTo from '~/components/mail-to';
@@ -58,17 +57,7 @@ const Contact = () => {
               await fetch(`/?t=${Math.floor(Date.now() / 1000)}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: encode({
-                  'form-name': FORM_NAME,
-                  ...omit(
-                    [
-                      values[FORM_BOT_FIELD] !== initialValues[FORM_BOT_FIELD]
-                        ? FORM_BOT_FIELD
-                        : '',
-                    ],
-                    values
-                  ),
-                }),
+                body: encode({ 'form-name': FORM_NAME, ...values }),
               });
 
               enqueueSnackbar(<FormattedMessage id="contact.success-msg" />, {
@@ -111,12 +100,12 @@ const Contact = () => {
                 className={classes.form}
                 name={FORM_NAME}
                 data-netlify
-                netlify-honeypot="bot-field"
+                netlify-honeypot={FORM_BOT_FIELD}
               >
                 <input type="hidden" name="form-name" value={FORM_NAME} />
                 <Grid container justify="flex-start" alignItems="center" spacing={2}>
                   <Grid className={classes.hidden} item xs={12}>
-                    <Field component={TextField} name="bot-field" />
+                    <Field component={TextField} name={FORM_BOT_FIELD} />
                   </Grid>
                   <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
                     <Field
