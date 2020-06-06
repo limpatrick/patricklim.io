@@ -10,7 +10,7 @@ import { SnackbarAction, useSnackbar } from 'notistack';
 import React from 'react';
 import * as Yup from 'yup';
 import MailTo from '~/components/mail-to';
-import { showError } from '~/helpers/formik';
+import { encode, showError } from '~/helpers/formik';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
 import useStyles from './styles';
@@ -49,9 +49,14 @@ const Contact = () => {
               .trim()
               .required(formatMessage({ id: 'contact.errors.required' })),
           })}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            // TODO
-            setTimeout(() => {
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
+            try {
+              await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: encode({ 'form-name': 'contact', ...values }),
+              });
+
               enqueueSnackbar(<FormattedMessage id="contact.success-msg" />, {
                 anchorOrigin: {
                   vertical: 'top',
@@ -59,9 +64,10 @@ const Contact = () => {
                 },
                 variant: 'success',
                 preventDuplicate: true,
-                persist: true,
               });
 
+              resetForm();
+            } catch (err) {
               enqueueSnackbar(
                 <Typography variant="body2">
                   <FormattedMessage id="contact.error-msg" values={{ email: <MailTo /> }} />
@@ -77,12 +83,9 @@ const Contact = () => {
                   variant: 'error',
                 }
               );
-
+            } finally {
               setSubmitting(false);
-              resetForm();
-              // eslint-disable-next-line no-console
-              console.log(JSON.stringify(values, null, 2));
-            }, 500);
+            }
           }}
         >
           {({ submitForm, isSubmitting, touched, errors }) => {
