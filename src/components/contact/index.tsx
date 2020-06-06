@@ -7,14 +7,17 @@ import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { SnackbarAction, useSnackbar } from 'notistack';
+import { omit } from 'ramda';
 import React from 'react';
 import * as Yup from 'yup';
 import MailTo from '~/components/mail-to';
-import { FORM_NAME } from '~/constants';
+import { FORM_BOT_FIELD, FORM_NAME } from '~/constants';
 import { encode, showError } from '~/helpers/formik';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
 import useStyles from './styles';
+
+const initialValues = { [FORM_BOT_FIELD]: '', name: '', email: '', message: '' };
 
 const Contact = () => {
   const classes = useStyles();
@@ -38,7 +41,7 @@ const Contact = () => {
       <Card title={formatMessage({ id: 'contact.title' })}>
         <Typography className={classes.intro}>{formatMessage({ id: 'contact.intro' })}</Typography>
         <Formik
-          initialValues={{ name: '', email: '', message: '' }}
+          initialValues={initialValues}
           validationSchema={Yup.object({
             name: Yup.string()
               .trim()
@@ -52,10 +55,20 @@ const Contact = () => {
           })}
           onSubmit={async (values, { setSubmitting, resetForm }) => {
             try {
-              await fetch(`?t=${Math.floor(Date.now() / 1000)}`, {
+              await fetch(`/?t=${Math.floor(Date.now() / 1000)}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: encode({ 'form-name': FORM_NAME, ...values }),
+                body: encode({
+                  'form-name': FORM_NAME,
+                  ...omit(
+                    [
+                      values[FORM_BOT_FIELD] !== initialValues[FORM_BOT_FIELD]
+                        ? FORM_BOT_FIELD
+                        : '',
+                    ],
+                    values
+                  ),
+                }),
               });
 
               enqueueSnackbar(<FormattedMessage id="contact.success-msg" />, {
@@ -94,9 +107,17 @@ const Contact = () => {
               showError(touched, errors, 'name') || showError(touched, errors, 'email');
 
             return (
-              <Form className={classes.form} data-netlify name={FORM_NAME}>
+              <Form
+                className={classes.form}
+                name={FORM_NAME}
+                data-netlify
+                netlify-honeypot="bot-field"
+              >
                 <input type="hidden" name="form-name" value={FORM_NAME} />
                 <Grid container justify="flex-start" alignItems="center" spacing={2}>
+                  <Grid className={classes.hidden} item xs={12}>
+                    <Field component={TextField} name="bot-field" />
+                  </Grid>
                   <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
                     <Field
                       component={TextField}
