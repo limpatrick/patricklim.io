@@ -8,7 +8,7 @@ const NetlifyFunctionError = require('../netlify-function-error');
  */
 const getEmailParams = ({ name, email, message }) => ({
   Destination: {
-    ToAddresses: [process.env.EMAIL_TO],
+    ToAddresses: [process.env.PL_EMAIL_TO],
   },
   Message: {
     Body: {
@@ -19,19 +19,19 @@ const getEmailParams = ({ name, email, message }) => ({
     },
     Subject: {
       Charset: 'UTF-8',
-      Data: process.env.EMAIL_SUBJECT,
+      Data: process.env.PL_EMAIL_SUBJECT,
     },
   },
-  Source: process.env.EMAIL_TO,
+  Source: process.env.PL_EMAIL_TO,
   ReplyToAddresses: [email],
 });
 
 exports.handler = async (event, context, callback) => {
   try {
     if (event.httpMethod !== 'POST') throw new NetlifyFunctionError(405);
-    if (process.env.NETLIFY_DEV !== 'true') {
+    if (process.env.PL_NETLIFY_PROD === 'true') {
       const origin = new URL(event.headers.origin);
-      const siteURL = new URL(process.env.SITE_URL);
+      const siteURL = new URL(process.env.PL_SITE_URL);
 
       if (origin.hostname !== siteURL.hostname) throw new NetlifyFunctionError(403);
     }
@@ -45,11 +45,11 @@ exports.handler = async (event, context, callback) => {
     const params = await schema.validate(requestParams);
     const emailParams = getEmailParams(params);
 
-    if (process.env.EMAIL_SERVICE === 'true') {
+    if (process.env.PL_EMAIL_SERVICE === 'true') {
       AWS.config.update({
-        accessKeyId: process.env.AWS_ACESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        region: process.env.AWS_REGION,
+        accessKeyId: process.env.PL_AWS_ACESS_KEY_ID,
+        secretAccessKey: process.env.PL_AWS_SECRET_ACCESS_KEY,
+        region: process.env.PL_AWS_REGION,
       });
       await new AWS.SES({ apiVersion: '2010-12-01' }).sendEmail(emailParams).promise();
 
@@ -72,11 +72,11 @@ exports.handler = async (event, context, callback) => {
         statusCode,
         message: `Message unsuccesfully sent, error: ${err}`,
         env: {
-          EMAIL_SERVICE: process.env.EMAIL_SERVICE,
-          EMAIL_SUBJECT: process.env.EMAIL_SUBJECT,
-          EMAIL_TO: process.env.EMAIL_TO,
-          NETLIFY_DEV: process.env.NETLIFY_DEV,
-          SITE_URL: process.env.SITE_URL,
+          PL_EMAIL_SERVICE: process.env.PL_EMAIL_SERVICE,
+          PL_EMAIL_SUBJECT: process.env.PL_EMAIL_SUBJECT,
+          PL_EMAIL_TO: process.env.PL_EMAIL_TO,
+          PL_NETLIFY_PROD: process.env.PL_NETLIFY_PROD,
+          PL_SITE_URL: process.env.PL_SITE_URL,
         },
         event,
         context,

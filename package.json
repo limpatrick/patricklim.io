@@ -76,7 +76,7 @@
   "scripts": {
     "build": "GATSBY_ACTIVE_ENV=production gatsby build",
     "develop": "gatsby develop",
-    "start": "npm run develop",
+    "start": "netlify dev",
     "serve": "GATSBY_ACTIVE_ENV=production gatsby serve",
     "clean": "rimraf generated && gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
