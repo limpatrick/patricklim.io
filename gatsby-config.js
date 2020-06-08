@@ -3,6 +3,10 @@ const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'deve
 console.log(`Using environment config: '${activeEnv}'`);
 
 const envs = [
+  'CONTEXT',
+  'URL',
+  'DEPLOY_URL',
+  'DEPLOY_PRIME_URL',
   'PL_AWS_ACESS_KEY_ID',
   'PL_AWS_REGION',
   'PL_AWS_SECRET_ACCESS_KEY',
@@ -13,6 +17,8 @@ const envs = [
   'PL_NETLIFY_PROD',
   'PL_SITE_URL',
 ];
+
+console.log(`\nNetlify envs:`);
 for (const env of envs) console.log(`${env}=${process.env[env]}`);
 
 const {
