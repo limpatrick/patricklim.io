@@ -6,34 +6,69 @@ import clsx from 'clsx';
 import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
-import { SnackbarAction, useSnackbar } from 'notistack';
-import React from 'react';
+import { SnackbarKey, useSnackbar } from 'notistack';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import MailTo from '~/components/mail-to';
-import { FORM_BOT_FIELD, FORM_NAME } from '~/constants';
-import { encode, showError } from '~/helpers/formik';
+import { showError } from '~/helpers/formik';
 import Card from '~/layouts/card';
 import Container from '~/layouts/container';
 import useStyles from './styles';
 
-const initialValues = { [FORM_BOT_FIELD]: '', name: '', email: '', message: '' };
+const initialValues = { name: '', email: '', message: '' };
 
 const Contact = () => {
+  const [key, setKey] = useState<SnackbarKey | undefined>(undefined);
   const classes = useStyles();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { formatMessage } = useIntl();
 
-  const action: SnackbarAction = key => (
-    <Button
-      aria-label={formatMessage({ id: 'global.aria-label.close' })}
-      color="inherit"
-      onClick={() => {
-        closeSnackbar(key);
-      }}
-    >
-      {formatMessage({ id: 'global.btn.close' })}
-    </Button>
-  );
+  const showSnackbar = (ok: boolean) => {
+    setKey(
+      ok === true
+        ? enqueueSnackbar(<FormattedMessage id="contact.success-msg" />, {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
+            },
+            variant: 'success',
+            preventDuplicate: true,
+          })
+        : enqueueSnackbar(
+            <Typography variant="body2">
+              <FormattedMessage id="contact.error-msg" values={{ email: <MailTo /> }} />
+            </Typography>,
+            {
+              anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              },
+              action: k => (
+                <FormattedMessage id="global.aria-label.close">
+                  {(ariaLabel: string) => (
+                    <FormattedMessage id="global.btn.close">
+                      {(btnClose: string) => (
+                        <Button
+                          aria-label={ariaLabel}
+                          color="inherit"
+                          onClick={() => {
+                            closeSnackbar(k);
+                          }}
+                        >
+                          {btnClose}
+                        </Button>
+                      )}
+                    </FormattedMessage>
+                  )}
+                </FormattedMessage>
+              ),
+              persist: true,
+              preventDuplicate: true,
+              variant: 'error',
+            }
+          )
+    );
+  };
 
   return (
     <Container className={classes.root} gutterBottom>
@@ -53,39 +88,25 @@ const Contact = () => {
               .required(formatMessage({ id: 'contact.errors.required' })),
           })}
           onSubmit={async (values, { setSubmitting, resetForm }) => {
+            if (key !== undefined) {
+              closeSnackbar(key);
+              setKey(undefined);
+            }
+
             try {
-              await fetch(`/?t=${Math.floor(Date.now() / 1000)}`, {
+              const res = await fetch('/.netlify/functions/ses-send-email', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: encode({ 'form-name': FORM_NAME, ...values }),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(values),
               });
+              const data = await res.json();
+              const ok = data.statusCode === 200;
 
-              enqueueSnackbar(<FormattedMessage id="contact.success-msg" />, {
-                anchorOrigin: {
-                  vertical: 'top',
-                  horizontal: 'center',
-                },
-                variant: 'success',
-                preventDuplicate: true,
-              });
+              showSnackbar(ok);
 
-              resetForm();
+              if (ok) resetForm();
             } catch (err) {
-              enqueueSnackbar(
-                <Typography variant="body2">
-                  <FormattedMessage id="contact.error-msg" values={{ email: <MailTo /> }} />
-                </Typography>,
-                {
-                  anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                  },
-                  action,
-                  persist: true,
-                  preventDuplicate: true,
-                  variant: 'error',
-                }
-              );
+              showSnackbar(false);
             } finally {
               setSubmitting(false);
             }
@@ -96,17 +117,8 @@ const Contact = () => {
               showError(touched, errors, 'name') || showError(touched, errors, 'email');
 
             return (
-              <Form
-                className={classes.form}
-                name={FORM_NAME}
-                data-netlify
-                netlify-honeypot={FORM_BOT_FIELD}
-              >
-                <input type="hidden" name="form-name" value={FORM_NAME} />
+              <Form className={classes.form}>
                 <Grid container justify="flex-start" alignItems="center" spacing={2}>
-                  <Grid className={classes.hidden} item xs={12}>
-                    <Field component={TextField} name={FORM_BOT_FIELD} />
-                  </Grid>
                   <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
                     <Field
                       component={TextField}
