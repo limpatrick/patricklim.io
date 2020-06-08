@@ -32,7 +32,7 @@ exports.handler = async (event, context, callback) => {
     if (event.httpMethod !== 'POST') throw new NetlifyFunctionError(405);
     if (NETLIFY_ENV === 'production') {
       const origin = new URL(event.headers.origin);
-      const siteURL = new URL(process.env.PL_SITE_URL);
+      const siteURL = new URL(SITE_URL);
 
       if (origin.hostname !== siteURL.hostname) throw new NetlifyFunctionError(403);
     }
