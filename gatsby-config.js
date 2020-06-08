@@ -11,18 +11,16 @@ const {
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV,
 } = process.env;
-const isNetlifyProduction = NETLIFY_ENV === 'production';
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 const languages = process.env.LANGUAGES.split(',');
 const localesPath = `${__dirname}/generated/locales`;
 
 module.exports = {
   siteMetadata: {
     author: `Patrick Lim`,
-    email: `contact@patricklim.fr`,
-    emailSubject: `patricklim.fr`,
+    email: process.env.EMAIL_TO,
+    emailSubject: process.env.EMAIL_SUBJECT,
     siteName: `patricklim.fr`,
-    siteUrl,
+    siteUrl: NETLIFY_ENV === 'production' ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL,
   },
   plugins: [
     `gatsby-plugin-material-ui`,
