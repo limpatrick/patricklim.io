@@ -94,7 +94,7 @@ const Contact = () => {
             }
 
             try {
-              const res = await fetch('/.netlify/functions/ses-send-email', {
+              const res = await fetch('/.netlify/functions/email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(values),
