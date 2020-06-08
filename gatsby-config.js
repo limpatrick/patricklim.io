@@ -2,23 +2,21 @@ const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'deve
 
 console.log(`Using environment config: '${activeEnv}'`);
 
-require('dotenv').config({ path: `.env.${activeEnv}` });
-
 const {
-  SITE_URL,
+  PL_SITE_URL,
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = SITE_URL,
+  URL: NETLIFY_SITE_URL = PL_SITE_URL,
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV,
 } = process.env;
-const languages = process.env.LANGUAGES.split(',');
+const languages = process.env.PL_LANGUAGES.split(',');
 const localesPath = `${__dirname}/generated/locales`;
 
 module.exports = {
   siteMetadata: {
     author: `Patrick Lim`,
-    email: process.env.EMAIL_TO,
-    emailSubject: process.env.EMAIL_SUBJECT,
+    email: process.env.PL_EMAIL_TO,
+    emailSubject: process.env.PL_EMAIL_SUBJECT,
     siteName: `patricklim.fr`,
     siteUrl: NETLIFY_ENV === 'production' ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL,
   },
