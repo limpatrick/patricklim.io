@@ -74,6 +74,8 @@
   ],
   "license": "MIT",
   "scripts": {
+    "prestart": "mkdir -p generated; python -c 'import json, os;print(json.dumps(dict(os.environ)))' > generated/env.json",
+    "prebuild": "npm run prestart",
     "build": "GATSBY_ACTIVE_ENV=production gatsby build",
     "develop": "gatsby develop",
     "start": "netlify dev",
