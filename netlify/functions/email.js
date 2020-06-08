@@ -68,7 +68,19 @@ exports.handler = async (event, context, callback) => {
 
     return callback(null, {
       statusCode,
-      body: JSON.stringify({ statusCode, message: `Message unsuccesfully sent, error: ${err}` }),
+      body: JSON.stringify({
+        statusCode,
+        message: `Message unsuccesfully sent, error: ${err}`,
+        env: {
+          EMAIL_SERVICE: process.env.EMAIL_SERVICE,
+          EMAIL_SUBJECT: process.env.EMAIL_SUBJECT,
+          EMAIL_TO: process.env.EMAIL_TO,
+          NETLIFY_DEV: process.env.NETLIFY_DEV,
+          SITE_URL: process.env.SITE_URL,
+        },
+        event,
+        context,
+      }),
     });
   }
 };
