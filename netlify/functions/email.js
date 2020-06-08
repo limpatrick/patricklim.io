@@ -3,6 +3,7 @@ const AWS = require('aws-sdk');
 const Yup = require('yup');
 const { NETLIFY_SITE_URL, NETLIFY_DEPLOY_URL, NETLIFY_ENV, SITE_URL } = require('../constants');
 const NetlifyFunctionError = require('../netlify-function-error');
+const env = require('../../generated/env.json');
 
 /**
  * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#sendEmail-property
@@ -83,6 +84,7 @@ exports.handler = async (event, context, callback) => {
           NETLIFY_ENV,
           SITE_URL,
         },
+        envJSON: env,
         event,
         context,
       }),
