@@ -2,11 +2,14 @@ const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'deve
 
 console.log(`Using environment config: '${activeEnv}'`);
 
+const { NETLIFY_ENV, SITE_URL } = require('./netlify/constants');
+
 const envs = [
   'CONTEXT',
   'URL',
   'DEPLOY_URL',
   'DEPLOY_PRIME_URL',
+  'NODE_ENV',
   'PL_AWS_ACESS_KEY_ID',
   'PL_AWS_REGION',
   'PL_AWS_SECRET_ACCESS_KEY',
@@ -14,20 +17,12 @@ const envs = [
   'PL_EMAIL_SUBJECT',
   'PL_EMAIL_TO',
   'PL_LANGUAGES',
-  'PL_NETLIFY_PROD',
   'PL_SITE_URL',
 ];
 
 console.log(`\nNetlify envs:`);
 for (const env of envs) console.log(`${env}=${process.env[env]}`);
 
-const {
-  PL_SITE_URL,
-  NODE_ENV,
-  URL: NETLIFY_SITE_URL = PL_SITE_URL,
-  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV,
-} = process.env;
 const languages = process.env.PL_LANGUAGES.split(',');
 const localesPath = `${__dirname}/generated/locales`;
 
@@ -37,7 +32,7 @@ module.exports = {
     email: process.env.PL_EMAIL_TO,
     emailSubject: process.env.PL_EMAIL_SUBJECT,
     siteName: `patricklim.fr`,
-    siteUrl: NETLIFY_ENV === 'production' ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL,
+    siteUrl: SITE_URL,
   },
   plugins: [
     `gatsby-plugin-material-ui`,
