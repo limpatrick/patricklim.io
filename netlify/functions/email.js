@@ -1,9 +1,8 @@
 const { URL } = require('url');
 const AWS = require('aws-sdk');
 const Yup = require('yup');
-const { NETLIFY_SITE_URL, NETLIFY_DEPLOY_URL, NETLIFY_ENV, SITE_URL } = require('../constants');
+const { NETLIFY_ENV, SITE_URL } = require('../constants');
 const NetlifyFunctionError = require('../netlify-function-error');
-const env = require('../../generated/env.json');
 
 /**
  * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#sendEmail-property
@@ -69,28 +68,10 @@ exports.handler = async (event, context, callback) => {
     let statusCode = err.statusCode || 500;
 
     if (err.name === 'ValidationError') statusCode = 422;
-    console.log({ NETLIFY_ENV });
+
     return callback(null, {
       statusCode,
-      body: JSON.stringify({
-        statusCode,
-        message: `Message unsuccesfully sent, error: ${err}`,
-        env: {
-          PL_EMAIL_SERVICE: process.env.PL_EMAIL_SERVICE,
-          PL_EMAIL_SUBJECT: process.env.PL_EMAIL_SUBJECT,
-          PL_EMAIL_TO: process.env.PL_EMAIL_TO,
-          PL_SITE_URL: process.env.PL_SITE_URL,
-          NODE_ENV: process.env.NODE_ENV,
-          NETLIFY_SITE_URL,
-          NETLIFY_DEPLOY_URL,
-          NETLIFY_ENV,
-          SITE_URL,
-        },
-        envJSON: env,
-        process: process.env,
-        event,
-        context,
-      }),
+      body: JSON.stringify({ statusCode, message: `Message unsuccesfully sent, error: ${err}` }),
     });
   }
 };
