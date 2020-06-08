@@ -20,9 +20,6 @@ export default makeStyles((theme: Theme) =>
         height: '94px',
       },
     },
-    hidden: {
-      display: 'none',
-    },
     send: {
       textAlign: 'center',
     },
