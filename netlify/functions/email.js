@@ -1,6 +1,7 @@
 const { URL } = require('url');
 const AWS = require('aws-sdk');
 const Yup = require('yup');
+const { NETLIFY_SITE_URL, NETLIFY_DEPLOY_URL, NETLIFY_ENV, SITE_URL } = require('../constants');
 const NetlifyFunctionError = require('../netlify-function-error');
 
 /**
@@ -29,7 +30,7 @@ const getEmailParams = ({ name, email, message }) => ({
 exports.handler = async (event, context, callback) => {
   try {
     if (event.httpMethod !== 'POST') throw new NetlifyFunctionError(405);
-    if (process.env.PL_NETLIFY_PROD === 'true') {
+    if (NETLIFY_ENV === 'production') {
       const origin = new URL(event.headers.origin);
       const siteURL = new URL(process.env.PL_SITE_URL);
 
@@ -75,8 +76,12 @@ exports.handler = async (event, context, callback) => {
           PL_EMAIL_SERVICE: process.env.PL_EMAIL_SERVICE,
           PL_EMAIL_SUBJECT: process.env.PL_EMAIL_SUBJECT,
           PL_EMAIL_TO: process.env.PL_EMAIL_TO,
-          PL_NETLIFY_PROD: process.env.PL_NETLIFY_PROD,
           PL_SITE_URL: process.env.PL_SITE_URL,
+          NODE_ENV: process.env.NODE_ENV,
+          NETLIFY_SITE_URL,
+          NETLIFY_DEPLOY_URL,
+          NETLIFY_ENV,
+          SITE_URL,
         },
         event,
         context,
