@@ -31,7 +31,9 @@ const getEmailParams = ({ name, email, message }) => ({
 exports.handler = async (event, context, callback) => {
   try {
     if (event.httpMethod !== 'POST') throw new NetlifyFunctionError(405);
-    if (NETLIFY_ENV === 'production') {
+    if (NETLIFY_ENV !== 'development') {
+      if (!event.headers.origin) throw new NetlifyFunctionError(403);
+
       const origin = new URL(event.headers.origin);
       const siteURL = new URL(SITE_URL);
 
@@ -67,7 +69,7 @@ exports.handler = async (event, context, callback) => {
     let statusCode = err.statusCode || 500;
 
     if (err.name === 'ValidationError') statusCode = 422;
-
+    console.log({ NETLIFY_ENV });
     return callback(null, {
       statusCode,
       body: JSON.stringify({
@@ -85,6 +87,7 @@ exports.handler = async (event, context, callback) => {
           SITE_URL,
         },
         envJSON: env,
+        process: process.env,
         event,
         context,
       }),
