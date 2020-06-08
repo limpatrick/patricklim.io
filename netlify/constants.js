@@ -6,7 +6,10 @@ const {
   CONTEXT: NETLIFY_ENV = NODE_ENV,
 } = process.env;
 
-const SITE_URL = NETLIFY_ENV === 'production' ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+let SITE_URL = NETLIFY_DEPLOY_URL;
+
+if (NETLIFY_ENV === 'production') SITE_URL = NETLIFY_SITE_URL;
+else if (NETLIFY_ENV === 'development') SITE_URL = 'http://localhost:8888';
 
 module.exports = {
   NETLIFY_SITE_URL,

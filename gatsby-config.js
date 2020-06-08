@@ -2,8 +2,14 @@ const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'deve
 
 console.log(`Using environment config: '${activeEnv}'`);
 
-const { NETLIFY_ENV, SITE_URL } = require('./netlify/constants');
+const {
+  NETLIFY_SITE_URL,
+  NETLIFY_DEPLOY_URL,
+  NETLIFY_ENV,
+  SITE_URL,
+} = require('./netlify/constants');
 
+const netlifyConstants = { NETLIFY_SITE_URL, NETLIFY_DEPLOY_URL, NETLIFY_ENV, SITE_URL };
 const envs = [
   'CONTEXT',
   'URL',
@@ -22,6 +28,8 @@ const envs = [
 
 console.log(`\nNetlify envs:`);
 for (const env of envs) console.log(`${env}=${process.env[env]}`);
+console.log(`\nNetlify constants:`);
+for (const key in netlifyConstants) console.log(`${key}=${netlifyConstants[key]}`);
 
 const languages = process.env.PL_LANGUAGES.split(',');
 const localesPath = `${__dirname}/generated/locales`;
