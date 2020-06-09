@@ -115,7 +115,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        resolveEnv: () => NETLIFY_ENV,
+        resolveEnv: () => netlifyConstants.NETLIFY_ENV,
         env: {
           production: {
             policy: [{ userAgent: '*' }],
