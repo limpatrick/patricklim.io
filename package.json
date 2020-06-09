@@ -1,6 +1,12 @@
 {
   "name": "patricklim.fr",
   "private": true,
+  "description": "Patrick Lim's personal website",
+  "author": {
+    "name" : "Patrick Lim",
+    "email" : "contact@patricklim.fr",
+    "url" : "https://patricklim.fr"
+  },
   "version": "2.0.0",
   "dependencies": {
     "@iconify/icons-ant-design": "^1.0.8",
@@ -69,9 +75,6 @@
     "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
   },
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
   "scripts": {
     "gen:env": "mkdir -p generated; python -c 'import json, os;print(json.dumps(dict(os.environ)))' > generated/env.json",
@@ -83,5 +86,9 @@
     "serve": "GATSBY_ACTIVE_ENV=production gatsby serve",
     "clean": "rimraf generated && gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  }
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/limpatrick/patricklim.fr.git"
+  }  
 }
