@@ -44,12 +44,12 @@ const Contact = () => {
                 horizontal: 'center',
               },
               action: k => (
-                <FormattedMessage id="global.aria-label.close">
-                  {(ariaLabel: string) => (
+                <FormattedMessage id="global.title.close">
+                  {(titleClose: string) => (
                     <FormattedMessage id="global.btn.close">
                       {(btnClose: string) => (
                         <Button
-                          aria-label={ariaLabel}
+                          aria-label={titleClose}
                           color="inherit"
                           onClick={() => {
                             closeSnackbar(k);
@@ -151,7 +151,7 @@ const Contact = () => {
                   </Grid>
                   <Grid className={classes.send} item xs={12}>
                     <Button
-                      aria-label={formatMessage({ id: 'global.aria-label.send' })}
+                      aria-label={formatMessage({ id: 'global.title.send' })}
                       type="submit"
                       color="primary"
                       variant="contained"
