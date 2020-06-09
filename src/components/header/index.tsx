@@ -10,7 +10,7 @@ import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import ButtonLink from '~/components/button-link';
 import ToggleTheme from '~/components/toggle-theme';
-import { BACK_TOP_ANCHOR_ID } from '~/constants';
+import { ID_TOP } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
 import { LanguageCode } from '~/typings/global';
 import useStyles from './styles';
@@ -20,7 +20,7 @@ type Props = { path: string };
 const Header = ({ path }: Props) => {
   const classes = useStyles();
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
-  const { scrollTo } = useScrollTo(BACK_TOP_ANCHOR_ID);
+  const { scrollTo } = useScrollTo(ID_TOP);
   const { formatMessage, locale } = useIntl();
 
   const titleBackTop = formatMessage({ id: 'global.title.back-top' });
@@ -44,7 +44,7 @@ const Header = ({ path }: Props) => {
 
   return (
     <>
-      <AppBar elevation={trigger ? 4 : 0}>
+      <AppBar color={trigger ? 'primary' : 'transparent'} elevation={trigger ? 4 : 0}>
         <Toolbar>
           <Grid className={classes.actions} container justify="flex-end" alignItems="center">
             <Grid className={classes.links} item>
@@ -57,7 +57,6 @@ const Header = ({ path }: Props) => {
           </Grid>
         </Toolbar>
       </AppBar>
-      <Toolbar id={BACK_TOP_ANCHOR_ID} />
       <Zoom in={trigger}>
         <div className={classes.scrollButton} onClick={scrollTo} role="presentation">
           <Tooltip title={titleBackTop} aria-label={titleBackTop}>

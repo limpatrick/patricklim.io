@@ -1,5 +1,5 @@
-import wrapPage from './src/gatsby/wrap-page-element/browser';
-import wrapRoot from './src/gatsby/wrap-root-element/browser';
+import wrapPage from './gatsby/wrap-page-element/browser';
+import wrapRoot from './gatsby/wrap-root-element/browser';
 
 export const wrapPageElement = wrapPage;
 export const wrapRootElement = wrapRoot;

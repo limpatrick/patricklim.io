@@ -3,9 +3,11 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      minHeight: 'calc(100vh - 64px)',
-      '& $title, & $subtitle': {
-        fontFamily: '"Varela", "Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
+      '& > .MuiGrid-container': {
+        minHeight: '100vh',
+        '& $title, & $subtitle': {
+          fontFamily: '"Varela", "Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
+        },
       },
     },
     title: {

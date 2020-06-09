@@ -5,7 +5,7 @@ import { useIntl } from 'gatsby-plugin-intl';
 import { map } from 'ramda';
 import React from 'react';
 import Skill from '~/components/skill';
-import { SKILL_SET_ID } from '~/constants';
+import { ID_TECHNOLOGIES } from '~/constants';
 import { skills } from '~/data/skills';
 import { propIsNil } from '~/helpers/ramda';
 import { getIconOrSrc } from '~/helpers/skills';
@@ -33,7 +33,7 @@ const SkillSet = () => {
 
   return (
     <>
-      <div id={SKILL_SET_ID} />
+      <div id={ID_TECHNOLOGIES} />
       <Container>
         <Card title={formatMessage({ id: 'skill-set.title' })}>
           <Grid container justify="flex-start" alignItems="center">
