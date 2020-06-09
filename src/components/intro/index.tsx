@@ -4,6 +4,7 @@ import Grow from '@material-ui/core/Grow';
 import IconButton from '@material-ui/core/IconButton';
 import Slide from '@material-ui/core/Slide';
 import { duration } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useIntl } from 'gatsby-plugin-intl';
@@ -19,6 +20,7 @@ const Intro = () => {
   const classes = useStyles();
   const { scrollTo } = useScrollTo(SKILL_SET_ID);
   const { formatMessage } = useIntl();
+  const titleContinue = formatMessage({ id: 'global.title.continue' });
 
   return (
     <Grid
@@ -67,12 +69,11 @@ const Intro = () => {
       </Grid>
       <Slide direction="down" in={text3} timeout={{ enter: duration.complex }}>
         <Box className={classes.next}>
-          <IconButton
-            aria-label={formatMessage({ id: 'global.aria-label.next' })}
-            onClick={scrollTo}
-          >
-            <ExpandMoreIcon />
-          </IconButton>
+          <Tooltip title={titleContinue} aria-label={titleContinue}>
+            <IconButton onClick={scrollTo}>
+              <ExpandMoreIcon />
+            </IconButton>
+          </Tooltip>
         </Box>
       </Slide>
     </Grid>
