@@ -1,11 +1,11 @@
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import TopComponent from '~/components/top-component';
 import { getPath } from '~/helpers/intl';
+import Container from '~/layouts/container';
 import useStyles from './styles';
 
 const NotFound = () => {
@@ -14,7 +14,7 @@ const NotFound = () => {
 
   return (
     <TopComponent>
-      <Container maxWidth="lg">
+      <Container>
         <Grid
           className={classes.grid}
           container

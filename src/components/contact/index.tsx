@@ -71,7 +71,7 @@ const Contact = () => {
   };
 
   return (
-    <Container className={classes.root} gutterBottom>
+    <Container className={classes.root}>
       <Card title={formatMessage({ id: 'contact.title' })}>
         <Typography className={classes.intro}>{formatMessage({ id: 'contact.intro' })}</Typography>
         <Formik
