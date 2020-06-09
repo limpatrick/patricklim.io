@@ -2,6 +2,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Zoom from '@material-ui/core/Zoom';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -11,6 +12,7 @@ import ButtonLink from '~/components/button-link';
 import ToggleTheme from '~/components/toggle-theme';
 import { BACK_TOP_ANCHOR_ID } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
+import { LanguageCode } from '~/typings/global';
 import useStyles from './styles';
 
 type Props = { path: string };
@@ -21,13 +23,20 @@ const Header = ({ path }: Props) => {
   const { scrollTo } = useScrollTo(BACK_TOP_ANCHOR_ID);
   const { formatMessage, locale } = useIntl();
 
-  const getButtonLink = (language: string) => {
+  const titleBackTop = formatMessage({ id: 'global.title.back-top' });
+  const getButtonLink = (language: LanguageCode) => {
     const text = language.toUpperCase();
+    const titleChangeLanguage = formatMessage(
+      { id: 'global.title.change-language' },
+      { language: formatMessage({ id: `global.language.${language}` }) }
+    );
 
     return locale !== language ? (
-      <ButtonLink language={language} to={path}>
-        {text}
-      </ButtonLink>
+      <Tooltip title={titleChangeLanguage} aria-label={titleChangeLanguage}>
+        <ButtonLink language={language} to={path}>
+          {text}
+        </ButtonLink>
+      </Tooltip>
     ) : (
       <ButtonLink disabled>{text}</ButtonLink>
     );
@@ -51,13 +60,11 @@ const Header = ({ path }: Props) => {
       <Toolbar id={BACK_TOP_ANCHOR_ID} />
       <Zoom in={trigger}>
         <div className={classes.scrollButton} onClick={scrollTo} role="presentation">
-          <Fab
-            color="primary"
-            size="small"
-            aria-label={formatMessage({ id: 'global.aria-label.back-top' })}
-          >
-            <KeyboardArrowUpIcon />
-          </Fab>
+          <Tooltip title={titleBackTop} aria-label={titleBackTop}>
+            <Fab color="primary" size="small">
+              <KeyboardArrowUpIcon />
+            </Fab>
+          </Tooltip>
         </div>
       </Zoom>
     </>

@@ -30,7 +30,7 @@ const Skill = ({ name, icon, height, width, src }: Props) => {
           {icon !== undefined ? (
             <Icon icon={icon} height={height} width={width} />
           ) : (
-            <Img fixed={src} title={name} alt={name} />
+            <Img fixed={src} alt={name} />
           )}
         </Grid>
         <Grid item>
