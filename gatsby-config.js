@@ -1,15 +1,5 @@
+const netlifyConstants = require('./netlify/constants');
 const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
-
-console.log(`Using environment config: '${activeEnv}'`);
-
-const {
-  NETLIFY_SITE_URL,
-  NETLIFY_DEPLOY_URL,
-  NETLIFY_ENV,
-  SITE_URL,
-} = require('./netlify/constants');
-
-const netlifyConstants = { NETLIFY_SITE_URL, NETLIFY_DEPLOY_URL, NETLIFY_ENV, SITE_URL };
 const envs = [
   'CONTEXT',
   'URL',
@@ -26,6 +16,7 @@ const envs = [
   'PL_SITE_URL',
 ];
 
+console.log(`Using environment config: '${activeEnv}'`);
 console.log(`\nNetlify envs:`);
 for (const env of envs) console.log(`${env}=${process.env[env]}`);
 console.log(`\nNetlify constants:`);
@@ -40,7 +31,7 @@ module.exports = {
     email: process.env.PL_EMAIL_TO,
     emailSubject: process.env.PL_EMAIL_SUBJECT,
     siteName: `patricklim.fr`,
-    siteUrl: SITE_URL,
+    siteUrl: netlifyConstants.SITE_URL,
   },
   plugins: [
     `gatsby-plugin-material-ui`,
