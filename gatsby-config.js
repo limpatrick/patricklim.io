@@ -79,7 +79,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-typescript',
-    'gatsby-plugin-typescript-checker',
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
