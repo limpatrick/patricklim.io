@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      '& > section': {
+      '& > div': {
         '& > .MuiGrid-container': {
           minHeight: '100vh',
           '& $title, & $subtitle': {
@@ -13,9 +13,8 @@ export default makeStyles((theme: Theme) =>
       },
     },
     title: {
-      fontSize: '3.5rem',
       fontWeight: 'bold',
-      letterSpacing: '0.56rem',
+      letterSpacing: '0.7rem',
       textAlign: 'center',
       textTransform: 'uppercase',
       '& > span': {

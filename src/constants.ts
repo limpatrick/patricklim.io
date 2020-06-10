@@ -1,4 +1,5 @@
 // ANCHOR IDS
+export const ID_ABOUT_ME = 'pl-about-me';
 export const ID_TECHNOLOGIES = 'pl-technologies';
 export const ID_TOP = 'pl-id-top';
 

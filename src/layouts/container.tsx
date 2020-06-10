@@ -1,12 +1,13 @@
 import MuiContainer, { ContainerProps } from '@material-ui/core/Container';
 import React from 'react';
 
-type Props = {
+type Props = ContainerProps & {
   children: React.ReactElement;
-} & ContainerProps;
+  component?: React.ElementType;
+};
 
 const Container = ({ children, ...props }: Props) => (
-  <MuiContainer maxWidth="lg" {...props}>
+  <MuiContainer maxWidth="md" {...props}>
     {children}
   </MuiContainer>
 );

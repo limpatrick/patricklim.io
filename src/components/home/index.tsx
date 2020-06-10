@@ -12,8 +12,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
 import { useIntl } from 'gatsby-plugin-intl';
 import React, { useReducer } from 'react';
-import TopComponent from '~/components/top-component';
-import { ID_TECHNOLOGIES } from '~/constants';
+import { ID_ABOUT_ME } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
 import { textEntered } from './actions';
 import reducer, { initialState } from './reducer';
@@ -34,7 +33,7 @@ export const query = graphql`
 const Home = () => {
   const [{ text1, text2, text3 }, dispatch] = useReducer(reducer, initialState);
   const classes = useStyles();
-  const { scrollTo } = useScrollTo(ID_TECHNOLOGIES);
+  const { scrollTo } = useScrollTo(ID_ABOUT_ME);
   const { formatMessage } = useIntl();
   const {
     file: {
@@ -44,11 +43,11 @@ const Home = () => {
   const titleContinue = formatMessage({ id: 'global.title.continue' });
 
   return (
-    <TopComponent className={classes.root}>
-      <BackgroundImage Tag="section" fluid={fluid}>
+    <Box className={classes.root}>
+      <BackgroundImage fluid={fluid}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Grid item>
-            <Typography className={classes.title} variant="h1" gutterBottom>
+            <Typography className={classes.title} variant="h2" component="h1" gutterBottom>
               <Slide
                 direction="down"
                 in
@@ -78,7 +77,6 @@ const Home = () => {
                 color="textSecondary"
                 variant="overline"
                 component="p"
-                gutterBottom
               >
                 {formatMessage({ id: 'home.subtitle' })}
               </Typography>
@@ -95,7 +93,7 @@ const Home = () => {
           </Slide>
         </Grid>
       </BackgroundImage>
-    </TopComponent>
+    </Box>
   );
 };
 
