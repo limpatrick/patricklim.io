@@ -44,8 +44,8 @@ const Intro = () => {
   const titleContinue = formatMessage({ id: 'global.title.continue' });
 
   return (
-    <TopComponent>
-      <BackgroundImage className={classes.root} Tag="section" fluid={fluid}>
+    <TopComponent className={classes.root}>
+      <BackgroundImage Tag="section" fluid={fluid}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Grid item>
             <Typography className={classes.title} variant="h1" gutterBottom>
