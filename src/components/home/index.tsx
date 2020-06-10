@@ -31,7 +31,7 @@ export const query = graphql`
   }
 `;
 
-const Intro = () => {
+const Home = () => {
   const [{ text1, text2, text3 }, dispatch] = useReducer(reducer, initialState);
   const classes = useStyles();
   const { scrollTo } = useScrollTo(ID_TECHNOLOGIES);
@@ -99,4 +99,4 @@ const Intro = () => {
   );
 };
 
-export default Intro;
+export default Home;

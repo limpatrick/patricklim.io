@@ -1,6 +1,6 @@
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
-import Intro from '~/components/intro';
+import Home from '~/components/home';
 import SEO from '~/components/seo';
 import { formatArrayMessage } from '~/helpers/intl';
 
@@ -10,7 +10,7 @@ const IndexPage = () => {
   return (
     <>
       <SEO keywords={formatArrayMessage('metadata.keywords', messages, formatMessage)} path="/" />
-      <Intro />
+      <Home />
     </>
   );
 };
