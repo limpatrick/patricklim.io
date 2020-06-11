@@ -9,19 +9,20 @@ import useStyles from './styles';
 type Props = {
   children: React.ReactElement;
   className?: string;
+  component?: React.ComponentProps<typeof Box>['component'];
   id?: string;
   title: string;
   variant?: boolean;
 };
 
-const Article = ({ children, className, id, title, variant }: Props) => {
+const Article = ({ children, className, component, id, title, variant }: Props) => {
   const classes = useStyles();
 
   return (
     <Box
       id={id}
       className={clsx(classes.root, { [classes.variant]: variant }, className)}
-      component="article"
+      component={component ?? 'article'}
     >
       <Container>
         <Grid container>

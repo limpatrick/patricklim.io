@@ -2,6 +2,7 @@ import Box from '@material-ui/core/Box';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import AboutMe from '~/components/about-me';
+import Contact from '~/components/contact';
 import Education from '~/components/education';
 import Experience from '~/components/experience';
 import Home from '~/components/home';
@@ -24,6 +25,7 @@ const IndexPage = () => {
         <Experience />
         <Technologies />
         <Education />
+        <Contact />
       </Box>
     </>
   );
