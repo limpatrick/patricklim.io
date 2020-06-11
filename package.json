@@ -71,7 +71,7 @@
   "license": "MIT",
   "scripts": {
     "gen:env": "mkdir -p generated && python -c \"import json,os;env=dict(os.environ);keys=open('./.env.netlify-functions').read().splitlines();print(json.dumps(dict((k,env[k])for k in keys if k in env)))\" > generated/env.json",
-    "prestart": "npm run clean && NODE_ENV=development npm run gen:env",
+    "prestart": "NODE_ENV=development npm run gen:env",
     "prebuild": "npm run gen:env",
     "build": "GATSBY_ACTIVE_ENV=production gatsby build",
     "build:local": "netlify build",
