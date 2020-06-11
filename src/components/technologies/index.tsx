@@ -4,6 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
+import { ID_TECHNOLOGIES } from '~/constants';
 import Article from '~/layouts/article';
 import useStyles from './styles';
 
@@ -34,7 +35,11 @@ const Technologies = () => {
   const classes = useStyles();
 
   return (
-    <Article className={classes.root} title={formatMessage({ id: 'technologies.title' })}>
+    <Article
+      id={ID_TECHNOLOGIES}
+      className={classes.root}
+      title={formatMessage({ id: 'technologies.title' })}
+    >
       <Grid container spacing={6}>
         {nodes.map(({ childImageSharp: { fixed: { originalName, ...fixed } }, id }) => (
           <Grid key={id} item xs={12} sm>

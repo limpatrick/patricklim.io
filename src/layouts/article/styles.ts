@@ -4,8 +4,7 @@ import grey from '@material-ui/core/colors/grey';
 export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      paddingBottom: theme.spacing(8),
-      paddingTop: theme.spacing(8),
+      paddingTop: theme.spacing(16),
     },
     title: {
       textAlign: 'center',

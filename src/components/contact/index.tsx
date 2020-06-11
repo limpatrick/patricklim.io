@@ -5,6 +5,7 @@ import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { SnackbarKey, useSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import MailTo from '~/components/mail-to';
+import { ID_CONTACT } from '~/constants';
 import { showError } from '~/helpers/formik';
 import Article from '~/layouts/article';
 import ErrorAction from './error-action';
@@ -38,7 +39,12 @@ const Contact = () => {
   };
 
   return (
-    <Article component="section" title={formatMessage({ id: 'contact.title' })}>
+    <Article
+      id={ID_CONTACT}
+      className={classes.root}
+      component="section"
+      title={formatMessage({ id: 'contact.title' })}
+    >
       <Grid container>
         <Grid item xs={12}>
           <Formik

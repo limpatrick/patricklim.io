@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
+import { ID_EDUCATION } from '~/constants';
 import Article from '~/layouts/article';
 import useStyles from './styles';
 
@@ -35,7 +36,7 @@ const Education = () => {
   const classes = useStyles();
 
   return (
-    <Article title={formatMessage({ id: 'education.title' })}>
+    <Article id={ID_EDUCATION} title={formatMessage({ id: 'education.title' })}>
       <List>
         {nodes.map(({ city, country, end, id, start, school }) => (
           <React.Fragment key={id}>

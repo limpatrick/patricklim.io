@@ -9,8 +9,16 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import ButtonLink from '~/components/button-link';
+import ButtonScroll from '~/components/button-scroll';
 import ToggleTheme from '~/components/toggle-theme';
-import { ID_TOP } from '~/constants';
+import {
+  ID_ABOUT_ME,
+  ID_CONTACT,
+  ID_EDUCATION,
+  ID_EXPERIENCE,
+  ID_TECHNOLOGIES,
+  ID_TOP,
+} from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
 import { LanguageCode } from '~/typings/global';
 import useStyles from './styles';
@@ -47,6 +55,13 @@ const Header = ({ path }: Props) => {
       <AppBar color={trigger ? 'primary' : 'transparent'} elevation={trigger ? 4 : 0}>
         <Toolbar>
           <Grid className={classes.actions} container justify="flex-end" alignItems="center">
+            <Grid item>
+              <ButtonScroll id={ID_ABOUT_ME} intl="about-me.nav" />
+              <ButtonScroll id={ID_EXPERIENCE} intl="experience.nav" />
+              <ButtonScroll id={ID_TECHNOLOGIES} intl="technologies.nav" />
+              <ButtonScroll id={ID_EDUCATION} intl="education.nav" />
+              <ButtonScroll id={ID_CONTACT} intl="contact.nav" />
+            </Grid>
             <Grid className={classes.links} item>
               {getButtonLink('en')}
               {getButtonLink('fr')}

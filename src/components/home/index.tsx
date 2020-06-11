@@ -83,7 +83,7 @@ const Home = () => {
             </Grow>
           </Grid>
           <Slide direction="down" in={text3} timeout={{ enter: duration.complex }}>
-            <Box id={ID_ABOUT_ME} className={classes.next}>
+            <Box className={classes.next}>
               <Tooltip title={titleContinue} aria-label={titleContinue}>
                 <IconButton onClick={scrollTo}>
                   <ExpandMoreIcon />

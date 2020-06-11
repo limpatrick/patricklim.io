@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
+import { ID_EXPERIENCE } from '~/constants';
 import Article from '~/layouts/article';
 import StepIcon from './step-icon';
 import useStyles from './styles';
@@ -35,7 +36,7 @@ const Experience = () => {
   const classes = useStyles();
 
   return (
-    <Article title={formatMessage({ id: 'experience.title' })}>
+    <Article id={ID_EXPERIENCE} title={formatMessage({ id: 'experience.title' })}>
       <Stepper orientation="vertical">
         {nodes.map(({ company, id, end, start, title }) => (
           <Step key={id} active>
