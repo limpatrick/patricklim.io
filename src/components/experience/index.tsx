@@ -5,11 +5,13 @@ import StepContent from '@material-ui/core/StepContent';
 import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
 import Typography from '@material-ui/core/Typography';
+import clsx from 'clsx';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import Article from '~/layouts/article';
 import StepIcon from './step-icon';
+import useStyles from './styles';
 
 export const query = graphql`
   query GetExperienceData {
@@ -30,6 +32,7 @@ const Experience = () => {
     allExperienceYaml: { nodes },
   } = useStaticQuery<GetExperienceDataQuery>(query);
   const { formatMessage, formatDate } = useIntl();
+  const classes = useStyles();
 
   return (
     <Article title={formatMessage({ id: 'experience.title' })}>
@@ -39,7 +42,11 @@ const Experience = () => {
             <StepLabel StepIconComponent={StepIcon}>
               <Grid container component="span">
                 <Grid item xs={12} sm={6} component="span">
-                  <Typography variant="subtitle2" component="span">
+                  <Typography
+                    className={clsx(classes.title, classes.lineHeight)}
+                    variant="subtitle1"
+                    component="span"
+                  >
                     {company}
                   </Typography>
                 </Grid>
