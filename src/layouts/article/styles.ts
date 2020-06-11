@@ -1,19 +1,21 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import grey from '@material-ui/core/colors/grey';
 
 export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      paddingBottom: theme.spacing(6),
-      paddingTop: theme.spacing(6),
+      paddingBottom: theme.spacing(8),
+      paddingTop: theme.spacing(8),
     },
     title: {
       textAlign: 'center',
       textTransform: 'uppercase',
-      letterSpacing: '0.3rem',
+      letterSpacing: '0.5rem',
+      marginBottom: theme.spacing(6),
     },
     variant: {
-      background: '#000',
-      color: 'white',
+      backgroundColor: grey['900'],
+      color: '#fff',
     },
   })
 );

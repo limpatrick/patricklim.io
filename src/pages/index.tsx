@@ -4,6 +4,7 @@ import React from 'react';
 import AboutMe from '~/components/about-me';
 import Home from '~/components/home';
 import SEO from '~/components/seo';
+import Technologies from '~/components/technologies';
 import TopComponent from '~/components/top-component';
 import { formatArrayMessage } from '~/helpers/intl';
 
@@ -18,6 +19,7 @@ const IndexPage = () => {
       </TopComponent>
       <Box component="section">
         <AboutMe />
+        <Technologies />
       </Box>
     </>
   );
