@@ -55,13 +55,15 @@ const Header = ({ path }: Props) => {
       <AppBar color={trigger ? 'primary' : 'transparent'} elevation={trigger ? 4 : 0}>
         <Toolbar>
           <Grid className={classes.actions} container justify="flex-end" alignItems="center">
-            <Grid item>
-              <ButtonScroll id={ID_ABOUT_ME} intl="about-me.nav" />
-              <ButtonScroll id={ID_EXPERIENCE} intl="experience.nav" />
-              <ButtonScroll id={ID_TECHNOLOGIES} intl="technologies.nav" />
-              <ButtonScroll id={ID_EDUCATION} intl="education.nav" />
-              <ButtonScroll id={ID_CONTACT} intl="contact.nav" />
-            </Grid>
+            {path === '/' ? (
+              <Grid item>
+                <ButtonScroll id={ID_ABOUT_ME} intl="about-me.nav" />
+                <ButtonScroll id={ID_EXPERIENCE} intl="experience.nav" />
+                <ButtonScroll id={ID_TECHNOLOGIES} intl="technologies.nav" />
+                <ButtonScroll id={ID_EDUCATION} intl="education.nav" />
+                <ButtonScroll id={ID_CONTACT} intl="contact.nav" />
+              </Grid>
+            ) : null}
             <Grid className={classes.links} item>
               {getButtonLink('en')}
               {getButtonLink('fr')}
