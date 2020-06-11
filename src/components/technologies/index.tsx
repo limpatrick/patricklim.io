@@ -20,6 +20,7 @@ export const query = graphql`
             originalName
           }
         }
+        id
       }
     }
   }
@@ -35,8 +36,8 @@ const Technologies = () => {
   return (
     <Article className={classes.root} title={formatMessage({ id: 'technologies.title' })}>
       <Grid container spacing={6}>
-        {nodes.map(({ childImageSharp: { fixed: { originalName, ...fixed } } }) => (
-          <Grid key={originalName} item xs={12} sm>
+        {nodes.map(({ childImageSharp: { fixed: { originalName, ...fixed } }, id }) => (
+          <Grid key={id} item xs={12} sm>
             <Img alt={originalName} fixed={fixed} />
           </Grid>
         ))}
