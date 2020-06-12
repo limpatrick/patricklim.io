@@ -8,9 +8,6 @@ import Zoom from '@material-ui/core/Zoom';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
-import ButtonLink from '~/components/button-link';
-import ButtonScroll from '~/components/button-scroll';
-import ToggleTheme from '~/components/toggle-theme';
 import {
   ID_ABOUT_ME,
   ID_CONTACT,
@@ -21,7 +18,10 @@ import {
 } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
 import { LanguageCode } from '~/typings/global';
+import ButtonLink from './button-link';
+import ButtonScroll from './button-scroll';
 import useStyles from './styles';
+import ToggleTheme from './toggle-theme';
 
 type Props = { path: string };
 

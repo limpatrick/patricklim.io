@@ -8,8 +8,8 @@ import Experience from '~/components/experience';
 import Home from '~/components/home';
 import SEO from '~/components/seo';
 import Technologies from '~/components/technologies';
-import TopComponent from '~/components/top-component';
 import { formatArrayMessage } from '~/helpers/intl';
+import TopComponent from '~/layouts/top-component';
 
 const IndexPage = () => {
   const { formatMessage, messages } = useIntl();

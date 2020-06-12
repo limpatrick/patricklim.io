@@ -2,7 +2,7 @@ import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import NotFound from '~/components/not-found';
 import SEO from '~/components/seo';
-import TopComponent from '~/components/top-component';
+import TopComponent from '~/layouts/top-component';
 
 const NotFoundPage = () => {
   const { formatMessage } = useIntl();
