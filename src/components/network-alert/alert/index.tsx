@@ -5,8 +5,8 @@ import React from 'react';
 import useStyles from './styles';
 
 const Alert = () => {
-  const classes = useStyles();
   const { formatMessage } = useIntl();
+  const classes = useStyles();
 
   return (
     <>

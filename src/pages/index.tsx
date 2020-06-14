@@ -6,17 +6,16 @@ import Contact from '~/components/contact';
 import Education from '~/components/education';
 import Experience from '~/components/experience';
 import Home from '~/components/home';
-import SEO from '~/components/seo';
 import Technologies from '~/components/technologies';
 import { formatArrayMessage } from '~/helpers/intl';
+import Layout from '~/layouts/layout';
 import TopComponent from '~/layouts/top-component';
 
 const IndexPage = () => {
   const { formatMessage, messages } = useIntl();
 
   return (
-    <>
-      <SEO keywords={formatArrayMessage('metadata.keywords', messages, formatMessage)} path="/" />
+    <Layout keywords={formatArrayMessage('metadata.keywords', messages, formatMessage)} path="/">
       <TopComponent>
         <Home />
       </TopComponent>
@@ -27,7 +26,7 @@ const IndexPage = () => {
         <Education />
         <Contact />
       </Box>
-    </>
+    </Layout>
   );
 };
 

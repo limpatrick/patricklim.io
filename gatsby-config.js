@@ -30,6 +30,7 @@ module.exports = {
     author: `Patrick Lim`,
     email: process.env.PL_EMAIL_TO,
     emailSubject: process.env.PL_EMAIL_SUBJECT,
+    languages,
     siteName: `patricklim.fr`,
     siteUrl: netlifyConstants.SITE_URL,
   },

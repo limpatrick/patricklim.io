@@ -2,11 +2,11 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core';
 
 export default makeStyles((theme: Theme) =>
   createStyles({
-    scrollButton: {
-      position: 'fixed',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-      zIndex: 1,
+    button: {
+      fontSize: '0.75rem',
+      '& .MuiButton-endIcon': {
+        marginLeft: theme.spacing(0.5),
+      },
     },
   })
 );

@@ -17,44 +17,26 @@ import {
   ID_TOP,
 } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
-import { LanguageCode } from '~/typings/global';
-import ButtonLink from './button-link';
+import { useConfigState } from '~/providers/config';
 import ButtonScroll from './button-scroll';
+import LanguageMenu from './language-menu';
 import useStyles from './styles';
 import ToggleTheme from './toggle-theme';
 
-type Props = { path: string };
-
-const Header = ({ path }: Props) => {
+const Header = () => {
   const classes = useStyles();
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
   const { scrollTo } = useScrollTo(ID_TOP);
-  const { formatMessage, locale } = useIntl();
+  const { path } = useConfigState();
+  const { formatMessage } = useIntl();
 
   const titleBackTop = formatMessage({ id: 'global.title.back-top' });
-  const getButtonLink = (language: LanguageCode) => {
-    const text = language.toUpperCase();
-    const titleChangeLanguage = formatMessage(
-      { id: 'global.title.change-language' },
-      { language: formatMessage({ id: `global.language.${language}` }) }
-    );
-
-    return locale !== language ? (
-      <Tooltip title={titleChangeLanguage} aria-label={titleChangeLanguage}>
-        <ButtonLink language={language} to={path}>
-          {text}
-        </ButtonLink>
-      </Tooltip>
-    ) : (
-      <ButtonLink disabled>{text}</ButtonLink>
-    );
-  };
 
   return (
     <>
       <AppBar color={trigger ? 'primary' : 'transparent'} elevation={trigger ? 4 : 0}>
         <Toolbar>
-          <Grid className={classes.actions} container justify="flex-end" alignItems="center">
+          <Grid container justify="flex-end" alignItems="center">
             {path === '/' ? (
               <Grid item>
                 <ButtonScroll id={ID_ABOUT_ME} intl="about-me.nav" />
@@ -64,9 +46,8 @@ const Header = ({ path }: Props) => {
                 <ButtonScroll id={ID_CONTACT} intl="contact.nav" />
               </Grid>
             ) : null}
-            <Grid className={classes.links} item>
-              {getButtonLink('en')}
-              {getButtonLink('fr')}
+            <Grid item>
+              <LanguageMenu />
             </Grid>
             <Grid item>
               <ToggleTheme />

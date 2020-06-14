@@ -13,7 +13,7 @@ no-network: No network connection
 title:
   back: Go back
   back-top: Scroll back to top
-  change-language: Switch to {language}
+  change-language: Change language
   close: Close
   continue: Continue
   send: Send
