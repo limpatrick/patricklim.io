@@ -5,7 +5,7 @@ export default makeStyles((theme: Theme) =>
     stepper: {
       '& .MuiStepContent-root': {
         marginLeft: 3,
-        paddingLeft: 29,
+        paddingLeft: 12,
       },
       '& .MuiStepConnector-root': {
         marginLeft: 3,
