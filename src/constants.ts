@@ -6,6 +6,14 @@ export const ID_EXPERIENCE = 'pl-experience';
 export const ID_TECHNOLOGIES = 'pl-technologies';
 export const ID_TOP = 'pl-id-top';
 
+export type Anchor =
+  | typeof ID_ABOUT_ME
+  | typeof ID_CONTACT
+  | typeof ID_EDUCATION
+  | typeof ID_EXPERIENCE
+  | typeof ID_TECHNOLOGIES
+  | typeof ID_TOP;
+
 // CSS
 export const FOOTER_HEIGHT = 63;
 export const MIN_HEIGHT_CALC_FULL_SCREEN = `calc(100vh - ${FOOTER_HEIGHT}px)`;

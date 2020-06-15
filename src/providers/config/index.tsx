@@ -66,7 +66,7 @@ const useConfigActions = () => {
   const context = useContext(ConfigActionsContext);
 
   if (context === undefined)
-    throw new Error('useConfigDispatch must be used within a ConfigProvider');
+    throw new Error('useConfigActions must be used within a ConfigProvider');
 
   return context;
 };

@@ -1,4 +1,5 @@
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useIntl } from 'gatsby-plugin-intl';
@@ -14,7 +15,7 @@ const LanguageMenu = () => {
   const titleChangeLanguage = formatMessage({ id: 'global.title.change-language' });
 
   return (
-    <>
+    <Grid item>
       <Tooltip title={titleChangeLanguage} aria-label={titleChangeLanguage}>
         <Button
           aria-controls="simple-menu"
@@ -34,7 +35,7 @@ const LanguageMenu = () => {
           setAnchorEl(null);
         }}
       />
-    </>
+    </Grid>
   );
 };
 
