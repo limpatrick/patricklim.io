@@ -1,5 +1,4 @@
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import useSections from '~/hooks/use-sections';
 import { useConfigState } from '~/providers/config';
@@ -11,13 +10,13 @@ const ButtonsScroll = () => {
   const classes = useStyles();
 
   return path === '/' ? (
-    <Grid item>
+    <>
       {sections.map(({ id, scrollTo, title }) => (
         <Button key={id} className={classes.button} onClick={scrollTo}>
           {title}
         </Button>
       ))}
-    </Grid>
+    </>
   ) : null;
 };
 

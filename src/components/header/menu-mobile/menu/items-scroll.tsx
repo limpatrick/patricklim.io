@@ -9,7 +9,7 @@ import Subheader from './subheader';
 
 const ItemsScroll = () => {
   const { siteName } = useSiteMetadata();
-  const { close } = useMenuMobileActions();
+  const { closePromise } = useMenuMobileActions();
   const sections = useSections();
 
   return (
@@ -20,11 +20,9 @@ const ItemsScroll = () => {
           key={id}
           button
           component="li"
-          onClick={() => {
-            close();
-            setTimeout(() => {
-              scrollTo();
-            });
+          onClick={async () => {
+            await closePromise();
+            scrollTo();
           }}
         >
           <ListItemText primary={title} />

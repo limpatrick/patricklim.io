@@ -1,4 +1,3 @@
-import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { useIntl } from 'gatsby-plugin-intl';
@@ -16,13 +15,11 @@ const ToggleTheme = () => {
   });
 
   return (
-    <Grid item>
-      <Tooltip title={titleToggle} aria-label={titleToggle}>
-        <IconButton onClick={toggleTheme} size="small">
-          {themeKey === 'dark' ? <LightThemeIcon /> : <DarkThemeIcon />}
-        </IconButton>
-      </Tooltip>
-    </Grid>
+    <Tooltip title={titleToggle} aria-label={titleToggle}>
+      <IconButton onClick={toggleTheme} size="small">
+        {themeKey === 'dark' ? <LightThemeIcon /> : <DarkThemeIcon />}
+      </IconButton>
+    </Tooltip>
   );
 };
 

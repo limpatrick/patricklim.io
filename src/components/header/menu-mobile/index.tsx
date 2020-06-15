@@ -1,5 +1,4 @@
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import Button from './button';
 import Menu from './menu';
@@ -12,10 +11,8 @@ const MenuMobile = () => {
   return (
     <Box className={classes.root}>
       <MenuMobileProvider>
-        <Grid item>
-          <Button />
-          <Menu />
-        </Grid>
+        <Button />
+        <Menu />
       </MenuMobileProvider>
     </Box>
   );
