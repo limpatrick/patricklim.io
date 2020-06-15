@@ -37,7 +37,7 @@ const Experience = () => {
 
   return (
     <Article id={ID_EXPERIENCE} title={formatMessage({ id: 'experience.title' })}>
-      <Stepper orientation="vertical">
+      <Stepper className={classes.stepper} orientation="vertical">
         {nodes.map(({ company, id, end, start, title }) => (
           <Step key={id} active>
             <StepLabel StepIconComponent={StepIcon}>
