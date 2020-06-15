@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useContext, useState } from 'react';
 
 type State = boolean;
 type Props = { children: React.ReactNode };
-type Actions = { open: () => void; close: () => void; closePromise: () => Promise<undefined> };
+type Actions = { open: () => void; close: () => void; closePromise: () => Promise<void> };
 
 const MenuMobileStateContext = createContext<State>(false);
 const MenuMobileActionsContext = createContext<Actions | undefined>(undefined);
@@ -18,7 +18,7 @@ const MenuMobileProvider = ({ children }: Props) => {
   }, []);
   const closePromise = useCallback(
     () =>
-      new Promise<undefined>(resolve => {
+      new Promise<void>(resolve => {
         close();
         setTimeout(() => {
           resolve();

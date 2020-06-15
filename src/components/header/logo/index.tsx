@@ -7,7 +7,7 @@ import useScrollTo from '~/hooks/use-scroll-to';
 import { useConfigState } from '~/providers/config';
 import useStyles from './styles';
 
-type Props = { onClick?: () => Promise<undefined> };
+type Props = { onClick?: () => Promise<void> };
 
 const Logo = ({ onClick }: Props) => {
   const { path } = useConfigState();
