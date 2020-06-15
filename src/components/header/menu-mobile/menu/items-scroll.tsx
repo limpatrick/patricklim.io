@@ -4,15 +4,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
 import useSections from '~/hooks/use-sections';
 import useSiteMetadata from '~/hooks/use-site-metadata';
+import { useConfigState } from '~/providers/config';
 import { useMenuMobileActions } from '../provider';
 import Subheader from './subheader';
 
 const ItemsScroll = () => {
+  const { path } = useConfigState();
   const { siteName } = useSiteMetadata();
   const { closePromise } = useMenuMobileActions();
   const sections = useSections();
 
-  return (
+  return path === '/' ? (
     <>
       <Subheader>{siteName}</Subheader>
       {sections.map(({ id, scrollTo, title }) => (
@@ -30,7 +32,7 @@ const ItemsScroll = () => {
       ))}
       <Divider component="li" />
     </>
-  );
+  ) : null;
 };
 
 export default ItemsScroll;
