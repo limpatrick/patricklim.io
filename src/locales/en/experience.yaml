@@ -1,4 +1,5 @@
 ---
 nav: Experience
 title: My experience
-present: present
+period: '{start} – {end}'
+since: '{start} – present'

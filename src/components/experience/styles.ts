@@ -1,23 +1,15 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
-export default makeStyles((theme: Theme) =>
-  createStyles({
-    stepper: {
-      '& .MuiStepContent-root': {
-        marginLeft: 3,
-        paddingLeft: 12,
-      },
-      '& .MuiStepConnector-root': {
-        marginLeft: 3,
-      },
+export default makeStyles({
+  timeline: {
+    '& .MuiTimelineContent-root': {
+      paddingTop: 0,
     },
-    title: {
-      fontWeight: 500,
+    '& .MuiTimelineOppositeContent-root': {
+      paddingTop: 4,
     },
-    lineHeight: {
-      [theme.breakpoints.down('xs')]: {
-        lineHeight: 'initial',
-      },
-    },
-  })
-);
+  },
+  title: {
+    fontWeight: 500,
+  },
+});

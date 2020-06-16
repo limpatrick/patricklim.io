@@ -1,17 +1,17 @@
 import { GetExperienceDataQuery } from '@generated/graphql-types';
-import Grid from '@material-ui/core/Grid';
-import Step from '@material-ui/core/Step';
-import StepContent from '@material-ui/core/StepContent';
-import StepLabel from '@material-ui/core/StepLabel';
-import Stepper from '@material-ui/core/Stepper';
 import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
+import Timeline from '@material-ui/lab/Timeline';
+import TimelineConnector from '@material-ui/lab/TimelineConnector';
+import TimelineContent from '@material-ui/lab/TimelineContent';
+import TimelineDot from '@material-ui/lab/TimelineDot';
+import TimelineItem from '@material-ui/lab/TimelineItem';
+import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import { ID_EXPERIENCE } from '~/constants';
 import Article from '~/layouts/article';
-import StepIcon from './step-icon';
 import useStyles from './styles';
 
 export const query = graphql`
@@ -37,40 +37,38 @@ const Experience = () => {
 
   return (
     <Article id={ID_EXPERIENCE} title={formatMessage({ id: 'experience.title' })}>
-      <Stepper className={classes.stepper} orientation="vertical">
+      <Timeline className={classes.timeline} align="alternate">
         {nodes.map(({ company, id, end, start, title }) => (
-          <Step key={id} active>
-            <StepLabel StepIconComponent={StepIcon}>
-              <Grid container component="span">
-                <Grid item xs={12} sm={6} component="span">
-                  <Typography
-                    className={clsx(classes.title, classes.lineHeight)}
-                    variant="subtitle1"
-                    component="span"
-                  >
-                    {company}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} sm={6} component="span">
-                  <Grid container justify="flex-end" component="span">
-                    <Grid item xs={12} sm={7} md={4} component="span">
-                      <Typography variant="caption" component="span">
-                        {formatDate(start, { month: 'short', year: 'numeric' })} –{' '}
-                        {end
-                          ? formatDate(end, { month: 'short', year: 'numeric' })
-                          : formatMessage({ id: 'experience.present' })}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </StepLabel>
-            <StepContent>
+          <TimelineItem key={id}>
+            <TimelineOppositeContent>
+              <Typography variant="caption" color="textSecondary">
+                {end
+                  ? formatMessage(
+                      { id: 'experience.period' },
+                      {
+                        start: formatDate(start, { month: 'short', year: 'numeric' }),
+                        end: formatDate(end, { month: 'short', year: 'numeric' }),
+                      }
+                    )
+                  : formatMessage(
+                      { id: 'experience.since' },
+                      { start: formatDate(start, { month: 'short', year: 'numeric' }) }
+                    )}
+              </Typography>
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineDot color="primary" />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent>
+              <Typography className={classes.title} variant="subtitle1" component="p">
+                {company}
+              </Typography>
               <Typography variant="body2">{title}</Typography>
-            </StepContent>
-          </Step>
+            </TimelineContent>
+          </TimelineItem>
         ))}
-      </Stepper>
+      </Timeline>
     </Article>
   );
 };
