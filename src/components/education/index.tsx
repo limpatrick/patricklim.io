@@ -53,18 +53,16 @@ const Education = () => {
                         {formatMessage({ id: `education.${school}.school` })}
                       </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6} component="span">
-                      <Grid container justify="flex-end" component="span">
-                        <Grid
-                          className={clsx(classes.dates, classes.lineHeight)}
-                          item
-                          component="span"
-                        >
-                          <Typography
-                            className={classes.lineHeight}
-                            variant="caption"
-                          >{`${start} – ${end}`}</Typography>
-                        </Grid>
+                    <Grid container justify="flex-end" item xs={12} sm={6} component="span">
+                      <Grid
+                        className={clsx(classes.dates, classes.lineHeight)}
+                        item
+                        component="span"
+                      >
+                        <Typography
+                          className={classes.lineHeight}
+                          variant="caption"
+                        >{`${start} – ${end}`}</Typography>
                       </Grid>
                     </Grid>
                   </Grid>
