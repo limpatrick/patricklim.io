@@ -34,6 +34,7 @@ const AboutMe = () => {
               contact: (
                 <Button
                   className={classes.button}
+                  component="span"
                   disableElevation
                   disableFocusRipple
                   disableRipple

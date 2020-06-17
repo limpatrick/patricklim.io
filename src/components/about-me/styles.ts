@@ -8,11 +8,14 @@ export default makeStyles((theme: Theme) =>
       },
     },
     button: {
-      color: theme.palette.text.secondary,
+      color: theme.palette.primary.light,
+      display: 'inline',
       fontSize: '1rem',
       lineHeight: 1.5,
       padding: 0,
       textTransform: 'none',
+      userSelect: 'auto',
+      verticalAlign: 'baseline',
       '&:hover': {
         backgroundColor: 'initial',
       },
