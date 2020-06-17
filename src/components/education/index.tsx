@@ -44,16 +44,16 @@ const Education = () => {
               <ListItemText
                 primary={
                   <Grid className={classes.titleContainer} container component="span">
-                    <Grid item xs={12} sm={6} component="span">
+                    <Grid item sm={12} md={7} component="span">
                       <Typography
                         className={clsx(classes.title, classes.lineHeight)}
                         variant="subtitle1"
                         component="span"
                       >
-                        {formatMessage({ id: `education.${school}.school` })}
+                        {formatMessage({ id: `education.${school}.program` })}
                       </Typography>
                     </Grid>
-                    <Grid container justify="flex-end" item xs={12} sm={6} component="span">
+                    <Grid container justify="flex-end" item sm={12} md={5} component="span">
                       <Grid
                         className={clsx(classes.dates, classes.lineHeight)}
                         item
@@ -61,15 +61,16 @@ const Education = () => {
                       >
                         <Typography
                           className={classes.lineHeight}
-                          variant="caption"
+                          color="textSecondary"
+                          variant="body2"
                         >{`${start} – ${end}`}</Typography>
                       </Grid>
                     </Grid>
                   </Grid>
                 }
                 secondary={
-                  <Typography variant="body2" component="span">
-                    {formatMessage({ id: `education.${school}.program` })}, {city}, {country}
+                  <Typography color="textSecondary" variant="body1" component="span">
+                    {formatMessage({ id: `education.${school}.school` })}, {city}, {country}
                   </Typography>
                 }
               />

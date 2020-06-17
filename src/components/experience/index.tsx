@@ -41,7 +41,7 @@ const Experience = () => {
         {nodes.map(({ company, id, end, start, title }) => (
           <TimelineItem key={id}>
             <TimelineOppositeContent>
-              <Typography variant="caption" color="textSecondary">
+              <Typography variant="body2" color="textSecondary">
                 {end
                   ? formatMessage(
                       { id: 'experience.period' },
@@ -64,7 +64,7 @@ const Experience = () => {
               <Typography className={classes.title} variant="subtitle1" component="p">
                 {company}
               </Typography>
-              <Typography variant="body2">{title}</Typography>
+              <Typography variant="body1">{title}</Typography>
             </TimelineContent>
           </TimelineItem>
         ))}

@@ -10,7 +10,7 @@ export const getValidationSchema = ({ email, required }: { email?: string; requi
 
 export const getSuccessOptionsObject = (): OptionsObject => ({
   anchorOrigin: {
-    vertical: 'top',
+    vertical: 'bottom',
     horizontal: 'center',
   },
   variant: 'success',

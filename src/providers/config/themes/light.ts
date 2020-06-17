@@ -28,7 +28,7 @@ export default createMuiTheme(
       MuiCssBaseline: {
         '@global': {
           '::selection': {
-            backgroundColor: grey[100],
+            backgroundColor: grey[200],
           },
           body: {
             '& #nprogress': {
