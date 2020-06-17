@@ -24,7 +24,7 @@ const useSections = () => {
   const { scrollTo: scrollToExperience } = useScrollTo(ID_EXPERIENCE);
   const { scrollTo: scrollToTechnologies } = useScrollTo(ID_TECHNOLOGIES);
 
-  const data: SectionData[] = useMemo(
+  const sections: SectionData[] = useMemo(
     () => [
       {
         id: ID_ABOUT_ME,
@@ -62,7 +62,14 @@ const useSections = () => {
     ]
   );
 
-  return data;
+  return {
+    sections,
+    scrollToAboutMe,
+    scrollToContact,
+    scrollToEducation,
+    scrollToExperience,
+    scrollToTechnologies,
+  };
 };
 
 export default useSections;

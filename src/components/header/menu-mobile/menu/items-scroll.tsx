@@ -12,7 +12,7 @@ const ItemsScroll = () => {
   const { path } = useConfigState();
   const { siteName } = useSiteMetadata();
   const { closePromise } = useMenuMobileActions();
-  const sections = useSections();
+  const { sections } = useSections();
 
   return path === '/' ? (
     <>

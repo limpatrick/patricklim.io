@@ -1,4 +1,9 @@
 ---
 nav: About me
 title: About me
-text: Irure ipsum dolore veniam ut reprehenderit. Eiusmod deserunt veniam nostrud in. Consequat et minim ea commodo. Irure do incididunt fugiat sunt enim deserunt ea id ut fugiat qui aliqua. Laborum eiusmod Lorem labore mollit consequat aliquip. Labore ut dolor dolor aute quis consectetur commodo tempor velit eu esse.Consectetur occaecat nulla dolor minim nostrud quis. Id labore culpa tempor commodo proident fugiat minim quis anim sint labore. Non laborum duis occaecat officia consectetur consectetur.
+text1: '{dev}, passionate about technology since my childhood. I like to develop modern websites and applications with the best user experience while attaching great importance to details.'
+text2: Developing mainly under {react} with a {serverless}, please feel free to {contact} so that we’ll talk about your project.
+contact: contact me
+dev: Full stack developer
+react: React
+serverless: serverless architecture

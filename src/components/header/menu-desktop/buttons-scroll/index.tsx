@@ -6,7 +6,7 @@ import useStyles from './styles';
 
 const ButtonsScroll = () => {
   const { path } = useConfigState();
-  const sections = useSections();
+  const { sections } = useSections();
   const classes = useStyles();
 
   return path === '/' ? (
