@@ -1,5 +1,4 @@
 import { createMuiTheme, ThemeOptions } from '@material-ui/core';
-import blueGrey from '@material-ui/core/colors/blueGrey';
 import green from '@material-ui/core/colors/green';
 import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
@@ -8,13 +7,13 @@ import { mergeDeepRight } from 'ramda';
 import base, { transitions } from './base';
 
 const backgroundColor = '#fff';
-const nprogressColor = blueGrey['700'];
+const nprogressColor = grey.A100;
 
 export default createMuiTheme(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mergeDeepRight<any, ThemeOptions>(base, {
     palette: {
-      primary: blueGrey,
+      primary: grey,
       background: {
         default: backgroundColor,
       },
@@ -29,7 +28,7 @@ export default createMuiTheme(
       MuiCssBaseline: {
         '@global': {
           '::selection': {
-            background: blueGrey.A100,
+            backgroundColor: grey[100],
           },
           body: {
             '& #nprogress': {
@@ -55,15 +54,46 @@ export default createMuiTheme(
           },
         },
       },
-      MuiCardHeader: {
+      MuiButton: {
         root: {
-          backgroundColor: grey['50'],
+          '&$contained': {
+            '&$containedPrimary': {
+              backgroundColor: grey[50],
+            },
+          },
+          '&$textPrimary': {
+            color: grey[600],
+          },
+        },
+      },
+      MuiFab: {
+        root: {
+          backgroundColor: grey[50],
+          '&:hover': {
+            backgroundColor: grey[200],
+          },
         },
       },
       MuiOutlinedInput: {
         root: {
           '&:hover $notchedOutline': {
-            borderColor: blueGrey.A200,
+            borderColor: grey[500],
+          },
+        },
+      },
+      MuiTypography: {
+        root: {
+          '&$colorPrimary': {
+            color: grey[600],
+          },
+        },
+      },
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      MuiTimelineDot: {
+        root: {
+          '&$defaultPrimary': {
+            backgroundColor: grey[900],
           },
         },
       },

@@ -4,11 +4,11 @@ export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& .MuiTypography-root > strong, & $button': {
-        fontWeight: 600,
+        fontWeight: 700,
       },
     },
     button: {
-      color: theme.palette.primary.main,
+      color: theme.palette.text.secondary,
       fontSize: '1rem',
       lineHeight: 1.5,
       padding: 0,

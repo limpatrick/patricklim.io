@@ -12,18 +12,13 @@ type Props = {
   component?: React.ComponentProps<typeof Box>['component'];
   id?: string;
   title: string;
-  variant?: boolean;
 };
 
-const Article = ({ children, className, component, id, title, variant }: Props) => {
+const Article = ({ children, className, component, id, title }: Props) => {
   const classes = useStyles();
 
   return (
-    <Box
-      id={id}
-      className={clsx(classes.root, { [classes.variant]: variant }, className)}
-      component={component ?? 'article'}
-    >
+    <Box id={id} className={clsx(classes.root, className)} component={component ?? 'article'}>
       <Container>
         <Grid container>
           <Grid item xs={12}>
