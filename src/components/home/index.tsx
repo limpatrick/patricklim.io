@@ -47,24 +47,18 @@ const Home = () => {
       <BackgroundImage fluid={fluid}>
         <Grid container justify="center" alignItems="center">
           <Typist
-            className={classes.typist}
             cursor={{ show: false }}
             avgTypingDelay={100}
             onTypingDone={() => setTypingDone(true)}
           >
             <Grid item>
-              <Typography className={classes.title} component="h1" gutterBottom variant="h2">
+              <Typography component="h1" gutterBottom variant="h2">
                 {author}
               </Typography>
             </Grid>
             <Typist.Delay ms={duration.complex} />
             <Grid item>
-              <Typography
-                className={classes.subtitle}
-                color="textSecondary"
-                component="p"
-                variant="overline"
-              >
+              <Typography color="textSecondary" component="p" variant="overline">
                 {formatMessage({ id: 'home.subtitle' })}
               </Typography>
             </Grid>

@@ -8,32 +8,35 @@ export default makeStyles((theme: Theme) =>
       '& > div': {
         '& > .MuiGrid-container': {
           minHeight: '100vh',
+          '& > .Typist': {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            [theme.breakpoints.up('sm')]: {
+              '& > .MuiGrid-item': {
+                display: 'inline-block',
+              },
+            },
+            '& > .MuiGrid-item': {
+              '& > .MuiTypography-root': {
+                color: '#fff',
+                fontFamily,
+                textTransform: 'uppercase',
+              },
+              '&:first-child': {
+                '& > .MuiTypography-root': {
+                  fontWeight: 'bold',
+                  letterSpacing: '0.7rem',
+                },
+              },
+              '&:last-child': {
+                '& > .MuiTypography-root': {
+                  letterSpacing: '0.06rem',
+                },
+              },
+            },
+          },
         },
       },
-    },
-    typist: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      '& > .Cursor': {
-        color: '#fff',
-      },
-      [theme.breakpoints.up('sm')]: {
-        '& > .MuiGrid-item': {
-          display: 'inline-block',
-        },
-      },
-    },
-    title: {
-      color: '#fff',
-      fontFamily,
-      fontWeight: 'bold',
-      letterSpacing: '0.7rem',
-      textTransform: 'uppercase',
-    },
-    subtitle: {
-      color: '#fff',
-      fontFamily,
-      letterSpacing: '0.06rem',
     },
     next: {
       position: 'absolute',
