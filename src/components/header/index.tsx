@@ -1,72 +1,37 @@
 import AppBar from '@material-ui/core/AppBar';
-import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
-import Tooltip from '@material-ui/core/Tooltip';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Zoom from '@material-ui/core/Zoom';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { useIntl } from 'gatsby-plugin-intl';
+import clsx from 'clsx';
 import React from 'react';
-import ButtonLink from '~/components/button-link';
-import ToggleTheme from '~/components/toggle-theme';
-import { BACK_TOP_ANCHOR_ID } from '~/constants';
-import useScrollTo from '~/hooks/use-scroll-to';
-import { LanguageCode } from '~/typings/global';
+import { useConfigState } from '~/providers/config';
+import BackTop from './back-top';
+import Logo from './logo';
+import MenuDesktop from './menu-desktop';
+import MenuMobile from './menu-mobile';
 import useStyles from './styles';
 
-type Props = { path: string };
-
-const Header = ({ path }: Props) => {
-  const classes = useStyles();
+const Header = () => {
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
-  const { scrollTo } = useScrollTo(BACK_TOP_ANCHOR_ID);
-  const { formatMessage, locale } = useIntl();
-
-  const titleBackTop = formatMessage({ id: 'global.title.back-top' });
-  const getButtonLink = (language: LanguageCode) => {
-    const text = language.toUpperCase();
-    const titleChangeLanguage = formatMessage(
-      { id: 'global.title.change-language' },
-      { language: formatMessage({ id: `global.language.${language}` }) }
-    );
-
-    return locale !== language ? (
-      <Tooltip title={titleChangeLanguage} aria-label={titleChangeLanguage}>
-        <ButtonLink language={language} to={path}>
-          {text}
-        </ButtonLink>
-      </Tooltip>
-    ) : (
-      <ButtonLink disabled>{text}</ButtonLink>
-    );
-  };
+  const { path } = useConfigState();
+  const classes = useStyles();
 
   return (
     <>
-      <AppBar elevation={trigger ? 4 : 0}>
-        <Toolbar>
-          <Grid className={classes.actions} container justify="flex-end" alignItems="center">
-            <Grid className={classes.links} item>
-              {getButtonLink('en')}
-              {getButtonLink('fr')}
-            </Grid>
+      <AppBar color={trigger ? 'primary' : 'transparent'} elevation={trigger ? 4 : 0}>
+        <Toolbar className={clsx({ [classes.hidden]: !trigger && path !== '/404/' })}>
+          <Grid container alignItems="center">
             <Grid item>
-              <ToggleTheme />
+              <Logo />
+            </Grid>
+            <Grid container justify="flex-end" item xs>
+              <MenuDesktop />
+              <MenuMobile />
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
-      <Toolbar id={BACK_TOP_ANCHOR_ID} />
-      <Zoom in={trigger}>
-        <div className={classes.scrollButton} onClick={scrollTo} role="presentation">
-          <Tooltip title={titleBackTop} aria-label={titleBackTop}>
-            <Fab color="primary" size="small">
-              <KeyboardArrowUpIcon />
-            </Fab>
-          </Tooltip>
-        </div>
-      </Zoom>
+      <BackTop trigger={trigger} />
     </>
   );
 };

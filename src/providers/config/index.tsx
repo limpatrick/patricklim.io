@@ -1,41 +1,41 @@
-import { Theme } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { getItem, setItem, THEME_KEY } from '~/helpers/storage';
-import { ThemeKey, themeMap } from './themes';
+import React, { createContext, useCallback, useContext, useEffect, useReducer } from 'react';
+import { COOKIE_THEME_KEY } from '~/constants';
+import { getItem, setItem } from '~/helpers/storage';
+import { setPath as setPathAction, setTheme as setThemeAction } from './actions';
+import reducer, { initialState } from './reducer';
+import { ThemeKey } from './themes';
+import { Actions, State } from './types';
 
-type State = { theme: Theme; themeKey: ThemeKey };
-type Actions = {
-  setTheme: (theme: ThemeKey) => void;
-  toggleTheme: () => void;
-};
 type Props = { children: React.ReactNode | ((e: [State, Actions]) => React.ReactNode) };
 
 const ConfigStateContext = createContext<State | undefined>(undefined);
 const ConfigActionsContext = createContext<Actions | undefined>(undefined);
 
-const initialState: State = { theme: themeMap.light, themeKey: 'light' };
-
 const ConfigProvider = ({ children }: Props) => {
-  const [state, setState] = useState(initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const { themeKey } = state;
 
+  const setPath: Actions['setPath'] = useCallback(path => {
+    dispatch(setPathAction(path));
+  }, []);
+
   const setTheme: Actions['setTheme'] = useCallback(key => {
-    setState({ theme: themeMap[key], themeKey: key });
+    dispatch(setThemeAction(key));
   }, []);
 
   const toggleTheme: Actions['toggleTheme'] = useCallback(() => {
     const key = themeKey === 'light' ? 'dark' : 'light';
 
-    setItem(THEME_KEY, key);
+    setItem(COOKIE_THEME_KEY, key);
     setTheme(key);
   }, [setTheme, themeKey]);
 
-  const actions = { setTheme, toggleTheme };
+  const actions: Actions = { setPath, setTheme, toggleTheme };
 
   useEffect(() => {
-    const storedThemeKey = getItem(THEME_KEY);
+    const storedThemeKey = getItem(COOKIE_THEME_KEY);
     let key: ThemeKey;
 
     if (storedThemeKey !== null && (storedThemeKey === 'light' || storedThemeKey === 'dark'))
@@ -66,7 +66,7 @@ const useConfigActions = () => {
   const context = useContext(ConfigActionsContext);
 
   if (context === undefined)
-    throw new Error('useConfigDispatch must be used within a ConfigProvider');
+    throw new Error('useConfigActions must be used within a ConfigProvider');
 
   return context;
 };

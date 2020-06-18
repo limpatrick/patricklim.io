@@ -1,0 +1,14 @@
+---
+nav: A propos
+title: A propos de moi
+text1: >-
+  {dev}, passionné par les technologies depuis mon enfance. J’aime développer des sites internet et 
+  applications modernes avec la meilleure expérience utilisateur tout en attachant une grande 
+  importance aux détails.
+text2: >-
+  Développant principalement sous {react} avec une {serverless}, n’hésitez pas à {contact} afin que 
+  nous puissions parler de votre projet.
+contact: me contacter
+dev: Développeur front end
+react: React
+serverless: architecture serverless

@@ -30,6 +30,7 @@ module.exports = {
     author: `Patrick Lim`,
     email: process.env.PL_EMAIL_TO,
     emailSubject: process.env.PL_EMAIL_SUBJECT,
+    languages,
     siteName: `patricklim.fr`,
     siteUrl: netlifyConstants.SITE_URL,
   },
@@ -39,10 +40,25 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `data`,
+        path: `${__dirname}/src/data`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `technologies`,
+        path: `${__dirname}/src/images/technologies`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-yaml`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -79,7 +95,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-typescript',
-    'gatsby-plugin-typescript-checker',
     {
       resolve: 'gatsby-plugin-eslint',
       options: {

@@ -1,0 +1,13 @@
+---
+nav: About me
+title: About me
+text1: >-
+  {dev}, passionate about technology since my childhood. I like to develop modern websites and 
+  applications with the best user experience while attaching great importance to details.
+text2: >-
+  Developing mainly under {react} with a {serverless}, please feel free to {contact} so that we’ll 
+  talk about your project.
+contact: contact me
+dev: Front end developer
+react: React
+serverless: serverless architecture
