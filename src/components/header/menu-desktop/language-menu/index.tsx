@@ -28,12 +28,7 @@ const LanguageMenu = () => {
           {locale}
         </Button>
       </Tooltip>
-      <Menu
-        anchorEl={anchorEl}
-        onClose={() => {
-          setAnchorEl(null);
-        }}
-      />
+      <Menu anchorEl={anchorEl} onClose={() => setAnchorEl(null)} />
     </>
   );
 };

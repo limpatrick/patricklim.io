@@ -27,13 +27,7 @@ const Contact = () => {
             <Typography variant="body2">
               <FormattedMessage id="contact.error-msg" values={{ email: <MailTo /> }} />
             </Typography>,
-            getErrorOptionsObject(k => (
-              <ErrorAction
-                onClick={() => {
-                  closeSnackbar(k);
-                }}
-              />
-            ))
+            getErrorOptionsObject(k => <ErrorAction onClick={() => closeSnackbar(k)} />)
           )
     );
   };
