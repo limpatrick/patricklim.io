@@ -28,7 +28,7 @@ export default createMuiTheme({
     type: 'dark',
   }),
   overrides: {
-    ...muiCssBaseline(teal[50], teal[200]),
+    ...muiCssBaseline(teal[50], teal[500]),
     ...muiAppBar(backgroundColor),
     ...muiButton(grey[50], grey[200], grey[300]),
     ...muiFab(grey[50], grey[200]),

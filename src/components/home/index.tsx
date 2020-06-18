@@ -22,8 +22,8 @@ export const query = graphql`
   query Background {
     file(relativePath: { eq: "background.jpg" }) {
       childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        fluid(quality: 100) {
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }

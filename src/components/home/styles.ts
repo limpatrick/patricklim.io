@@ -13,6 +13,7 @@ export default makeStyles((theme: Theme) =>
       },
     },
     title: {
+      color: '#fff',
       fontWeight: 'bold',
       letterSpacing: '0.7rem',
       textAlign: 'center',
@@ -22,12 +23,16 @@ export default makeStyles((theme: Theme) =>
       },
     },
     subtitle: {
+      color: '#fff',
       letterSpacing: '0.06rem',
       textAlign: 'center',
     },
     next: {
       position: 'absolute',
       bottom: theme.spacing(2),
+      '& > .MuiIconButton-root': {
+        color: '#fff',
+      },
     },
   })
 );
