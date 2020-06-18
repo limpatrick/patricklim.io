@@ -1,0 +1,11 @@
+---
+- school: utt
+  city: Troyes
+  country: France
+  start: 2014
+  end: 2017
+- school: dut
+  city: Paris
+  country: France
+  start: 2012
+  end: 2014
