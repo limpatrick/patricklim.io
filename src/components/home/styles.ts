@@ -1,31 +1,39 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
+const fontFamily = '"Varela", "Raleway", "Roboto", "Helvetica", "Arial", sans-serif';
+
 export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& > div': {
         '& > .MuiGrid-container': {
           minHeight: '100vh',
-          '& $title, & $subtitle': {
-            fontFamily: '"Varela", "Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
-          },
+        },
+      },
+    },
+    typist: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      '& > .Cursor': {
+        color: '#fff',
+      },
+      [theme.breakpoints.up('sm')]: {
+        '& > .MuiGrid-item': {
+          display: 'inline-block',
         },
       },
     },
     title: {
       color: '#fff',
+      fontFamily,
       fontWeight: 'bold',
       letterSpacing: '0.7rem',
-      textAlign: 'center',
       textTransform: 'uppercase',
-      '& > span': {
-        display: 'inline-block',
-      },
     },
     subtitle: {
       color: '#fff',
+      fontFamily,
       letterSpacing: '0.06rem',
-      textAlign: 'center',
     },
     next: {
       position: 'absolute',
