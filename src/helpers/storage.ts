@@ -1,13 +1,9 @@
 import { CookieAttributes, get, remove, set } from 'js-cookie';
 import { mergeRight } from 'ramda';
+import { COOKIE_PREFIX, COOKIE_SEPARATOR, COOKIE_THEME_KEY } from '~/constants';
 
-export const THEME_KEY = 'theme';
-
-export type Key = typeof THEME_KEY;
-
-export const PREFIX = 'pl';
-export const SEPARATOR = '-';
-export const key = (k: Key) => `${PREFIX}${SEPARATOR}${k}`;
+export type Key = typeof COOKIE_THEME_KEY;
+export const key = (k: Key) => `${COOKIE_PREFIX}${COOKIE_SEPARATOR}${k}`;
 
 export const getItem = (k: Key) => get(key(k));
 export const removeItem = (k: Key, o?: CookieAttributes) => remove(key(k), o);

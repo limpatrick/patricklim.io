@@ -4,18 +4,21 @@ btn:
   close: Fermer
   send: Envoyer
 
-language:
+languages:
   en: anglais
   fr: français
-
-no-network: Pas de connexion réseau
 
 title:
   back: Retour
   back-top: Revenir en haut
-  change-language: Passer en {language}
+  change-language: Changer de langue
   close: Fermer
   continue: Continuer
+  open-menu: Ouvrir le menu
   send: Envoyer
   toggle-dark: Activer le thème sombre
   toggle-light: Activer le thème clair
+
+language: Langue
+no-network: Pas de connexion réseau
+theme: Thème
