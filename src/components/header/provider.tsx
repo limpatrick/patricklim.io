@@ -1,6 +1,7 @@
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import clsx, { ClassValue } from 'clsx';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { useConfigState } from '~/providers/config';
 import useStyles from './styles';
 
 type State = { trigger: boolean };
@@ -14,6 +15,7 @@ const HeaderActionsContext = createContext<Actions | undefined>(undefined);
 const HeaderProvider = ({ children }: Props) => {
   const [state, setState] = useState(initialState);
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
+  const { themeKey, path } = useConfigState();
   const classes = useStyles();
 
   useEffect(() => {
@@ -23,9 +25,14 @@ const HeaderProvider = ({ children }: Props) => {
   const actions: Actions = useMemo(
     () => ({
       classnames: (...clsxClasses) =>
-        clsx({ [classes.default]: !trigger }, { [classes.trigger]: trigger }, ...clsxClasses),
+        clsx(
+          { [classes.default]: !trigger },
+          { [classes.defaultDark]: themeKey === 'dark' && path === '/404/' },
+          { [classes.trigger]: trigger },
+          ...clsxClasses
+        ),
     }),
-    [classes.default, classes.trigger, trigger]
+    [classes.default, classes.defaultDark, classes.trigger, path, themeKey, trigger]
   );
 
   return (
