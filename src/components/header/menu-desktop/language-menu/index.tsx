@@ -3,11 +3,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useIntl } from 'gatsby-plugin-intl';
 import React, { useState } from 'react';
+import { useHeaderActions } from '../../provider';
 import Menu from './menu';
 import useStyles from './styles';
 
 const LanguageMenu = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const { classnames } = useHeaderActions();
   const { formatMessage, locale } = useIntl();
   const classes = useStyles();
 
@@ -19,7 +21,7 @@ const LanguageMenu = () => {
         <Button
           aria-controls="simple-menu"
           aria-haspopup="true"
-          className={classes.button}
+          className={classnames(classes.button)}
           onClick={event => {
             setAnchorEl(event.currentTarget);
           }}
