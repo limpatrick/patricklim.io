@@ -1,8 +1,6 @@
 import { themeMap } from './themes';
 import { Action, SET_PATH, SET_THEME, State } from './types';
 
-export const initialState: State = { path: null, theme: themeMap.light, themeKey: 'light' };
-
 export default (state: State, action: Action): State => {
   switch (action.type) {
     case SET_PATH:

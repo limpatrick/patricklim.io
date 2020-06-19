@@ -4,13 +4,13 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import { useConfigState } from '~/providers/config';
 import useStyles from './styles';
 
-type State = { trigger: boolean };
 type Actions = { classnames: (...clsxClasses: ClassValue[]) => string };
 type Props = { children: (state: State, actions: Actions) => React.ReactElement };
+type State = { trigger: boolean };
 
-const initialState: State = { trigger: false };
 const HeaderStateContext = createContext<State | undefined>(undefined);
 const HeaderActionsContext = createContext<Actions | undefined>(undefined);
+const initialState: State = { trigger: false };
 
 const HeaderProvider = ({ children }: Props) => {
   const [state, setState] = useState(initialState);

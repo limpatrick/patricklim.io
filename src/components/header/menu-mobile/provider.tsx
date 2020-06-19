@@ -1,21 +1,17 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 
-type State = boolean;
-type Props = { children: React.ReactNode };
 type Actions = { open: () => void; close: () => void; closePromise: () => Promise<void> };
+type Props = { children: React.ReactNode };
+type State = { isOpen: boolean };
 
-const MenuMobileStateContext = createContext<State>(false);
+const MenuMobileStateContext = createContext<State | undefined>(undefined);
 const MenuMobileActionsContext = createContext<Actions | undefined>(undefined);
 
 const MenuMobileProvider = ({ children }: Props) => {
-  const [isOpen, setOpen] = useState<State>(false);
+  const [isOpen, setIsOpen] = useState<State>({ isOpen: false });
 
-  const open = useCallback(() => {
-    setOpen(true);
-  }, []);
-  const close = useCallback(() => {
-    setOpen(false);
-  }, []);
+  const open = useCallback(() => setIsOpen({ isOpen: true }), []);
+  const close = useCallback(() => setIsOpen({ isOpen: false }), []);
   const closePromise = useCallback(
     () =>
       new Promise<void>(resolve => {
@@ -41,6 +37,9 @@ const MenuMobileProvider = ({ children }: Props) => {
 const useMenuMobileState = () => {
   const context = useContext(MenuMobileStateContext);
 
+  if (context === undefined)
+    throw new Error('useMenuMobileState must be used within a MenuMobileProvider');
+
   return context;
 };
 
@@ -55,4 +54,4 @@ const useMenuMobileActions = () => {
 
 const useMenuMobile = (): [State, Actions] => [useMenuMobileState(), useMenuMobileActions()];
 
-export { useMenuMobile, useMenuMobileActions, useMenuMobileState, MenuMobileProvider };
+export { MenuMobileProvider, useMenuMobileState, useMenuMobile, useMenuMobileActions };
