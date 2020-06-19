@@ -6,14 +6,14 @@ import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import { ID_TOP } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
+import { useHeaderState } from '../provider';
 import useStyles from './styles';
 
-type Props = { trigger: boolean };
-
-const BackTop = ({ trigger }: Props) => {
-  const classes = useStyles();
+const BackTop = () => {
+  const { trigger } = useHeaderState();
   const { scrollTo } = useScrollTo(ID_TOP);
   const { formatMessage } = useIntl();
+  const classes = useStyles();
 
   const titleBackTop = formatMessage({ id: 'global.title.back-top' });
 
