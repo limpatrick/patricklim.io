@@ -17,7 +17,7 @@ const Transition = React.forwardRef(
 );
 
 const Menu = () => {
-  const [isOpen, { close }] = useMenuMobile();
+  const [{ isOpen }, { close }] = useMenuMobile();
   const classes = useStyles();
 
   return (

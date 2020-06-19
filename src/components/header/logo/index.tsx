@@ -25,7 +25,7 @@ const Logo = ({ onClick }: Props) => {
         if (path === '/') {
           if (onClick) {
             await onClick();
-            scrollTo(e);
+            scrollTo();
           } else scrollTo(e);
         } else navigate('/');
       }}

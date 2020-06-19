@@ -1,11 +1,11 @@
 import { SnackbarKey, useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
-import { useNetworkStatus } from '~/providers/network-status';
+import { useNetworkState } from '~/providers/network';
 import Alert from './alert';
 
 const NetworkAlert = () => {
   const [key, setKey] = useState<SnackbarKey | undefined>(undefined);
-  const online = useNetworkStatus();
+  const { online } = useNetworkState();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   useEffect(() => {
