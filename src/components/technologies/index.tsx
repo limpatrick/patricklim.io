@@ -40,7 +40,7 @@ const Technologies = () => {
       className={classes.root}
       title={formatMessage({ id: 'technologies.title' })}
     >
-      <Grid container spacing={6}>
+      <Grid className={classes.container} container>
         {nodes.map(({ childImageSharp: { fixed: { originalName, ...fixed } }, id }) => (
           <Grid key={id} item xs={12} sm>
             <Img alt={originalName} fixed={fixed} />
