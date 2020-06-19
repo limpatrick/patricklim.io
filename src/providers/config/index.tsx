@@ -3,14 +3,20 @@ import React, { createContext, useCallback, useContext, useEffect, useReducer } 
 import { COOKIE_THEME_KEY } from '~/constants';
 import { getItem, setItem } from '~/helpers/storage';
 import { setPath as setPathAction, setTheme as setThemeAction } from './actions';
-import reducer, { initialState } from './reducer';
-import { ThemeKey } from './themes';
-import { Actions, State } from './types';
+import reducer from './reducer';
+import { ThemeKey, themeMap } from './themes';
+import { State } from './types';
 
+type Actions = {
+  setPath: (path: string) => void;
+  setTheme: (theme: ThemeKey) => void;
+  toggleTheme: () => void;
+};
 type Props = { children: React.ReactNode | ((e: [State, Actions]) => React.ReactNode) };
 
 const ConfigStateContext = createContext<State | undefined>(undefined);
 const ConfigActionsContext = createContext<Actions | undefined>(undefined);
+const initialState: State = { path: null, theme: themeMap.light, themeKey: 'light' };
 
 const ConfigProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducer, initialState);

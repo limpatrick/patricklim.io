@@ -15,9 +15,4 @@ export type SetThemeAction = {
 };
 
 export type Action = SetPathAction | SetThemeAction;
-export type Actions = {
-  setPath: (path: string) => void;
-  setTheme: (theme: ThemeKey) => void;
-  toggleTheme: () => void;
-};
 export type State = { path: string | null; theme: Theme; themeKey: ThemeKey };
