@@ -5,9 +5,11 @@ import React from 'react';
 import DarkThemeIcon from '~/components/themes/dark-theme-icon';
 import LightThemeIcon from '~/components/themes/light-theme-icon';
 import { useConfig } from '~/providers/config';
+import { useHeaderActions } from '../provider';
 
 const ToggleTheme = () => {
   const [{ themeKey }, { toggleTheme }] = useConfig();
+  const { classnames } = useHeaderActions();
   const { formatMessage } = useIntl();
 
   const titleToggle = formatMessage({
@@ -16,7 +18,7 @@ const ToggleTheme = () => {
 
   return (
     <Tooltip title={titleToggle} aria-label={titleToggle}>
-      <IconButton onClick={toggleTheme} size="small">
+      <IconButton className={classnames()} onClick={toggleTheme} size="small">
         {themeKey === 'dark' ? <LightThemeIcon /> : <DarkThemeIcon />}
       </IconButton>
     </Tooltip>
