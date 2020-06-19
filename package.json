@@ -82,7 +82,7 @@
     "build:local": "netlify build",
     "develop": "gatsby develop",
     "start": "netlify dev",
-    "serve": "GATSBY_ACTIVE_ENV=production gatsby serve",
+    "serve": "GATSBY_ACTIVE_ENV=production PL_LANGUAGES=en,fr gatsby serve",
     "clean": "rimraf generated && rimraf .netlify/functions && gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
