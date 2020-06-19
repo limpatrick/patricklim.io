@@ -9,7 +9,7 @@ export default makeStyles((theme: Theme) =>
         '& > .MuiGrid-container': {
           minHeight: '100vh',
           '& > .Typist': {
-            padding: theme.spacing(2),
+            overflow: 'hidden',
             textAlign: 'center',
             [theme.breakpoints.up('sm')]: {
               '& > .MuiGrid-item': {
