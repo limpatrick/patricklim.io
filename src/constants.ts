@@ -17,6 +17,7 @@ export type Anchor =
 // CSS
 export const FOOTER_HEIGHT = 63;
 export const MIN_HEIGHT_CALC_FULL_SCREEN = `calc(100vh - ${FOOTER_HEIGHT}px)`;
+export const MIN_WIDTH = 333;
 
 // LOCAL STORAGE
 export const LS_GATSBY_INTL_LANGUAGE = 'gatsby-intl-language';
