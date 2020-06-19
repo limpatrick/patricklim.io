@@ -2,10 +2,10 @@ import { BackgroundQuery } from '@generated/graphql-types';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import Slide from '@material-ui/core/Slide';
 import { duration } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import Zoom from '@material-ui/core/Zoom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { graphql, useStaticQuery } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
@@ -63,7 +63,7 @@ const Home = () => {
               </Typography>
             </Grid>
           </Typist>
-          <Zoom in={typingDone} timeout={{ enter: duration.complex }}>
+          <Slide direction="down" in={typingDone} timeout={{ enter: duration.complex }}>
             <Box className={classes.next}>
               <Tooltip title={titleContinue} aria-label={titleContinue}>
                 <IconButton onClick={scrollTo}>
@@ -71,7 +71,7 @@ const Home = () => {
                 </IconButton>
               </Tooltip>
             </Box>
-          </Zoom>
+          </Slide>
         </Grid>
       </BackgroundImage>
     </Box>
