@@ -101,11 +101,17 @@ export const muiFab = (
   },
 });
 
-export const muiOutlinedInput = (borderColor: string): Override<'MuiOutlinedInput'> => ({
+export const muiOutlinedInput = (
+  hoverColor: string,
+  focusedColor: string
+): Override<'MuiOutlinedInput'> => ({
   MuiOutlinedInput: {
     root: {
       '&:hover $notchedOutline': {
-        borderColor,
+        borderColor: hoverColor,
+      },
+      '&$focused $notchedOutline': {
+        borderColor: focusedColor,
       },
     },
   },
