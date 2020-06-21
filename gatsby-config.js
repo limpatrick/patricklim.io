@@ -47,6 +47,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `technologies-dark`,
+        path: `${__dirname}/src/images/technologies-dark`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `technologies`,
         path: `${__dirname}/src/images/technologies`,
       },
