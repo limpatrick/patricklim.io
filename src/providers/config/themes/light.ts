@@ -1,8 +1,8 @@
 import { createMuiTheme } from '@material-ui/core';
 import green from '@material-ui/core/colors/green';
 import grey from '@material-ui/core/colors/grey';
+import lightBlue from '@material-ui/core/colors/lightBlue';
 import red from '@material-ui/core/colors/red';
-import teal from '@material-ui/core/colors/teal';
 import {
   muiAppBar,
   muiButton,
@@ -24,18 +24,18 @@ export default createMuiTheme({
     backgroundDefault: backgroundColor,
     backgroundPaper: backgroundColor,
     error: red['400'],
-    primary: { main: grey[500], light: grey[900] },
+    primary: { main: grey[500], light: lightBlue[900] },
     success: green['600'],
     type: 'light',
   }),
   overrides: {
-    ...muiCssBaseline(grey[200], teal[200]),
+    ...muiCssBaseline(grey[200], lightBlue[500]),
     ...muiAppBar(backgroundColor),
     ...muiButton(grey[50], grey[200], grey[600]),
     ...muiFab(grey[50], grey[200]),
-    ...muiOutlinedInput(grey[500]),
+    ...muiOutlinedInput('rgba(0, 97, 142, 0.35)', 'rgba(0, 97, 142, 0.45)'),
     ...muiPaper(),
     ...muiTypography(grey[900]),
-    ...muiTimelineDot(teal.A700),
+    ...muiTimelineDot(lightBlue[800]),
   },
 });
