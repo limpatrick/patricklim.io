@@ -1,0 +1,14 @@
+---
+nav: Contact
+title: Contactez-moi
+intro: Peu importe où vous en êtes avec votre projet, je suis disponible pour échanger à ce sujet.
+labels:
+  name: Nom
+  email: E-mail
+  message: Message
+errors:
+  required: Requis
+  email: Adresse e-mail invalide
+success-msg: Votre message a bien été envoyé. Je reviendrai vers vous dans les plus brefs délais.
+error-msg: Il y a eu un problème. Veuillez réessayer ou contactez-moi directement à {email}.
+alternative: Vous pouvez aussi me joindre à {email}.

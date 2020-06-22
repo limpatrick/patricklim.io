@@ -1,0 +1,62 @@
+---
+root: true
+
+parser: '@typescript-eslint/parser'
+extends:
+  - plugin:react/recommended
+  - plugin:prettier/recommended
+  - airbnb-typescript
+  - airbnb/hooks
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+  - prettier
+  - prettier/@typescript-eslint
+  - prettier/react
+
+settings:
+  react:
+    version: detect
+
+env:
+  browser: true
+  node: true
+  es6: true
+
+plugins:
+  - '@typescript-eslint'
+  - prettier
+  - react
+  - react-hooks
+
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 2020
+  project: ./tsconfig.json
+  sourceType: module
+
+rules:
+  import/extensions:
+    - error
+    - ignorePackages
+    - '': never
+      js: never
+      jsx: never
+      ts: never
+      tsx: never
+      mjs: never
+  '@typescript-eslint/explicit-function-return-type': off
+  import/prefer-default-export: off
+  react/prop-types: off
+  react/jsx-props-no-spreading: off
+  react/jsx-key: error
+
+overrides:
+  - files:
+      - '*.js'
+    rules:
+      '@typescript-eslint/no-var-requires': off
+
+ignorePatterns:
+  - gatsby-*.js
+  - generated/*
