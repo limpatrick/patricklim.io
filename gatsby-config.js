@@ -2,16 +2,17 @@ const netlifyConstants = require('./netlify/constants');
 const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
 const envs = [
   'CONTEXT',
-  'URL',
-  'DEPLOY_URL',
   'DEPLOY_PRIME_URL',
+  'DEPLOY_URL',
   'NODE_ENV',
+  'URL',
   'PL_AWS_ACESS_KEY_ID',
   'PL_AWS_REGION',
   'PL_AWS_SECRET_ACCESS_KEY',
   'PL_EMAIL_SERVICE',
   'PL_EMAIL_SUBJECT',
   'PL_EMAIL_TO',
+  'PL_GA_TRACKING_ID',
   'PL_LANGUAGES',
   'PL_SITE_URL',
 ];
@@ -175,6 +176,15 @@ module.exports = {
       options: {
         google: {
           families: ['Raleway', 'Varela', 'Roboto'],
+        },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [process.env.PL_GA_TRACKING_ID],
+        gtagConfig: {
+          anonymize_ip: true,
         },
       },
     },
