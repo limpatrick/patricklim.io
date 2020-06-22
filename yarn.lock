@@ -6605,6 +6605,14 @@ gatsby-plugin-eslint@^2.0.8:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-eslint/-/gatsby-plugin-eslint-2.0.8.tgz#1ff7f546a427d274dc2de3932ba29822aae330c3"
   integrity sha512-vAMy37povmQJNg6ZxY78fkWR3pKwG8MNMhO3u+4vXj2MYT5avhFvHPJTAb126ZCuygf30gAWlpwbV50zP894Jw==
 
+gatsby-plugin-google-gtag@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-2.1.4.tgz#48cbb6795493a3eaf7f4864244f1310ed46cc8cf"
+  integrity sha512-XoyR3mR2zvZKBDOwezsX8+I+ajO2QFVGp/qQgfO7uWwf91uoCrXk4bhgUApFjbVQYzADkPReeWPqdVdC0GbatA==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    minimatch "^3.0.4"
+
 gatsby-plugin-graphql-codegen@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-graphql-codegen/-/gatsby-plugin-graphql-codegen-2.7.1.tgz#60683ef5508bc7e23c8e288f6d320b3f2b7f5d00"
