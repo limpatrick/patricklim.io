@@ -23,6 +23,7 @@ const Form = ({ fullHeight, isSubmitting, onClick }: Props) => {
       <Grid container justify="flex-start" alignItems="center" spacing={2}>
         <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
           <Field
+            id="contact-name"
             component={TextField}
             name="name"
             label={formatMessage({ id: 'contact.labels.name' })}
@@ -32,6 +33,7 @@ const Form = ({ fullHeight, isSubmitting, onClick }: Props) => {
         </Grid>
         <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
           <Field
+            id="contact-email"
             component={TextField}
             name="email"
             label={formatMessage({ id: 'contact.labels.email' })}
@@ -41,6 +43,7 @@ const Form = ({ fullHeight, isSubmitting, onClick }: Props) => {
         </Grid>
         <Grid item xs={12}>
           <Field
+            id="contact-message"
             component={TextField}
             name="message"
             label={formatMessage({ id: 'contact.labels.message' })}
