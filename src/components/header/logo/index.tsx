@@ -1,5 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import { navigate } from 'gatsby';
+import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import LogoIcon from '~/components/logo-icon';
 import { ID_TOP } from '~/constants';
@@ -14,10 +15,14 @@ const Logo = ({ onClick }: Props) => {
   const { classnames } = useHeaderActions();
   const { path } = useConfigState();
   const { scrollTo } = useScrollTo(ID_TOP);
+  const { formatMessage } = useIntl();
   const classes = useStyles();
 
   return (
     <IconButton
+      aria-label={formatMessage({
+        id: path === '/' ? 'global.title.back-top' : 'global.title.back',
+      })}
       className={classnames(classes.root)}
       disableRipple
       disableFocusRipple
