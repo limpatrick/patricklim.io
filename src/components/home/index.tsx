@@ -46,11 +46,7 @@ const Home = () => {
     <Box className={classes.root}>
       <BackgroundImage fluid={fluid}>
         <Grid container justify="center" alignItems="center">
-          <Typist
-            cursor={{ show: false }}
-            avgTypingDelay={100}
-            onTypingDone={() => setTypingDone(true)}
-          >
+          <Typist cursor={{ show: false }} onTypingDone={() => setTypingDone(true)}>
             <Grid item>
               <Typography component="h1" gutterBottom variant="h2">
                 {author}
