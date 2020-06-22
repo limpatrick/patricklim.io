@@ -1,6 +1,3 @@
-import 'typeface-raleway';
-import 'typeface-roboto';
-import 'typeface-varela';
 import { IntlProps } from 'gatsby-plugin-intl';
 import React, { useEffect } from 'react';
 import { useConfigActions } from '~/providers/config';

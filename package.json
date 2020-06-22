@@ -31,6 +31,7 @@
     "gatsby-plugin-sharp": "^2.6.2",
     "gatsby-plugin-sitemap": "^2.4.4",
     "gatsby-plugin-typescript": "^2.4.2",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.3.1",
     "gatsby-transformer-sharp": "^2.5.2",
     "gatsby-transformer-yaml": "^2.4.4",
@@ -47,9 +48,6 @@
     "react-typist": "^2.0.5",
     "schema-dts": "^0.6.0",
     "statuses": "^2.0.0",
-    "typeface-raleway": "^0.0.75",
-    "typeface-roboto": "^0.0.75",
-    "typeface-varela": "^0.0.72",
     "yup": "^0.28.5"
   },
   "devDependencies": {
