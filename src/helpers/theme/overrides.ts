@@ -101,6 +101,20 @@ export const muiFab = (
   },
 });
 
+export const muiLinearProgress = (
+  colorPrimary: string,
+  barColorPrimary: string
+): Override<'MuiLinearProgress'> => ({
+  MuiLinearProgress: {
+    colorPrimary: {
+      backgroundColor: colorPrimary,
+    },
+    barColorPrimary: {
+      backgroundColor: barColorPrimary,
+    },
+  },
+});
+
 export const muiOutlinedInput = (
   hoverColor: string,
   focusedColor: string
