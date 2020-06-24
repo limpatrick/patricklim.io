@@ -4,6 +4,11 @@ const Yup = require('yup');
 const { NETLIFY_ENV, SITE_URL } = require('../constants');
 const NetlifyFunctionError = require('../netlify-function-error');
 
+const log = event =>
+  console.log(
+    `\n[METHOD]=${event.httpMethod}\n[REFERER]=${event.headers.referer}\n[IP]=${event.headers['client-ip']}\n[COOKIE]=${event.headers.cookie}\n[USER-AGENT]=${event.headers['user-agent']}\n[BODY]=${event.body}`
+  );
+
 /**
  * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#sendEmail-property
  */
@@ -28,8 +33,8 @@ const getEmailParams = ({ name, email, message }) => ({
 });
 
 exports.handler = async (event, context, callback) => {
-  console.log('exports.handler -> context', context);
-  console.log('exports.handler -> event', event);
+  log(event);
+
   try {
     if (event.httpMethod !== 'POST') throw new NetlifyFunctionError(405);
     if (NETLIFY_ENV !== 'development') {
