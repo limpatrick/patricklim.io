@@ -6,7 +6,7 @@ const NetlifyFunctionError = require('../netlify-function-error');
 
 const log = event =>
   console.log(
-    `\n[METHOD]=${event.httpMethod}\n[REFERER]=${event.headers.referer}\n[IP]=${event.headers['client-ip']}\n[COOKIE]=${event.headers.cookie}\n[USER-AGENT]=${event.headers['user-agent']}\n[BODY]=${event.body}`
+    `\n[METHOD]=${event.httpMethod}\n[REFERER]=${event.headers.referer}\n[IP]=${event.headers['client-ip']}\n[COOKIE]=${event.headers.cookie}\n[USER-AGENT]=${event.headers['user-agent']}\n[BODY]=${event.body}\n`
   );
 
 /**
