@@ -31,13 +31,10 @@ exports.handler = async (event, context, callback) => {
   try {
     if (event.httpMethod !== 'POST') throw new NetlifyFunctionError(405);
     if (NETLIFY_ENV !== 'development') {
-      console.log('exports.handler -> event', event);
       if (!event.headers.origin) throw new NetlifyFunctionError(403);
 
       const origin = new URL(event.headers.origin);
-      console.log('exports.handler -> origin', origin);
       const siteURL = new URL(SITE_URL);
-      console.log('exports.handler -> siteURL', siteURL);
 
       if (origin.hostname !== siteURL.hostname) throw new NetlifyFunctionError(403);
     }
