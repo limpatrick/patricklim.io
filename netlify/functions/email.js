@@ -31,6 +31,7 @@ exports.handler = async (event, context, callback) => {
   try {
     if (event.httpMethod !== 'POST') throw new NetlifyFunctionError(405);
     if (NETLIFY_ENV !== 'development') {
+      console.log('exports.handler -> event', event);
       if (!event.headers.origin) throw new NetlifyFunctionError(403);
 
       const origin = new URL(event.headers.origin);
