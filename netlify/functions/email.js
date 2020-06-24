@@ -28,6 +28,8 @@ const getEmailParams = ({ name, email, message }) => ({
 });
 
 exports.handler = async (event, context, callback) => {
+  console.log('exports.handler -> context', context);
+  console.log('exports.handler -> event', event);
   try {
     if (event.httpMethod !== 'POST') throw new NetlifyFunctionError(405);
     if (NETLIFY_ENV !== 'development') {
