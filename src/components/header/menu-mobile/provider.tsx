@@ -1,3 +1,4 @@
+import { duration } from '@material-ui/core';
 import React, { createContext, useCallback, useContext, useState } from 'react';
 
 type Actions = { open: () => void; close: () => void; closePromise: () => Promise<void> };
@@ -16,7 +17,7 @@ const MenuMobileProvider = ({ children }: Props) => {
     () =>
       new Promise<void>(resolve => {
         close();
-        setTimeout(resolve, 0);
+        setTimeout(resolve, duration.leavingScreen);
       }),
     [close]
   );
