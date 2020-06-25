@@ -3,6 +3,7 @@ import Footer from '~/components/footer';
 import Header from '~/components/header';
 import NetworkAlert from '~/components/network-alert';
 import SEO from '~/components/seo';
+import { ID_MAIN } from '~/constants';
 import SnackbarProvider from '~/providers/snackbar';
 import useStyles from './styles';
 
@@ -16,7 +17,9 @@ const Layout = ({ children, ...seoProps }: Props) => {
       <SEO {...seoProps} />
       <NetworkAlert />
       <Header />
-      <main className={classes.main}>{children}</main>
+      <main id={ID_MAIN} className={classes.main}>
+        {children}
+      </main>
       <Footer />
     </SnackbarProvider>
   );

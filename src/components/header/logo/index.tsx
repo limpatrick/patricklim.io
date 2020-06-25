@@ -25,12 +25,12 @@ const Logo = ({ className, onClick }: Props) => {
       className={clsx(classes.root, className)}
       disableRipple
       disableFocusRipple
-      onClick={async e => {
+      onClick={async () => {
         if (path === '/') {
           if (onClick) {
             await onClick();
             scrollTo();
-          } else scrollTo(e);
+          } else scrollTo();
         } else navigate('/');
       }}
     >

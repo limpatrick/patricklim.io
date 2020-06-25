@@ -3,6 +3,7 @@ export const ID_ABOUT_ME = 'pl-about-me';
 export const ID_CONTACT = 'pl-contact';
 export const ID_EDUCATION = 'pl-education';
 export const ID_EXPERIENCE = 'pl-experience';
+export const ID_MAIN = 'pl-main';
 export const ID_TECHNOLOGIES = 'pl-technologies';
 export const ID_TOP = 'pl-id-top';
 
@@ -11,6 +12,7 @@ export type Anchor =
   | typeof ID_CONTACT
   | typeof ID_EDUCATION
   | typeof ID_EXPERIENCE
+  | typeof ID_MAIN
   | typeof ID_TECHNOLOGIES
   | typeof ID_TOP;
 
