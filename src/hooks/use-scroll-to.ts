@@ -11,11 +11,11 @@ const useScrollTo = (idSelector: string, arg: ScrollIntoViewOptions = {}) => {
   const [id, setId] = useState(idSelector);
 
   const scrollTo = (event?: React.MouseEvent & { target: { ownerDocument?: Document } }) => {
-    alert('scrollTo call');
+    alert(`scrollTo call #${id} ${event} ${document.querySelector(`#${id}`)}`);
     const anchor = (event?.target?.ownerDocument || document).querySelector(`#${id}`);
 
     if (anchor) anchor.scrollIntoView(mergeRight(defaultArg, arg));
-    alert('scrollTo end');
+    alert(`scrollTo end ${anchor}`);
   };
 
   return { id, setId, scrollTo };
