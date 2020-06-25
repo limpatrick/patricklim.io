@@ -10,13 +10,13 @@ import { HeaderProvider } from './provider';
 
 const Header = () => (
   <HeaderProvider>
-    {({ trigger }) => (
+    {({ trigger }, { classnames }) => (
       <>
         <AppBar color={trigger ? 'primary' : 'transparent'} elevation={trigger ? 4 : 0}>
           <Toolbar>
             <Grid container alignItems="center">
               <Grid item>
-                <Logo />
+                <Logo className={classnames()} />
               </Grid>
               <Grid container justify="flex-end" item xs>
                 <MenuDesktop />
