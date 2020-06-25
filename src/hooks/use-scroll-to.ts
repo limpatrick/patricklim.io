@@ -14,8 +14,12 @@ const useScrollTo = (idSelector: string, arg: ScrollIntoViewOptions = {}) => {
     alert(`scrollTo call #${id} ${event} ${document.querySelector(`#${id}`)}`);
     const anchor = (event?.target?.ownerDocument || document).querySelector(`#${id}`);
 
-    if (anchor) anchor.scrollIntoView(mergeRight(defaultArg, arg));
-    alert(`scrollTo end ${anchor}`);
+    alert(`scrollTo ${anchor}`);
+    if (anchor) {
+      const options = mergeRight(defaultArg, arg);
+      alert(`scrollTo ${options}`);
+      anchor.scrollIntoView(options);
+    }
   };
 
   return { id, setId, scrollTo };

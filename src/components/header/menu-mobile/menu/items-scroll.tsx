@@ -22,11 +22,10 @@ const ItemsScroll = () => {
           key={id}
           button
           component="li"
-          onClick={(e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-            e.persist();
+          onClick={() => {
             alert('onClick');
             // await closePromise();
-            scrollTo(e);
+            scrollTo();
           }}
         >
           <ListItemText primary={title} />
