@@ -1,4 +1,5 @@
 import IconButton from '@material-ui/core/IconButton';
+import clsx from 'clsx';
 import { navigate } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
@@ -6,13 +7,11 @@ import LogoIcon from '~/components/logo-icon';
 import { ID_TOP } from '~/constants';
 import useScrollTo from '~/hooks/use-scroll-to';
 import { useConfigState } from '~/providers/config';
-import { useHeaderActions } from '../provider';
 import useStyles from './styles';
 
-type Props = { onClick?: () => Promise<void> };
+type Props = { className?: string; onClick?: () => Promise<void> };
 
-const Logo = ({ onClick }: Props) => {
-  const { classnames } = useHeaderActions();
+const Logo = ({ className, onClick }: Props) => {
   const { path } = useConfigState();
   const { scrollTo } = useScrollTo(ID_TOP);
   const { formatMessage } = useIntl();
@@ -23,7 +22,7 @@ const Logo = ({ onClick }: Props) => {
       aria-label={formatMessage({
         id: path === '/' ? 'global.title.back-top' : 'global.title.back',
       })}
-      className={classnames(classes.root)}
+      className={clsx(classes.root, className)}
       disableRipple
       disableFocusRipple
       onClick={async e => {
