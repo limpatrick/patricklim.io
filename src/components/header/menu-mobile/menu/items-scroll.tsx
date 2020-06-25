@@ -24,6 +24,7 @@ const ItemsScroll = () => {
           component="li"
           onClick={async (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
             e.persist();
+            alert('onClick');
             await closePromise();
             scrollTo(e);
           }}

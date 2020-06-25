@@ -16,8 +16,13 @@ const MenuMobileProvider = ({ children }: Props) => {
   const closePromise = useCallback(
     () =>
       new Promise<void>(resolve => {
+        alert('close promise call');
         close();
-        setTimeout(resolve, duration.leavingScreen);
+        setTimeout(() => {
+          alert('close promise resolve');
+
+          resolve();
+        }, duration.leavingScreen);
       }),
     [close]
   );
