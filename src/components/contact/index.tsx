@@ -47,7 +47,7 @@ const Contact = () => {
               email: formatMessage({ id: 'contact.errors.email' }),
               required: formatMessage({ id: 'contact.errors.required' }),
             })}
-            onSubmit={async (values, { setSubmitting, resetForm, ...o }, ...p) => {
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
               alert('onSubmit');
               if (key !== undefined) {
                 closeSnackbar(key);
@@ -73,16 +73,12 @@ const Contact = () => {
               }
             }}
           >
-            {({ submitForm, isSubmitting, touched, errors }) => (
+            {({ isSubmitting, touched, errors }) => (
               <Form
                 fullHeight={
                   showError(touched, errors, 'name') || showError(touched, errors, 'email')
                 }
                 isSubmitting={isSubmitting}
-                onClick={async () => {
-                  alert('onClick');
-                  await submitForm();
-                }}
               />
             )}
           </Formik>
