@@ -27,7 +27,6 @@ const Menu = () => {
       onClose={() => close()}
       onExited={onExited}
       open={isOpen}
-      scroll="body"
       TransitionComponent={Transition}
     >
       <Header />
