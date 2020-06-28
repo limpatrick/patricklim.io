@@ -16,13 +16,12 @@ const MenuMobileProvider = ({ children }: Props) => {
   const closePromise = useCallback(
     () =>
       new Promise<void>(resolve => {
-        alert('close promise call');
         close();
         setTimeout(() => {
           alert('close promise resolve');
 
           resolve();
-        }, duration.leavingScreen + 1000);
+        }, duration.leavingScreen + 1);
       }),
     [close]
   );
