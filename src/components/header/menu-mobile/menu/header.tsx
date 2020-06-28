@@ -9,7 +9,7 @@ import Logo from '../../logo';
 import { useMenuMobileActions } from '../provider';
 
 const Header = () => {
-  const { close, closePromise } = useMenuMobileActions();
+  const { close } = useMenuMobileActions();
   const { formatMessage } = useIntl();
 
   return (
@@ -17,13 +17,13 @@ const Header = () => {
       <Toolbar>
         <Grid container alignItems="center">
           <Grid item>
-            <Logo onClick={closePromise} />
+            <Logo onClick={close} />
           </Grid>
           <Grid container justify="flex-end" item xs>
             <IconButton
               aria-label={formatMessage({ id: 'global.title.close' })}
               color="inherit"
-              onClick={close}
+              onClick={() => close()}
               size="small"
             >
               <CloseIcon />

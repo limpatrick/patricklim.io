@@ -17,7 +17,7 @@ const Transition = React.forwardRef(
 );
 
 const Menu = () => {
-  const [{ isOpen }, { close }] = useMenuMobile();
+  const [{ isOpen }, { close, onExited }] = useMenuMobile();
   const classes = useStyles();
 
   return (
@@ -25,8 +25,9 @@ const Menu = () => {
       className={classes.root}
       fullScreen
       open={isOpen}
-      onClose={close}
+      onClose={() => close()}
       TransitionComponent={Transition}
+      onExited={onExited}
     >
       <Header />
       <List>

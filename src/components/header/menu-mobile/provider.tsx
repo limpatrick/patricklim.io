@@ -1,31 +1,37 @@
-import { duration } from '@material-ui/core';
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useReducer } from 'react';
+import { onCallbackCalled, onExited, setIsOpen } from './actions';
+import reducer from './reducer';
+import { State } from './types';
 
-type Actions = { open: () => void; close: () => void; closePromise: () => Promise<void> };
+type Actions = { open: () => void; close: (callback?: () => void) => void; onExited: () => void };
 type Props = { children: React.ReactNode };
-type State = { isOpen: boolean };
 
 const MenuMobileStateContext = createContext<State | undefined>(undefined);
 const MenuMobileActionsContext = createContext<Actions | undefined>(undefined);
+const initialState: State = { exited: false, isOpen: false, callback: undefined };
 
 const MenuMobileProvider = ({ children }: Props) => {
-  const [isOpen, setIsOpen] = useState<State>({ isOpen: false });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const open = useCallback(() => setIsOpen({ isOpen: true }), []);
-  const close = useCallback(() => setIsOpen({ isOpen: false }), []);
-  const closePromise = useCallback(
-    () =>
-      new Promise<void>(resolve => {
-        close();
-        setTimeout(resolve, duration.enteringScreen);
-      }),
-    [close]
+  const actions: Actions = useMemo(
+    () => ({
+      open: () => dispatch(setIsOpen(true)),
+      close: callback => dispatch(setIsOpen(false, callback)),
+      onExited: () => dispatch(onExited()),
+    }),
+    []
   );
 
-  const actions: Actions = { open, close, closePromise };
+  useEffect(() => {
+    if (state.isOpen === false && state.callback) {
+      alert('callback()');
+      state.callback();
+      dispatch(onCallbackCalled());
+    }
+  }, [state]);
 
   return (
-    <MenuMobileStateContext.Provider value={isOpen}>
+    <MenuMobileStateContext.Provider value={state}>
       <MenuMobileActionsContext.Provider value={actions}>
         {children}
       </MenuMobileActionsContext.Provider>

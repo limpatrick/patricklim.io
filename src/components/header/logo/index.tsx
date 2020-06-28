@@ -9,7 +9,7 @@ import useScrollTo from '~/hooks/use-scroll-to';
 import { useConfigState } from '~/providers/config';
 import useStyles from './styles';
 
-type Props = { className?: string; onClick?: () => Promise<void> };
+type Props = { className?: string; onClick?: (callback: () => void) => void };
 
 const Logo = ({ className, onClick }: Props) => {
   const { path } = useConfigState();
@@ -26,12 +26,10 @@ const Logo = ({ className, onClick }: Props) => {
       color="inherit"
       disableRipple
       disableFocusRipple
-      onClick={async () => {
+      onClick={() => {
         if (path === '/') {
-          if (onClick) {
-            await onClick();
-            scrollTo();
-          } else scrollTo();
+          if (onClick) onClick(scrollTo);
+          else scrollTo();
         } else navigate('/');
       }}
     >
