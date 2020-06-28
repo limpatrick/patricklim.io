@@ -22,9 +22,8 @@ const ItemsScroll = () => {
           key={id}
           button
           component="li"
-          onClick={() => {
-            alert('onClick');
-            // await closePromise();
+          onClick={async () => {
+            await closePromise();
             scrollTo();
           }}
         >

@@ -22,7 +22,7 @@ const MenuMobileProvider = ({ children }: Props) => {
           alert('close promise resolve');
 
           resolve();
-        }, duration.leavingScreen);
+        }, duration.leavingScreen + 1000);
       }),
     [close]
   );

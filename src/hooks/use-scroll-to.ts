@@ -1,3 +1,4 @@
+import { mergeRight } from 'ramda';
 import { useState } from 'react';
 
 const defaultArg: ScrollIntoViewOptions = {
@@ -8,22 +9,11 @@ const useScrollTo = (idSelector: string, arg: ScrollIntoViewOptions = {}) => {
   const [id, setId] = useState(idSelector);
 
   const scrollTo = () => {
-    alert(`scrollTo call #${id} query=${document.querySelector(`#${id}`)}`);
-    const anchor = document.querySelector(`#${id}`) as HTMLElement;
+    const anchor = document.querySelector(`#${id}`);
 
     if (anchor) {
-      alert(
-        `scrollTo options=${{
-          behavior: 'smooth',
-          left: anchor.offsetLeft,
-          top: anchor.offsetTop,
-        }}`
-      );
-      window.scrollTo({
-        behavior: 'smooth',
-        left: anchor.offsetLeft,
-        top: anchor.offsetTop,
-      });
+      alert('scrollTo');
+      anchor.scrollIntoView(mergeRight(defaultArg, arg));
     }
   };
 
