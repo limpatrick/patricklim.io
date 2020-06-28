@@ -17,7 +17,7 @@ const MenuMobileProvider = ({ children }: Props) => {
     () =>
       new Promise<void>(resolve => {
         close();
-        setTimeout(resolve, duration.leavingScreen + 1);
+        setTimeout(resolve, duration.enteringScreen);
       }),
     [close]
   );
