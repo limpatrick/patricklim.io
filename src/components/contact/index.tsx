@@ -48,7 +48,6 @@ const Contact = () => {
               required: formatMessage({ id: 'contact.errors.required' }),
             })}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
-              alert('onSubmit');
               if (key !== undefined) {
                 closeSnackbar(key);
                 setKey(undefined);
