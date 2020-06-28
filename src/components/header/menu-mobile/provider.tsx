@@ -1,7 +1,7 @@
 import transitions from '@material-ui/core/styles/transitions';
 import { TransitionHandlerProps } from '@material-ui/core/transitions';
-import React, { createContext, useContext, useEffect, useMemo, useReducer } from 'react';
-import { onCallbackCalled, onExited, setIsOpen } from './actions';
+import React, { createContext, useContext, useMemo, useReducer } from 'react';
+import { onExited, setIsOpen } from './actions';
 import reducer from './reducer';
 import { State } from './types';
 
@@ -17,39 +17,45 @@ const MenuMobileActionsContext = createContext<Actions | undefined>(undefined);
 const initialState: State = { exited: false, isOpen: false, callback: undefined };
 
 const MenuMobileProvider = ({ children }: Props) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [{ callback, exited, isOpen }, dispatch] = useReducer(reducer, initialState);
 
   const actions: Actions = useMemo(
     () => ({
       open: () => dispatch(setIsOpen(true)),
-      close: callback => dispatch(setIsOpen(false, callback)),
+      close: cb => dispatch(setIsOpen(false, cb)),
       onExited: node => {
-        const nodeExists0 = document.body.contains(node);
-        alert(`MenuMobileProvider -> nodeExists0=${nodeExists0}`);
-        const id = setInterval(() => {
-          const nodeExists = document.body.contains(node);
-          alert(`id -> nodeExists=${nodeExists}`);
+        if (callback) {
+          const nodeExists0 = document.body.contains(node);
+          alert(`MenuMobileProvider -> nodeExists0=${nodeExists0}`);
+          const id = setInterval(() => {
+            const nodeExists = document.body.contains(node);
+            alert(`id -> nodeExists=${nodeExists}`);
 
-          if (nodeExists === false) {
-            alert(`clearInterval=${id}`);
-            clearInterval(id);
-            dispatch(onExited());
-          }
-        });
+            if (nodeExists === false) {
+              alert(`clearInterval=${id}`);
+
+              if (callback) callback();
+
+              clearInterval(id);
+              dispatch(onExited());
+            }
+          });
+        }
       },
     }),
-    []
+    [callback]
   );
 
-  useEffect(() => {
-    if (state.isOpen === false && state.callback) {
-      state.callback();
-      dispatch(onCallbackCalled());
-    }
-  }, [state]);
+  // useEffect(() => {
+  //   if (state.isOpen === false && state.callback) {
+  //     console.log('callback()');
+  //     state.callback();
+  //     dispatch(onCallbackCalled());
+  //   }
+  // }, [state]);
 
   return (
-    <MenuMobileStateContext.Provider value={state}>
+    <MenuMobileStateContext.Provider value={{ callback, exited, isOpen }}>
       <MenuMobileActionsContext.Provider value={actions}>
         {children}
       </MenuMobileActionsContext.Provider>
