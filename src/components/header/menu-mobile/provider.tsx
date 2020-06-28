@@ -1,4 +1,3 @@
-import transitions from '@material-ui/core/styles/transitions';
 import { TransitionHandlerProps } from '@material-ui/core/transitions';
 import React, { createContext, useContext, useMemo, useReducer } from 'react';
 import { onExited, setIsOpen } from './actions';
@@ -24,25 +23,9 @@ const MenuMobileProvider = ({ children }: Props) => {
       open: () => dispatch(setIsOpen(true)),
       close: cb => dispatch(setIsOpen(false, cb)),
       onExited: () => {
-        if (callback) {
-          callback();
-          dispatch(onExited());
-          // const nodeExists0 = document.body.contains(node);
-          // alert(`MenuMobileProvider -> nodeExists0=${nodeExists0}`);
-          // const id = setInterval(() => {
-          //   const nodeExists = document.body.contains(node);
-          //   alert(`id -> nodeExists=${nodeExists}`);
+        if (callback) callback();
 
-          //   if (nodeExists === false) {
-          //     alert(`clearInterval=${id}`);
-
-          //     if (callback) callback();
-
-          //     clearInterval(id);
-          //     dispatch(onExited());
-          //   }
-          // });
-        }
+        dispatch(onExited());
       },
     }),
     [callback]

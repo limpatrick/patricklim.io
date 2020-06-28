@@ -1,13 +1,4 @@
-import {
-  ON_CALLBACK_CALLED,
-  ON_EXITED,
-  OnCallbackCalledAction,
-  OnExitedAction,
-  SET_IS_OPEN,
-  SetIsOpenAction,
-} from './types';
-
-export const onCallbackCalled = (): OnCallbackCalledAction => ({ type: ON_CALLBACK_CALLED });
+import { ON_EXITED, OnExitedAction, SET_IS_OPEN, SetIsOpenAction } from './types';
 
 export const onExited = (): OnExitedAction => ({ type: ON_EXITED });
 
