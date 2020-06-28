@@ -23,36 +23,30 @@ const MenuMobileProvider = ({ children }: Props) => {
     () => ({
       open: () => dispatch(setIsOpen(true)),
       close: cb => dispatch(setIsOpen(false, cb)),
-      onExited: node => {
+      onExited: () => {
         if (callback) {
-          const nodeExists0 = document.body.contains(node);
-          alert(`MenuMobileProvider -> nodeExists0=${nodeExists0}`);
-          const id = setInterval(() => {
-            const nodeExists = document.body.contains(node);
-            alert(`id -> nodeExists=${nodeExists}`);
+          callback();
+          dispatch(onExited());
+          // const nodeExists0 = document.body.contains(node);
+          // alert(`MenuMobileProvider -> nodeExists0=${nodeExists0}`);
+          // const id = setInterval(() => {
+          //   const nodeExists = document.body.contains(node);
+          //   alert(`id -> nodeExists=${nodeExists}`);
 
-            if (nodeExists === false) {
-              alert(`clearInterval=${id}`);
+          //   if (nodeExists === false) {
+          //     alert(`clearInterval=${id}`);
 
-              if (callback) callback();
+          //     if (callback) callback();
 
-              clearInterval(id);
-              dispatch(onExited());
-            }
-          });
+          //     clearInterval(id);
+          //     dispatch(onExited());
+          //   }
+          // });
         }
       },
     }),
     [callback]
   );
-
-  // useEffect(() => {
-  //   if (state.isOpen === false && state.callback) {
-  //     console.log('callback()');
-  //     state.callback();
-  //     dispatch(onCallbackCalled());
-  //   }
-  // }, [state]);
 
   return (
     <MenuMobileStateContext.Provider value={{ callback, exited, isOpen }}>
