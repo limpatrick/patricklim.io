@@ -23,6 +23,7 @@ const Logo = ({ className, onClick }: Props) => {
         id: path === '/' ? 'global.title.back-top' : 'global.title.back',
       })}
       className={clsx(classes.root, className)}
+      color="inherit"
       disableRipple
       disableFocusRipple
       onClick={async () => {

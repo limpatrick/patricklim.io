@@ -5,14 +5,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CloseIcon from '@material-ui/icons/CloseRounded';
 import { useIntl } from 'gatsby-plugin-intl';
 import React from 'react';
-import Logo from '../../../logo';
-import { useMenuMobileActions } from '../../provider';
-import useStyles from './styles';
+import Logo from '../../logo';
+import { useMenuMobileActions } from '../provider';
 
 const Header = () => {
   const { close, closePromise } = useMenuMobileActions();
   const { formatMessage } = useIntl();
-  const classes = useStyles();
 
   return (
     <AppBar color="transparent" position="relative" elevation={0}>
@@ -23,9 +21,9 @@ const Header = () => {
           </Grid>
           <Grid container justify="flex-end" item xs>
             <IconButton
-              className={classes.root}
-              onClick={close}
               aria-label={formatMessage({ id: 'global.title.close' })}
+              color="inherit"
+              onClick={close}
               size="small"
             >
               <CloseIcon />
