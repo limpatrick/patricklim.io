@@ -26,13 +26,12 @@ const HeaderProvider = ({ children }: Props) => {
     () => ({
       classnames: (...clsxClasses) =>
         clsx(
-          { [classes.primary]: !trigger && (path === '/' || themeKey === 'dark') },
-          { [classes.secondary]: themeKey === 'light' && path === '/404/' },
-          { [classes.trigger]: trigger },
+          { [classes.white]: !trigger && (path === '/' || themeKey === 'dark') },
+          { [classes.primary]: trigger || (path === '/404/' && themeKey === 'light') },
           ...clsxClasses
         ),
     }),
-    [classes.primary, classes.secondary, classes.trigger, path, themeKey, trigger]
+    [classes.primary, classes.white, path, themeKey, trigger]
   );
 
   return (
