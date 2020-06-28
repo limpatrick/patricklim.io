@@ -11,23 +11,14 @@ import Subheader from './subheader';
 const ItemsScroll = () => {
   const { path } = useConfigState();
   const { siteName } = useSiteMetadata();
-  const { closePromise } = useMenuMobileActions();
+  const { close } = useMenuMobileActions();
   const { sections } = useSections();
 
   return path === '/' ? (
     <>
       <Subheader>{siteName}</Subheader>
       {sections.map(({ id, scrollTo, title }) => (
-        <ListItem
-          key={id}
-          button
-          component="li"
-          onClick={async (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-            e.persist();
-            await closePromise();
-            scrollTo(e);
-          }}
-        >
+        <ListItem key={id} button component="li" onClick={() => close(scrollTo)}>
           <ListItemText primary={title} />
         </ListItem>
       ))}

@@ -14,7 +14,7 @@ export const query = graphql`
   query Seo {
     file(relativePath: { eq: "screenshot.png" }) {
       childImageSharp {
-        fixed(quality: 100, width: 1200) {
+        fixed(quality: 100, jpegQuality: 100, webpQuality: 100, pngQuality: 100, width: 1200) {
           src
         }
       }

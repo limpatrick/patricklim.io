@@ -11,10 +11,9 @@ import useStyles from './styles';
 type Props = {
   fullHeight: boolean;
   isSubmitting: boolean;
-  onClick: React.ComponentProps<typeof Button>['onClick'];
 };
 
-const Form = ({ fullHeight, isSubmitting, onClick }: Props) => {
+const Form = ({ fullHeight, isSubmitting }: Props) => {
   const { formatMessage } = useIntl();
   const classes = useStyles();
 
@@ -23,45 +22,44 @@ const Form = ({ fullHeight, isSubmitting, onClick }: Props) => {
       <Grid container justify="flex-start" alignItems="center" spacing={2}>
         <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
           <Field
-            id="contact-name"
             component={TextField}
-            name="name"
-            label={formatMessage({ id: 'contact.labels.name' })}
             fullWidth
+            id="contact-name"
+            label={formatMessage({ id: 'contact.labels.name' })}
+            name="name"
             variant="outlined"
           />
         </Grid>
         <Grid className={clsx({ [classes.fullHeight]: fullHeight })} item xs={12} sm={6}>
           <Field
-            id="contact-email"
             component={TextField}
-            name="email"
-            label={formatMessage({ id: 'contact.labels.email' })}
             fullWidth
+            id="contact-email"
+            label={formatMessage({ id: 'contact.labels.email' })}
+            name="email"
             variant="outlined"
           />
         </Grid>
         <Grid item xs={12}>
           <Field
-            id="contact-message"
             component={TextField}
-            name="message"
-            label={formatMessage({ id: 'contact.labels.message' })}
             fullWidth
-            variant="outlined"
+            id="contact-message"
+            label={formatMessage({ id: 'contact.labels.message' })}
             multiline
+            name="message"
             rows={10}
+            variant="outlined"
           />
           {isSubmitting && <LinearProgress />}
         </Grid>
         <Grid className={classes.send} item xs={12}>
           <Button
             aria-label={formatMessage({ id: 'global.title.send' })}
-            type="submit"
             color="primary"
-            variant="contained"
             disabled={isSubmitting}
-            onClick={onClick}
+            type="submit"
+            variant="contained"
           >
             {formatMessage({ id: 'global.btn.send' })}
           </Button>

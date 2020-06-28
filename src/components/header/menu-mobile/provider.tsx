@@ -1,30 +1,38 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import { TransitionHandlerProps } from '@material-ui/core/transitions';
+import React, { createContext, useContext, useMemo, useReducer } from 'react';
+import { onExited, setIsOpen } from './actions';
+import reducer from './reducer';
+import { State } from './types';
 
-type Actions = { open: () => void; close: () => void; closePromise: () => Promise<void> };
+type Actions = {
+  open: () => void;
+  close: (callback?: () => void) => void;
+  onExited: TransitionHandlerProps['onExited'];
+};
 type Props = { children: React.ReactNode };
-type State = { isOpen: boolean };
 
 const MenuMobileStateContext = createContext<State | undefined>(undefined);
 const MenuMobileActionsContext = createContext<Actions | undefined>(undefined);
+const initialState: State = { exited: false, isOpen: false, callback: undefined };
 
 const MenuMobileProvider = ({ children }: Props) => {
-  const [isOpen, setIsOpen] = useState<State>({ isOpen: false });
+  const [{ callback, exited, isOpen }, dispatch] = useReducer(reducer, initialState);
 
-  const open = useCallback(() => setIsOpen({ isOpen: true }), []);
-  const close = useCallback(() => setIsOpen({ isOpen: false }), []);
-  const closePromise = useCallback(
-    () =>
-      new Promise<void>(resolve => {
-        close();
-        setTimeout(resolve, 0);
-      }),
-    [close]
+  const actions: Actions = useMemo(
+    () => ({
+      open: () => dispatch(setIsOpen(true)),
+      close: cb => dispatch(setIsOpen(false, cb)),
+      onExited: () => {
+        if (callback) callback();
+
+        dispatch(onExited());
+      },
+    }),
+    [callback]
   );
 
-  const actions: Actions = { open, close, closePromise };
-
   return (
-    <MenuMobileStateContext.Provider value={isOpen}>
+    <MenuMobileStateContext.Provider value={{ callback, exited, isOpen }}>
       <MenuMobileActionsContext.Provider value={actions}>
         {children}
       </MenuMobileActionsContext.Provider>

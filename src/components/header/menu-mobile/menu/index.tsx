@@ -17,15 +17,16 @@ const Transition = React.forwardRef(
 );
 
 const Menu = () => {
-  const [{ isOpen }, { close }] = useMenuMobile();
+  const [{ isOpen }, { close, onExited }] = useMenuMobile();
   const classes = useStyles();
 
   return (
     <Dialog
       className={classes.root}
       fullScreen
+      onClose={() => close()}
+      onExited={onExited}
       open={isOpen}
-      onClose={close}
       TransitionComponent={Transition}
     >
       <Header />

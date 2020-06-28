@@ -72,13 +72,12 @@ const Contact = () => {
               }
             }}
           >
-            {({ submitForm, isSubmitting, touched, errors }) => (
+            {({ isSubmitting, touched, errors }) => (
               <Form
                 fullHeight={
                   showError(touched, errors, 'name') || showError(touched, errors, 'email')
                 }
                 isSubmitting={isSubmitting}
-                onClick={submitForm}
               />
             )}
           </Formik>
