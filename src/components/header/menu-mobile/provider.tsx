@@ -24,7 +24,7 @@ const MenuMobileProvider = ({ children }: Props) => {
 
   useEffect(() => {
     if (state.isOpen === false && state.callback) {
-      alert('callback()');
+      alert('callback() scroll body');
       state.callback();
       dispatch(onCallbackCalled());
     }

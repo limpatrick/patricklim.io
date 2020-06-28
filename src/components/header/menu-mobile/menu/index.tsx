@@ -24,10 +24,11 @@ const Menu = () => {
     <Dialog
       className={classes.root}
       fullScreen
-      open={isOpen}
       onClose={() => close()}
-      TransitionComponent={Transition}
       onExited={onExited}
+      open={isOpen}
+      scroll="body"
+      TransitionComponent={Transition}
     >
       <Header />
       <List>
