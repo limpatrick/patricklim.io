@@ -65,67 +65,11 @@ export const muiAppBar = (backgroundColor: string): Override<'MuiAppBar'> => ({
   },
 });
 
-export const muiButton = (
-  containedPrimaryBackgroundColor: string,
-  containedPrimaryHoverBackgroundColor: string,
-  textPrimaryColor: string
-): Override<'MuiButton'> => ({
-  MuiButton: {
-    root: {
-      '&$contained': {
-        '&$containedPrimary': {
-          backgroundColor: containedPrimaryBackgroundColor,
-          '&:hover': {
-            backgroundColor: containedPrimaryHoverBackgroundColor,
-          },
-        },
-      },
-      '&$textPrimary': {
-        color: textPrimaryColor,
-      },
-    },
-  },
-});
-
-export const muiFab = (
-  backgroundColor: string,
-  hoverBackgroundColor: string
-): Override<'MuiFab'> => ({
-  MuiFab: {
-    root: {
-      backgroundColor,
-      '&:hover': {
-        backgroundColor: hoverBackgroundColor,
-      },
-    },
-  },
-});
-
-export const muiLinearProgress = (
-  colorPrimary: string,
-  barColorPrimary: string
-): Override<'MuiLinearProgress'> => ({
-  MuiLinearProgress: {
-    colorPrimary: {
-      backgroundColor: colorPrimary,
-    },
-    barColorPrimary: {
-      backgroundColor: barColorPrimary,
-    },
-  },
-});
-
-export const muiOutlinedInput = (
-  hoverColor: string,
-  focusedColor: string
-): Override<'MuiOutlinedInput'> => ({
+export const muiOutlinedInput = (hoverColor: string): Override<'MuiOutlinedInput'> => ({
   MuiOutlinedInput: {
     root: {
       '&:hover $notchedOutline': {
         borderColor: hoverColor,
-      },
-      '&$focused $notchedOutline': {
-        borderColor: focusedColor,
       },
     },
   },
@@ -135,16 +79,6 @@ export const muiPaper = (): Override<'MuiPaper'> => ({
   MuiPaper: {
     root: {
       transition: [muiTransitions.create('box-shadow'), transitions.backgroundColor].join(', '),
-    },
-  },
-});
-
-export const muiTypography = (color: string): Override<'MuiTypography'> => ({
-  MuiTypography: {
-    root: {
-      '&$colorPrimary': {
-        color,
-      },
     },
   },
 });

@@ -15,6 +15,10 @@ export type Anchor =
   | typeof ID_TOP;
 
 // CSS
+export const COLOR_DARK = '#6F65A2';
+export const COLOR_ERROR = '#DA2E63';
+export const COLOR_LIGHT = '#FD7E80';
+export const COLOR_SUCCESS = COLOR_DARK;
 export const FOOTER_HEIGHT = 63;
 export const MIN_HEIGHT_CALC_FULL_SCREEN = `calc(100vh - ${FOOTER_HEIGHT}px)`;
 export const MIN_WIDTH = 333;

@@ -21,7 +21,7 @@ const BackTop = () => {
     <Zoom in={trigger}>
       <div className={classes.wrapper} onClick={scrollTo} role="presentation">
         <Tooltip title={titleBackTop} aria-label={titleBackTop}>
-          <Fab color="default" size="small">
+          <Fab color="primary" size="small">
             <KeyboardArrowUpIcon />
           </Fab>
         </Tooltip>

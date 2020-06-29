@@ -1,18 +1,11 @@
-import { createMuiTheme } from '@material-ui/core';
-import green from '@material-ui/core/colors/green';
-import grey from '@material-ui/core/colors/grey';
-import lightBlue from '@material-ui/core/colors/lightBlue';
-import red from '@material-ui/core/colors/red';
+import { createMuiTheme, lighten } from '@material-ui/core';
+import { COLOR_DARK, COLOR_ERROR, COLOR_LIGHT, COLOR_SUCCESS } from '~/constants';
 import {
   muiAppBar,
-  muiButton,
   muiCssBaseline,
-  muiFab,
-  muiLinearProgress,
   muiOutlinedInput,
   muiPaper,
   muiTimelineDot,
-  muiTypography,
   palette,
   typography,
 } from '~/helpers/theme';
@@ -24,20 +17,16 @@ export default createMuiTheme({
   ...palette({
     backgroundDefault: backgroundColor,
     backgroundPaper: backgroundColor,
-    error: red['400'],
-    primary: { main: grey[500], light: lightBlue[900] },
-    success: green['600'],
+    error: COLOR_ERROR,
+    primary: COLOR_DARK,
+    success: COLOR_SUCCESS,
     type: 'light',
   }),
   overrides: {
-    ...muiCssBaseline(grey[200], lightBlue[500]),
+    ...muiCssBaseline(lighten(COLOR_LIGHT, 0.62), COLOR_DARK),
     ...muiAppBar(backgroundColor),
-    ...muiButton(grey[50], grey[200], grey[600]),
-    ...muiFab(grey[50], grey[200]),
-    ...muiLinearProgress(lightBlue[50], lightBlue[700]),
-    ...muiOutlinedInput('rgba(0, 97, 142, 0.35)', 'rgba(0, 97, 142, 0.45)'),
+    ...muiOutlinedInput(lighten(COLOR_DARK, 0.5)),
     ...muiPaper(),
-    ...muiTypography(grey[900]),
-    ...muiTimelineDot(lightBlue[800]),
+    ...muiTimelineDot(COLOR_LIGHT),
   },
 });
