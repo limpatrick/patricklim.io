@@ -21,6 +21,7 @@ export const query = graphql`
         country
         end
         id
+        program
         school
         start
       }
@@ -38,7 +39,7 @@ const Education = () => {
   return (
     <Article id={ID_EDUCATION} title={formatMessage({ id: 'education.title' })}>
       <List>
-        {nodes.map(({ city, country, end, id, start, school }) => (
+        {nodes.map(({ city, country, end, id, start, school, program }) => (
           <React.Fragment key={id}>
             <ListItem alignItems="flex-start">
               <ListItemText
@@ -50,7 +51,7 @@ const Education = () => {
                         variant="subtitle1"
                         component="span"
                       >
-                        {formatMessage({ id: `education.${school}.program` })}
+                        {formatMessage({ id: program })}
                       </Typography>
                     </Grid>
                     <Grid container justify="flex-end" item sm={12} md={5} component="span">
@@ -70,7 +71,7 @@ const Education = () => {
                 }
                 secondary={
                   <Typography color="textSecondary" variant="body1" component="span">
-                    {formatMessage({ id: `education.${school}.school` })}, {city}, {country}
+                    {formatMessage({ id: school })}, {city}, {country}
                   </Typography>
                 }
               />

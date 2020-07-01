@@ -1,11 +1,13 @@
 ---
-- school: utt
+- school: education.utt.school
   city: Troyes
   country: France
+  program: education.utt.program
   start: 2014
   end: 2017
-- school: dut
+- school: education.dut.school
   city: Paris
   country: France
+  program: education.dut.program
   start: 2012
   end: 2014
