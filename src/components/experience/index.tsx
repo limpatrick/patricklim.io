@@ -64,7 +64,7 @@ const Experience = () => {
               <Typography className={classes.title} variant="subtitle1" component="p">
                 {company}
               </Typography>
-              <Typography variant="body1">{title}</Typography>
+              <Typography variant="body1">{formatMessage({ id: title })}</Typography>
             </TimelineContent>
           </TimelineItem>
         ))}

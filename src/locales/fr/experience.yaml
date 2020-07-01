@@ -3,3 +3,9 @@ nav: Expériences
 title: Mes expériences
 period: '{start} – {end}'
 since: '{start} – actuellement'
+positions:
+  consultant: Ingénieur études et développement
+  front-end: Développeur front end
+  full-stack: Développeur full stack
+  software-engineer: Ingénieur développement logiciel
+  web: Développeur web

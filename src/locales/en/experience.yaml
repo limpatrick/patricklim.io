@@ -3,3 +3,9 @@ nav: Experience
 title: My experience
 period: '{start} – {end}'
 since: '{start} – present'
+positions:
+  consultant: Software engineer
+  front-end: Front end developer
+  full-stack: Full stack developer
+  software-engineer: Software engineer
+  web: Web developer
